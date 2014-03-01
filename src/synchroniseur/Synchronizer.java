@@ -31,19 +31,13 @@ public class Synchronizer implements SynchronizerInterface  {
 	
 	private SoundUnit soundUnit;
 	
-	private ArrayList<Document> menuScreensList;
-
+	// private ArrayList<Document> menuScreensList;
+    
+	private ArrayList<AugmentedPage> augmentedPageList;
+	
 	private ArrayList<Document> pagesList;
 	
-	private int context; //context d'utilisation du logiel (menu ou lecture)
-	
-	private int shelfNumber; //numéro d'étagère
-	
-	private int bookNumber; //numéro de livre
-	
 	private int font; //police
-	
-	private boolean isReading; //indique si l'on a bien chargé les trois premières pages.
 	
 	private String[][] stringMap;
 	
@@ -51,81 +45,29 @@ public class Synchronizer implements SynchronizerInterface  {
 		this.classifier = classifier;
 		this.visualUnit = visualUnit;
 		this.soundUnit = soundUnit;
-		initialiseMenuDocuments();
-		this.context = 0;
-		modifyDocument();
 	}
 	
 	//décide des actions à faire en fonstion du contexte (menu utilisateur ou bien 
 	//lecture d'un livre)
 	public void receiveMouvement (String mouvement) {
-		switch (context){
-		case 0 : 
-			switch(mouvement){
+		switch (mouvement){
 			case "right" : break;
 			case "left" : break;
-			case "up" : break;
-			case "down" : break;
-			case "selection" :break;
 			}
-			break;
-		case 1 : 
-			switch(mouvement){
-			case "right" : break;
-			case "left" : break;
-			case "up" : break;
-			case "down" : break;
-			case "selection" :break;
-			}
-			break;
-		case 2 : 
-			switch(mouvement){
-			case "right" : break;
-			case "left" : break;
-			case "up" : break;
-			case "down" : break;
-			case "selection" :break;
-			}
-			break;
-		case 3 : 
-			switch(mouvement){
-			case "right" : break;
-			case "left" : break;
-			case "up" : break;
-			case "down" : break;
-			case "selection" :break;
-			}
-			break;
-		}
 	};
 	
 	
 	//crée les documents svg de chaque écran de l'interface graphique
-	private void initialiseMenuDocuments(){
+	private void initialiseBook(){
 		
 	};
 	
-	//selon le conntexte, 
-	private void modifyDocument(){
-		switch(context){
-		case 3 : break;
-		default :
-		Document doc = menuScreensList.get(context);
-		
-		//faire les modifications du document ici
-		
-		JSVGCanvas canvas = new JSVGCanvas();
-		canvas.setDocument(doc);
-		visualUnit.display(canvas);
-		break;
-		}
-	};
 	
 	private void createPage(){
 		
 	};
 	
-	 private static String reverseSlash(String path){
+	 private String reverseSlash(String path){
      	int length = path.length();
      	if (System.getProperty("os.name").startsWith("Windows")){
      		char[] array = path.toCharArray();
