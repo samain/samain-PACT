@@ -124,4 +124,19 @@ public class Synchronizer implements SynchronizerInterface  {
 	private void createPage(){
 		
 	};
+	
+	 private static String reverseSlash(String path){
+     	int length = path.length();
+     	if (System.getProperty("os.name").startsWith("Windows")){
+     		char[] array = path.toCharArray();
+     		for(int i = 0; i<length; i++){
+     		   if(array[i] == '\\'){
+     			   array[i] = '/';
+     		   }
+     		}
+     		path = String.valueOf(array);
+     	}
+     	return path;
+     } 
+	
 }
