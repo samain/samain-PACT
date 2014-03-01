@@ -13,13 +13,16 @@ public class Classifier implements ClassifierInterface {
 		
 	};
 	
+	
 	public AugmentedPage sendAugmentedPage(String mouvement){
 		String page = pageMaker.sendNewPage(mouvement);
-		return null;
+		AugmentedPage apage = new AugmentedPage(page, "1");
+		return apage;
 	};
 	
+	
 	public AugmentedPage firstAugmentedPages(String uri){
-		String[] pageList = pageMaker.setBook(uri);
+		String[] pagesList = pageMaker.setBook(uri);
 		return null;
 	}
 }

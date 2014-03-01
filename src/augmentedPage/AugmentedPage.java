@@ -1,26 +1,20 @@
 package augmentedPage;
 
-public class AugmentedPage implements AugmentedPageInterface {
+public class AugmentedPage {
 
 	private String page;
-	private String image;
-	private String sound;
+	private String ambiance;
 	
-	public AugmentedPage(String page, String image, String sound){
+	public AugmentedPage(String page, String ambiance){
 		this.page = page;
-		this.image = image;
-		this.sound = sound;
-	};
+		this.ambiance = ambiance;
+	}
 	
 	public String getText(){
 		return page;
-	};
+	}
 	
-	public String getImage(){
-		return image;
-	};
-	
-	public String getSound(){
-		return sound;
-	};
+	public String getAmbiance(){
+		return ambiance;
+	}
 }

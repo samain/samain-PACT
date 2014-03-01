@@ -14,7 +14,7 @@ public class VisualUnit implements TextAndBackgroundInterface {
 	public VisualUnit() {
 		GraphicsEnvironment environment = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		GraphicsDevice[] list = environment.getScreenDevices();
-		screen = list[1];
+		screen = list[1]; // 0 for screen, 1 for projection
 		currentFrame = new JFrame();	
 		screen.setFullScreenWindow(currentFrame);
 	};
