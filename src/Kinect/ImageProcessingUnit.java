@@ -1,6 +1,7 @@
 package Kinect;
 
 import java.util.*;
+import menu.*;
 import synchroniseur.*;
 
 public class ImageProcessingUnit implements ImageProcessingInterface {
@@ -9,11 +10,11 @@ public class ImageProcessingUnit implements ImageProcessingInterface {
 	
     private ImageReceptionUnit imageReceptionUnit;
     
-    private Synchronizer synchronizer;
+    private Menu menu;
 	
-	public ImageProcessingUnit(ImageReceptionUnit imageReceptionUnit, Synchronizer synchronizer){
+	public ImageProcessingUnit(ImageReceptionUnit imageReceptionUnit, Menu menu){
         this.imageReceptionUnit = imageReceptionUnit;	
-        this.synchronizer = synchronizer;
+        this.menu = menu;
 	};
 	
 	public void receiveImage(){
