@@ -2,6 +2,7 @@ package Classification;
 
 import augmentedPage.AugmentedPage;
 import decoupage.*;
+import java.util.*;
 
 public class Classifier implements ClassifierInterface {
 
@@ -18,7 +19,7 @@ public class Classifier implements ClassifierInterface {
 		return null;
 	};
 	
-	public AugmentedPage firstAugmentedPages(String uri){
+	public ArrayList<AugmentedPage> firstAugmentedPages(String uri){
 		String[] pageList = pageMaker.setBook(uri);
 		return null;
 	}
