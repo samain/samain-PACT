@@ -20,7 +20,12 @@ public class PageMaker implements PageInterface {
 	};
 	
 	public String[] setBook(String uri){
-		return null;
+		String[] pages = new String[3];
+		pages[0] = "";
+		pages[1] = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ccccccccccccccccccccccccccc";
+		pages[2] = "b";
+		
+		return	pages;
 	};
 	
 }

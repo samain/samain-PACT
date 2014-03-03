@@ -11,5 +11,14 @@ public class Menu {
 		this.synchronizer = synchronizer;
 	}
 	
+	public void transferMovement(String movement){
+		switch(movement){
+		case "select" : System.exit(0);
+		                break;
+	    default : synchronizer.receiveMouvement(movement);
+	              break;
+		}
+	}
+	
 	
 }

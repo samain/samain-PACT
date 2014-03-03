@@ -16,11 +16,19 @@ public class Classifier implements ClassifierInterface {
 	
 	public AugmentedPage sendAugmentedPage(String mouvement){
 		String page = pageMaker.sendNewPage(mouvement);
-		return null;
+		AugmentedPage aP = new AugmentedPage(page, "2.jpg");
+		return aP;
 	};
 	
 	public ArrayList<AugmentedPage> firstAugmentedPages(String uri){
 		String[] pageList = pageMaker.setBook(uri);
-		return null;
+		ArrayList<AugmentedPage> aPL = new ArrayList<AugmentedPage>();
+		for(int i = 0; i<2; i++){
+			AugmentedPage aP = new AugmentedPage(pageList[i], "1.jpg");
+			aPL.add(aP);
+		}
+		AugmentedPage aP = new AugmentedPage(pageList[2], "2.jpg");
+		aPL.add(aP);
+		return aPL;
 	}
 }

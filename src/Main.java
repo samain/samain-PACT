@@ -16,7 +16,8 @@ public class Main {
        PageMaker pageMaker = new PageMaker();
        Classifier classifier =  new Classifier(pageMaker);
        Synchronizer synchronizer = new Synchronizer(classifier, visualUnit, soundUnit);
-       Menu menu = new Menu(synchronizer);
+       final Menu menu = new Menu(synchronizer);
+       visualUnit.addKeyListener(menu);
        ImageReceptionUnit receptionUnit = new ImageReceptionUnit();
        ImageProcessingUnit processingUnit = new ImageProcessingUnit(receptionUnit, menu);
        
