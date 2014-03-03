@@ -1,34 +1,9 @@
 import affichage.*;
-import augmentedPage.*;
 import Classification.*;
 import decoupage.*;
-import Kinect.*;
-import menu.*;
 import menu.Menu;
 import son.*;
 import synchroniseur.*;
-
-import java.util.*;
-
-import org.apache.batik.dom.svg.SVGDOMImplementation;
-import org.w3c.dom.DOMImplementation;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Text;
-
-import java.io.*;
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
-import javax.swing.JFrame;
-
-import org.apache.batik.swing.JSVGCanvas;
-import org.apache.batik.dom.*;
-import org.apache.batik.dom.svg.*;
-import org.w3c.dom.*;
 
 
 public class Test {

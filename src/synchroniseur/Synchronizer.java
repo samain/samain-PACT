@@ -7,21 +7,10 @@ import son.*;
 import affichage.*;
 import Classification.*;
 
-import java.io.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
-import javax.swing.JFrame;
-
 import org.apache.batik.swing.JSVGCanvas;
-import org.apache.batik.dom.*;
 import org.apache.batik.dom.svg.*;
 import org.w3c.dom.*;
-import org.apache.batik.svggen.SVGGraphics2D;
-import org.apache.batik.svggen.SVGGraphics2DIOException;
 
 public class Synchronizer implements SynchronizerInterface  {
 	
@@ -161,10 +150,6 @@ public class Synchronizer implements SynchronizerInterface  {
 		Element svgRoot2 = doc2.getDocumentElement();
 		svgRoot2.setAttributeNS(null, "width", "1200");
 		svgRoot2.setAttributeNS(null, "height", "700");
-		
-		//create SVGGraphics2D
-		SVGGraphics2D svgGen1 = new SVGGraphics2D(doc1);
-		SVGGraphics2D svgGen2 = new SVGGraphics2D(doc2);
 		
 		// Add elements
 		

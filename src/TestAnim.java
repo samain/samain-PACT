@@ -1,4 +1,3 @@
-import java.io.*;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.MouseAdapter;
@@ -9,7 +8,6 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
 import org.apache.batik.swing.JSVGCanvas;
-import org.apache.batik.dom.*;
 import org.apache.batik.dom.svg.*;
 import org.w3c.dom.*;
 

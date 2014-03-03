@@ -1,5 +1,4 @@
 import affichage.*;
-import augmentedPage.*;
 import Classification.*;
 import decoupage.*;
 import Kinect.*;

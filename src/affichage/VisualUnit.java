@@ -1,7 +1,5 @@
 package affichage;
 
-import synchroniseur.*;
-import Kinect.*;
 import menu.*;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
