@@ -40,9 +40,12 @@ public class Synchronizer implements SynchronizerInterface  {
 	
 	private String[][] stringMap;
 	
+	private int[] res;
+	
 	public Synchronizer(Classifier classifier, VisualUnit visualUnit, SoundUnit soundUnit){
 		this.classifier = classifier;
 		this.visualUnit = visualUnit;
+		this.res = visualUnit.getResolution();
 		this.soundUnit = soundUnit;
 		this.resourcesAdress = "file:///".concat(reverseSlash(System.getProperty("user.dir")).concat("/Ressources/"));
 		this.screenDimensions = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
@@ -63,7 +66,7 @@ public class Synchronizer implements SynchronizerInterface  {
 		/* JSVGCanvas canvas = new JSVGCanvas(null, true, false);
 	    canvas.setDocument(pagesList.get(1));
 	    visualUnit.display(canvas); */ 
-			}
+	}
 	
 	
 	//crée les documents svg de chaque écran de l'interface graphique
@@ -104,14 +107,14 @@ public class Synchronizer implements SynchronizerInterface  {
 		
 		 Document doc = impl.createDocument(svgNS, "svg", null);
 		 Element svgRoot = doc.getDocumentElement();
-	     svgRoot.setAttributeNS(null, "width", res[0].toString());
-	     svgRoot.setAttributeNS(null, "height", res[1].toString());
+	     svgRoot.setAttributeNS(null, "width", ((Integer)res[0]).toString());
+	     svgRoot.setAttributeNS(null, "height", ((Integer)res[1]).toString());
 	    
 	     Element image = doc.createElementNS(svgNS, "image");
 	     image.setAttributeNS(null, "x", "0");
 	     image.setAttributeNS(null, "y", "0");
-	     image.setAttributeNS(null, "width", res[0].toString());
-	     image.setAttributeNS(null, "height", res[1].toString());
+	     image.setAttributeNS(null, "width", ((Integer)res[0]).toString());
+	     image.setAttributeNS(null, "height", ((Integer)res[1]).toString());
 	     image.setAttributeNS(xlinkNS, "xlink:href", resourcesAdress.concat(augmentedPage.getAmbiance()));
 	     image.setAttributeNS(null, "visibility", "visible");
 	     image.setAttributeNS(null, "opacity", "1");
@@ -120,7 +123,7 @@ public class Synchronizer implements SynchronizerInterface  {
 	     
 	     ArrayList<String> listOfLines = getLines(augmentedPage.getText());
 	     
-	     createText(listOfLines, doc, svgRoot, res[1].toString(), res[0].toString());
+	     createText(listOfLines, doc, svgRoot, res[1], res[0]);
 	     
 	     return doc;
 		
@@ -144,12 +147,12 @@ public class Synchronizer implements SynchronizerInterface  {
 		
 		// Get the root element of the SVG doc and configure it
 		Element svgRoot1 = doc1.getDocumentElement();
-		svgRoot1.setAttributeNS(null, "width", res[0].toString());
-		svgRoot1.setAttributeNS(null, "height", res[1].toString());
+		svgRoot1.setAttributeNS(null, "width", ((Integer)res[0]).toString());
+		svgRoot1.setAttributeNS(null, "height", ((Integer)res[1]).toString());
 		
 		Element svgRoot2 = doc2.getDocumentElement();
-		svgRoot2.setAttributeNS(null, "width", res[0].toString());
-		svgRoot2.setAttributeNS(null, "height", res[1].toString());
+		svgRoot2.setAttributeNS(null, "width", ((Integer)res[0]).toString());
+		svgRoot2.setAttributeNS(null, "height", ((Integer)res[1]).toString());
 		
 		// Add elements
 		
@@ -157,8 +160,8 @@ public class Synchronizer implements SynchronizerInterface  {
 		imgA.setAttributeNS(xlinkNS, "href", img1);
 		imgA.setAttributeNS(null, "x", "0");
 		imgA.setAttributeNS(null, "y", "0");
-		imgA.setAttributeNS(null, "width", res[0].toString());
-		imgA.setAttributeNS(null, "height", res[1].toString());
+		imgA.setAttributeNS(null, "width", ((Integer)res[0]).toString());
+		imgA.setAttributeNS(null, "height", ((Integer)res[1]).toString());
 		
 		Element animation11 = doc1.createElementNS(svgNS, "animate");
 	    animation11.setAttributeNS(null, "attributeType", "CSS");
