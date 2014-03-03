@@ -104,14 +104,14 @@ public class Synchronizer implements SynchronizerInterface  {
 		
 		 Document doc = impl.createDocument(svgNS, "svg", null);
 		 Element svgRoot = doc.getDocumentElement();
-	     svgRoot.setAttributeNS(null, "width", "1200");
-	     svgRoot.setAttributeNS(null, "height", "700");
+	     svgRoot.setAttributeNS(null, "width", res[0].toString());
+	     svgRoot.setAttributeNS(null, "height", res[1].toString());
 	    
 	     Element image = doc.createElementNS(svgNS, "image");
 	     image.setAttributeNS(null, "x", "0");
 	     image.setAttributeNS(null, "y", "0");
-	     image.setAttributeNS(null, "width", "1200px");
-	     image.setAttributeNS(null, "height", "700px");
+	     image.setAttributeNS(null, "width", res[0].toString());
+	     image.setAttributeNS(null, "height", res[1].toString());
 	     image.setAttributeNS(xlinkNS, "xlink:href", resourcesAdress.concat(augmentedPage.getAmbiance()));
 	     image.setAttributeNS(null, "visibility", "visible");
 	     image.setAttributeNS(null, "opacity", "1");
@@ -120,7 +120,7 @@ public class Synchronizer implements SynchronizerInterface  {
 	     
 	     ArrayList<String> listOfLines = getLines(augmentedPage.getText());
 	     
-	     createText(listOfLines, doc, svgRoot, 700, 1200);
+	     createText(listOfLines, doc, svgRoot, res[1].toString(), res[0].toString());
 	     
 	     return doc;
 		
@@ -144,12 +144,12 @@ public class Synchronizer implements SynchronizerInterface  {
 		
 		// Get the root element of the SVG doc and configure it
 		Element svgRoot1 = doc1.getDocumentElement();
-		svgRoot1.setAttributeNS(null, "width", "1200");
-		svgRoot1.setAttributeNS(null, "height", "700");
+		svgRoot1.setAttributeNS(null, "width", res[0].toString());
+		svgRoot1.setAttributeNS(null, "height", res[1].toString());
 		
 		Element svgRoot2 = doc2.getDocumentElement();
-		svgRoot2.setAttributeNS(null, "width", "1200");
-		svgRoot2.setAttributeNS(null, "height", "700");
+		svgRoot2.setAttributeNS(null, "width", res[0].toString());
+		svgRoot2.setAttributeNS(null, "height", res[1].toString());
 		
 		// Add elements
 		
@@ -157,8 +157,8 @@ public class Synchronizer implements SynchronizerInterface  {
 		imgA.setAttributeNS(xlinkNS, "href", img1);
 		imgA.setAttributeNS(null, "x", "0");
 		imgA.setAttributeNS(null, "y", "0");
-		imgA.setAttributeNS(null, "width", "1200");
-		imgA.setAttributeNS(null, "height", "700");
+		imgA.setAttributeNS(null, "width", res[0].toString());
+		imgA.setAttributeNS(null, "height", res[1].toString());
 		
 		Element animation11 = doc1.createElementNS(svgNS, "animate");
 	    animation11.setAttributeNS(null, "attributeType", "CSS");
@@ -172,24 +172,6 @@ public class Synchronizer implements SynchronizerInterface  {
 	    
 	    svgRoot1.appendChild(imgA);
 		
-	    
-		/* Element rectangleA = doc1.createElementNS(svgNS, "rect");
-	    rectangleA.setAttributeNS(null, "x", "600");
-	    rectangleA.setAttributeNS(null, "y", "200");
-	    rectangleA.setAttributeNS(null, "width", "400");
-	    rectangleA.setAttributeNS(null, "height", "500");
-	    rectangleA.setAttributeNS(null, "fill", "white");
-	    
-	    Element animation12 = doc1.createElementNS(svgNS, "animate");
-	    animation12.setAttributeNS(null, "attributeType", "CSS");
-	    animation12.setAttributeNS(null, "attributeName", "opacity");
-	    animation12.setAttributeNS(null, "from", "1");
-	    animation12.setAttributeNS(null, "to", "0");
-	    animation12.setAttributeNS(null, "dur", "5s");
-	    
-	    rectangleA.appendChild(animation12);
-	    
-	    svgRoot1.appendChild(rectangleA); */
 
 	    
 		Element textA = doc1.createElementNS(svgNS, "text");
@@ -211,14 +193,6 @@ public class Synchronizer implements SynchronizerInterface  {
 	    
 	    svgRoot1.appendChild(textA);
 		
-		
-	 /*	try{
-		svgGen1.stream(resourcesAdress.concat("doc1.svg"),true);
-		}
-		catch(SVGGraphics2DIOException e){
-			
-		} */
-		
 		Element imgB = doc2.createElementNS(svgNS, "image");
 		imgB.setAttributeNS(xlinkNS, "href", img2);
 		imgB.setAttributeNS(null, "x", "0");
@@ -238,14 +212,6 @@ public class Synchronizer implements SynchronizerInterface  {
 	    imgB.appendChild(animation21);
 	    
 		svgRoot2.appendChild(imgB);
-		
-		/* Element rectangleB = doc2.createElementNS(svgNS, "rect");
-	    rectangleB.setAttributeNS(null, "x", "600");
-	    rectangleB.setAttributeNS(null, "y", "200");
-	    rectangleB.setAttributeNS(null, "width", "400");
-	    rectangleB.setAttributeNS(null, "height", "500");
-	    rectangleB.setAttributeNS(null, "fill", "white");
-	    svgRoot2.appendChild(rectangleB); */
 
 		Element textB = doc2.createElementNS(svgNS, "text");
 		textB.setAttributeNS(null, "x", "50");
@@ -265,31 +231,15 @@ public class Synchronizer implements SynchronizerInterface  {
 	    imgB.appendChild(animation22);
 	    
 		svgRoot2.appendChild(textB);
-		
-		
-		
-	   //  svgRoot2.appendChild(animation2);
 	    
 		Node importedNode = doc1.importNode(svgRoot2, true);
 		svgRoot1.appendChild(importedNode);
-		
-		/* try{
-			svgGen2.stream(resourcesAdress.concat("doc2.svg"),true);
-			}
-			catch(SVGGraphics2DIOException e){
-				
-			} */
 		
 	    
 		JSVGCanvas c = new JSVGCanvas(null,true,false);
 		c.setDocument(doc1);
 		visualUnit.display(c);
-		
-		try {
-		    Thread.sleep(1000);
-		} catch(InterruptedException ex) {
-		    Thread.currentThread().interrupt();
-		}
+
 	    
 	}
 	
