@@ -1,9 +1,15 @@
 import affichage.*;
+import augmentedPage.AugmentedPage;
 import Classification.*;
 import decoupage.*;
 import menu.Menu;
 import son.*;
 import synchroniseur.*;
+
+import java.util.*;
+import java.awt.*;
+import java.awt.GraphicsEnvironment;
+import java.io.*;
 
 
 public class Test {
@@ -13,11 +19,44 @@ public class Test {
 		   VisualUnit visualUnit = new VisualUnit();
 	       SoundUnit soundUnit = new SoundUnit();
 	       PageMaker pageMaker = new PageMaker();
-	       Classifier classifier =  new Classifier(pageMaker);
-	       Synchronizer synchronizer = new Synchronizer(classifier, visualUnit, soundUnit);
+	       Classifier2 classifier =  new Classifier2(pageMaker);
+	       // usage : classifieur, image, son, taille de police, police, mode plein écran pour l'image (true), position des images en x
+	       Synchronizer synchronizer = new Synchronizer(classifier, visualUnit, soundUnit, 40, "Arial", false, 0);
 	       final Menu menu = new Menu(synchronizer);
-	       visualUnit.addKeyListener(menu);
-	    
+	       visualUnit.addKeyListener(menu); 
+		
+		   /* System.out.println(System.getProperty("user.dir"));
+		   System.out.println(System.getProperty("user.dir") +"//Nouvellepage.txt"); */
+		
+		   /* String s1 = "abc def\nghi";
+  		   System.out.println(s1.replace('\n',' '));
+  		   String[] brutTab = s1.replace('\n', ' ').split("[.,;:' ]+");
+  		   for (int i = 0; i< brutTab.length; i++){
+  			 System.out.println(brutTab[i]);
+  		   }
+  		 System.out.println(s1); */
+	
+		 /* try{
+		   FileReader fr = new FileReader(System.getProperty("user.dir")+"//Ressources"+"//Nouvellepage.txt");
+		
+		   
+		   BufferedReader bf = new BufferedReader(fr);
+		   bf.mark(1);
+		   System.out.println("entrée boucle");
+           while(bf.read()!=-1){
+        	   bf.reset(); 
+        	   String s = bf.readLine();
+        	   System.out.println(s);
+               bf.mark(1);
+           }
+		 }
+		 catch(FileNotFoundException e){
+			 System.out.println("fichier on trouvé");
+		 }
+		 catch(IOException e){
+			 System.out.println("erreur");
+		 } */
+		
 	       // test 1
 	       /* ArrayList<String> listOfLines = synchronizer.getLines("aabbaabbaabb  aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaa aa aa aa aa aa aa aa aa aa aa ");
 	       int size = listOfLines.size();
@@ -96,12 +135,16 @@ public class Test {
 	       
 	       
 	       
+	   
+	     /* Rectangle rect = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
+	       System.out.println(rect.getHeight()); */
+	       
 	         // test 6
-	         // synchronizer.initialiseBook("");
+	           synchronizer.initialiseBook("");
 	       
 	       //test 7 : séquence de mouvement de l'utilisateur
-	       synchronizer.initialiseBook("");
-	       /* try {
+	       // synchronizer.initialiseBook("");
+	       /*  try {
 			    Thread.sleep(10000);
 			} catch(InterruptedException ex) {
 			    Thread.currentThread().interrupt();
@@ -124,7 +167,7 @@ public class Test {
 			} catch(InterruptedException ex) {
 			    Thread.currentThread().interrupt();
 			} 
-	       synchronizer.receiveMouvement("left"); */
+	       synchronizer.receiveMouvement("left"); */ 
 	         
 	       
 	}

@@ -13,8 +13,8 @@ public class Main {
        VisualUnit visualUnit = new VisualUnit();
        SoundUnit soundUnit = new SoundUnit();
        PageMaker pageMaker = new PageMaker();
-       Classifier classifier =  new Classifier(pageMaker);
-       Synchronizer synchronizer = new Synchronizer(classifier, visualUnit, soundUnit);
+       Classifier2 classifier =  new Classifier2(pageMaker);
+       Synchronizer synchronizer = new Synchronizer(classifier, visualUnit, soundUnit, 40, "Arial", false, 0);
        final Menu menu = new Menu(synchronizer);
        visualUnit.addKeyListener(menu);
        ImageReceptionUnit receptionUnit = new ImageReceptionUnit();

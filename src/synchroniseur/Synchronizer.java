@@ -14,7 +14,7 @@ import org.w3c.dom.*;
 
 public class Synchronizer implements SynchronizerInterface  {
 	
-	private Classifier classifier;
+	private Classifier2 classifier;
 	
 	private VisualUnit visualUnit;
 	
@@ -26,7 +26,7 @@ public class Synchronizer implements SynchronizerInterface  {
 	
 	public ArrayList<Document> pagesList;
 	
-	private int font; //police
+	private String font; //police
 	
 	private String svgNS = SVGDOMImplementation.SVG_NAMESPACE_URI;
 	
@@ -38,15 +38,49 @@ public class Synchronizer implements SynchronizerInterface  {
 	
 	private Rectangle screenDimensions ;
 	
+	private String height;
+	
+	private String width;
+
+	private String xImg;
+	
+	private String middleHeight;
+	
+	private String middleWidth;
+	
+	private String fontType;
+	
+ //	private Integer [] res;
+	
 	private String[][] stringMap;
 	
-	public Synchronizer(Classifier classifier, VisualUnit visualUnit, SoundUnit soundUnit){
+	public Synchronizer(Classifier2 classifier, VisualUnit visualUnit, SoundUnit soundUnit, int font, String fontType, boolean fullScreenPicture, int xImg){
 		this.classifier = classifier;
 		this.visualUnit = visualUnit;
 		this.soundUnit = soundUnit;
 		this.resourcesAdress = "file:///".concat(reverseSlash(System.getProperty("user.dir")).concat("/Ressources/"));
 		this.screenDimensions = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
-		this.font = 55;
+		 /*Integer x = new Integer((int) screenDimensions.getWidth());
+		Integer y = new Integer((int) screenDimensions.getHeight());
+		DisplayMode dP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode();
+		this.res[0] = new Integer(dP.getWidth());
+		this.res[1] = new Integer(dP.getHeight()); */
+		// System.out.println("taille de l'écran : ".concat(x.toString().concat("x".concat(y.toString()))));
+		this.font = (new Integer(font)).toString();
+		this.height = (new Integer((int) screenDimensions.getHeight())).toString() ;
+		this.width = (new Integer((int) screenDimensions.getHeight())).toString() ;
+		if (fullScreenPicture){
+			this.middleHeight = this.height ;
+			this.middleWidth = this.width ;
+			this.xImg = "0";
+		}
+		else{
+			this.middleHeight = (new Integer((int) screenDimensions.getHeight()/2)).toString() ;
+			this.middleWidth = (new Integer((int) screenDimensions.getWidth()/2)).toString() ;
+			// this.xImg = (new Integer(xImg)).toString();
+			this.xImg = middleWidth;
+		}
+		this.fontType = fontType;
 	}
 	
 	//décide des actions à faire en fonstion du contexte (menu utilisateur ou bien 
@@ -104,14 +138,14 @@ public class Synchronizer implements SynchronizerInterface  {
 		
 		 Document doc = impl.createDocument(svgNS, "svg", null);
 		 Element svgRoot = doc.getDocumentElement();
-	     svgRoot.setAttributeNS(null, "width", res[0].toString());
-	     svgRoot.setAttributeNS(null, "height", res[1].toString());
+	     svgRoot.setAttributeNS(null, "width", (new Integer((int) screenDimensions.getWidth())).toString());
+	     svgRoot.setAttributeNS(null, "height", (new Integer((int) screenDimensions.getHeight())).toString());
 	    
 	     Element image = doc.createElementNS(svgNS, "image");
-	     image.setAttributeNS(null, "x", "0");
+	     image.setAttributeNS(null, "x", xImg);
 	     image.setAttributeNS(null, "y", "0");
-	     image.setAttributeNS(null, "width", res[0].toString());
-	     image.setAttributeNS(null, "height", res[1].toString());
+	     image.setAttributeNS(null, "width", middleWidth);
+	     image.setAttributeNS(null, "height", height);
 	     image.setAttributeNS(xlinkNS, "xlink:href", resourcesAdress.concat(augmentedPage.getAmbiance()));
 	     image.setAttributeNS(null, "visibility", "visible");
 	     image.setAttributeNS(null, "opacity", "1");
@@ -120,7 +154,7 @@ public class Synchronizer implements SynchronizerInterface  {
 	     
 	     ArrayList<String> listOfLines = getLines(augmentedPage.getText());
 	     
-	     createText(listOfLines, doc, svgRoot, res[1].toString(), res[0].toString());
+	     createText(listOfLines, doc, svgRoot, (int) screenDimensions.getHeight(),(int) screenDimensions.getWidth());
 	     
 	     return doc;
 		
@@ -144,21 +178,21 @@ public class Synchronizer implements SynchronizerInterface  {
 		
 		// Get the root element of the SVG doc and configure it
 		Element svgRoot1 = doc1.getDocumentElement();
-		svgRoot1.setAttributeNS(null, "width", res[0].toString());
-		svgRoot1.setAttributeNS(null, "height", res[1].toString());
+		svgRoot1.setAttributeNS(null, "width", (new Integer((int) screenDimensions.getWidth())).toString());
+		svgRoot1.setAttributeNS(null, "height", (new Integer((int) screenDimensions.getHeight())).toString());
 		
 		Element svgRoot2 = doc2.getDocumentElement();
-		svgRoot2.setAttributeNS(null, "width", res[0].toString());
-		svgRoot2.setAttributeNS(null, "height", res[1].toString());
+		svgRoot2.setAttributeNS(null, "width", (new Integer((int) screenDimensions.getWidth())).toString());
+		svgRoot2.setAttributeNS(null, "height", (new Integer((int) screenDimensions.getHeight())).toString());
 		
 		// Add elements
 		
 		Element imgA = doc1.createElementNS(svgNS, "image");
 		imgA.setAttributeNS(xlinkNS, "href", img1);
-		imgA.setAttributeNS(null, "x", "0");
+		imgA.setAttributeNS(null, "x", xImg);
 		imgA.setAttributeNS(null, "y", "0");
-		imgA.setAttributeNS(null, "width", res[0].toString());
-		imgA.setAttributeNS(null, "height", res[1].toString());
+		imgA.setAttributeNS(null, "width", middleWidth);
+		imgA.setAttributeNS(null, "height", height);
 		
 		Element animation11 = doc1.createElementNS(svgNS, "animate");
 	    animation11.setAttributeNS(null, "attributeType", "CSS");
@@ -175,10 +209,10 @@ public class Synchronizer implements SynchronizerInterface  {
 
 	    
 		Element textA = doc1.createElementNS(svgNS, "text");
-		textA.setAttributeNS(null, "x", "50");
-		textA.setAttributeNS(null, "y", "150");
-		textA.setAttributeNS(null, "font-family", "Arial");
-		textA.setAttributeNS(null, "font-size", "40");
+		textA.setAttributeNS(null, "x", "0");
+		textA.setAttributeNS(null, "y", "200");
+		textA.setAttributeNS(null, "font-family", fontType);
+		textA.setAttributeNS(null, "font-size", font);
 		textA.appendChild(doc1.createTextNode(text1));
 		
 		Element animation13 = doc1.createElementNS(svgNS, "animate");
@@ -195,10 +229,10 @@ public class Synchronizer implements SynchronizerInterface  {
 		
 		Element imgB = doc2.createElementNS(svgNS, "image");
 		imgB.setAttributeNS(xlinkNS, "href", img2);
-		imgB.setAttributeNS(null, "x", "0");
+		imgB.setAttributeNS(null, "x", xImg);
 		imgB.setAttributeNS(null, "y", "0");
-		imgB.setAttributeNS(null, "width", "1200");
-		imgB.setAttributeNS(null, "height", "700");
+		imgB.setAttributeNS(null, "width", middleWidth);
+		imgB.setAttributeNS(null, "height", height);
 		imgB.setAttributeNS(null, "opacity", "0");
 		
 		Element animation21 = doc2.createElementNS(svgNS, "animate");
@@ -214,10 +248,11 @@ public class Synchronizer implements SynchronizerInterface  {
 		svgRoot2.appendChild(imgB);
 
 		Element textB = doc2.createElementNS(svgNS, "text");
-		textB.setAttributeNS(null, "x", "50");
-		textB.setAttributeNS(null, "y", "150");
-		textB.setAttributeNS(null, "font-family", "Arial");
-		textB.setAttributeNS(null, "font-size", "40");
+		textB.setAttributeNS(null, "x", "0");
+		textB.setAttributeNS(null, "y", "200");
+		textB.setAttributeNS(null, "font-family", fontType);
+		textB.setAttributeNS(null, "font-size", font);
+		textB.setAttributeNS(null, "opacity", "0");
 		textB.appendChild(doc2.createTextNode(text2));
 		
 		Element animation22 = doc2.createElementNS(svgNS, "animate");
@@ -228,7 +263,7 @@ public class Synchronizer implements SynchronizerInterface  {
 	    animation22.setAttributeNS(null, "dur", "2s");
 	    animation22.setAttributeNS(null, "fill", "freeze");
 		
-	    imgB.appendChild(animation22);
+	    textB.appendChild(animation22);
 	    
 		svgRoot2.appendChild(textB);
 	    
@@ -293,12 +328,12 @@ public class Synchronizer implements SynchronizerInterface  {
 				 
 		 for(int i = 0; i<size; i++){
 			 Element text = doc.createElementNS(svgNS, "text");
-			 text.setAttributeNS(null, "x", "100");
+			 text.setAttributeNS(null, "x", "0");
 			 Integer integerY = new Integer(200 + ((height-100)/size)*i);
 			 text.setAttributeNS(null, "y", integerY.toString());
-			 text.setAttributeNS(null, "font-family", "Verdana");
+			 text.setAttributeNS(null, "font-family", fontType);
 			 text.setAttributeNS(null, "font-size", fontSize);
-			 text.setAttributeNS(null, "fill", "blue");
+			 text.setAttributeNS(null, "fill", "black");
 			 
 			 Text textNode = doc.createTextNode(listOfLines.get(i));
 			 text.appendChild(textNode);
