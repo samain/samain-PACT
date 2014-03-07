@@ -65,7 +65,12 @@ public class VisualUnit implements TextAndBackgroundInterface {
 		currentCanvas = canvas;
 		currentFrame.getContentPane().add(currentCanvas);// currentFrame.pack();
 		currentFrame.validate();
-	}; //affiche le texte et l'ambiance l'accompagnant grâce au(x) projecteur(s).
-	
 	}
+
+	public int[] getResolution() {
+		int[] res = {screen.getDisplayMode().getWidth(), screen.getDisplayMode().getHeight()};
+		return res;
+	}
+	
+}
 
