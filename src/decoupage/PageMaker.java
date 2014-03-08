@@ -1,6 +1,7 @@
 package Decoupage;
 
 import java.util.*;
+import java.io.*;
 
 
 public class PageMaker implements PageInterface {
@@ -11,14 +12,14 @@ public class PageMaker implements PageInterface {
 	
 	public PageMaker(String textURI, int font)
 	{
-		/*this.text = new Text(textURI, font);
+		this.text = new Text(textURI, font);
 		try {
 			this.pageList = text.CutInPages();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		this.currentPage = 1;*/
-		this.pageList = new ArrayList<String>();
+		this.currentPage = 1;
+		/* this.pageList = new ArrayList<String>();
 		this.currentPage = 1;
 		pageList.add("");
 		pageList.add("Il était une fois dans la forêt...");
@@ -31,10 +32,10 @@ public class PageMaker implements PageInterface {
 		pageList.add("Il se dirigea avec tristesse vers la ville la plus proche.");
 		pageList.add("Là-bas, on lui vanta la mer");
 		pageList.add("n'ayant jamais été à la plage, il y cherchea du réconfort");
-		pageList.add("Il y fit une grande fête.");
+		pageList.add("Il y fit une grande fête."); */
 	}
 	
-	public String sendNewPage(String mouvement){
+	/* public String sendNewPage(String mouvement){
 		String newPage = "";
 		switch(mouvement){
 		case "right" : 
@@ -57,7 +58,33 @@ public class PageMaker implements PageInterface {
 			break;
 		}
 		return newPage;
+	} */
+	
+	public String sendNewPage(String mouvement){
+		String newPage = "";
+		switch(mouvement){
+		case "right" : if ((currentPage<(pageList.size()-2))&&(currentPage>-3)){
+			newPage = pageList.get(currentPage+2);
+			currentPage++;
+		//	System.out.println("page courante : " + currentPage);
+            }
+            else{
+            currentPage++;
+        //    System.out.println("page courante : " + currentPage);
+            }
+            break;
+         case "left"  : if ((currentPage<pageList.size()+2)&&(currentPage>1)){
+            newPage =  pageList.get(currentPage-2);
+            currentPage--;
+            }
+            else{
+            currentPage--;
+            }
+            break;
+            }
+		return newPage;
 	}
+	
 	
 
 	public String[] firstPages() {
