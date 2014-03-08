@@ -97,7 +97,6 @@ public class DocumentCreator {
 		String img2 = ressourcesAdress.concat(second.getAmbiance());
 			
 		// Implement the SVG DOM and create a SVG Document
-		DOMImplementation impl = SVGDOMImplementation.getDOMImplementation();
 		Document doc1 = impl.createDocument(svgNS, "svg", null);
 		Document doc2 = impl.createDocument(svgNS, "svg", null);
 			

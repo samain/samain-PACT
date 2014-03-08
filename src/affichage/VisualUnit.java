@@ -10,7 +10,7 @@ public class VisualUnit implements TextAndBackgroundInterface {
 	private GraphicsDevice screen;
 	private JFrame frame;
 	private JSVGCanvas currentCanvas;
-	
+//----------------------------------------------------------------------------------------------------	
 	public VisualUnit() {
 		GraphicsEnvironment environment = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		GraphicsDevice[] list = environment.getScreenDevices();
@@ -21,7 +21,7 @@ public class VisualUnit implements TextAndBackgroundInterface {
 		frame.setResizable(false);
 	    screen.setFullScreenWindow(frame);
 	}
-	
+//----------------------------------------------------------------------------------------------------
 	public void display(JSVGCanvas canvas){
 		frame.invalidate();
 		frame.getContentPane().remove(currentCanvas);
@@ -30,11 +30,11 @@ public class VisualUnit implements TextAndBackgroundInterface {
 		frame.validate();
 		frame.setVisible(true);
 	}
-	
+//----------------------------------------------------------------------------------------------------	
 	public void setToBackground(boolean b) {
 		frame.setVisible(b);
 	}
-
+//----------------------------------------------------------------------------------------------------
 	public int[] getResolution() {
 		int[] res = {screen.getDisplayMode().getWidth(), screen.getDisplayMode().getHeight()};
 		return res;

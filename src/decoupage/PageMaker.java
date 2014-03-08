@@ -1,6 +1,5 @@
 package Decoupage;
 
-import java.io.IOException;
 import java.util.*;
 
 
@@ -12,36 +11,50 @@ public class PageMaker implements PageInterface {
 	
 	public PageMaker(String textURI, int font)
 	{
-		this.text = new Text(textURI, font);
+		/*this.text = new Text(textURI, font);
 		try {
 			this.pageList = text.CutInPages();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		this.currentPage = 1;*/
+		this.pageList = new ArrayList<String>();
 		this.currentPage = 1;
+		pageList.add("");
+		pageList.add("Il était une fois dans la forêt...");
+		pageList.add("un petit lutin vivant avec sa famille.");
+		pageList.add("Ce foyer était chaleureux et plein d'amour");
+		pageList.add("Mais une nuit...");
+		pageList.add("La neige, jalouse de leur bonheur");
+		pageList.add("Emporta leur maion dans un grand blizzard");
+		pageList.add("Isolé des siens, errant ans la nuit,");
+		pageList.add("Il se dirigea avec tristesse vers la ville la plus proche.");
+		pageList.add("Là-bas, on lui vanta la mer");
+		pageList.add("n'ayant jamais été à la plage, il y cherchea du réconfort");
+		pageList.add("Il y fit une grande fête.");
 	}
 	
 	public String sendNewPage(String mouvement){
 		String newPage = "";
 		switch(mouvement){
-		case "right" : if ((currentPage<11)&&(currentPage>-1)){
-							newPage = pageList.get(currentPage+1);
-							currentPage++;
-							System.out.println("page courante : " + currentPage);
-		}
-		else{
+		case "right" : 
+			if ((currentPage<11)&&(currentPage>-1)){
+			newPage = pageList.get(currentPage+2);
 			currentPage++;
-			System.out.println("page courante : " + currentPage);
-		}
-		break;
-		case "left"  : 	if ((currentPage<12)&&(currentPage>0)){
-			                newPage =  pageList.get(currentPage-1);
-			                currentPage--;
-		}
-		else{
-			currentPage--;
-		}
-		break;
+			}
+			else{
+				currentPage++;
+			}
+			break;
+		case "left"  : 	
+			if ((currentPage<12)&&(currentPage>0)){
+				newPage =  pageList.get(currentPage-2);
+				currentPage--;
+			}
+			else{
+				currentPage--;
+			}
+			break;
 		}
 		return newPage;
 	}

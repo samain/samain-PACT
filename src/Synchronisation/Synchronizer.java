@@ -7,10 +7,7 @@ import AugmentedPage.AugmentedPage;
 import Classification.*;
 import Son.SoundUnit;
 
-import java.awt.*;
-
 import org.apache.batik.swing.JSVGCanvas;
-import org.apache.batik.dom.svg.*;
 import org.w3c.dom.*;
 
 public class Synchronizer implements SynchronizerInterface  {
@@ -77,7 +74,7 @@ public class Synchronizer implements SynchronizerInterface  {
 		canvas.setDocument(doc);
 		menuActive = false;
 		visualUnit.display(canvas);
-		soundUnit.playSound(ressourcesAdress.concat(augmentedPageList.get(1).getAmbiance()));
+//		soundUnit.playSound(ressourcesAdress.concat(augmentedPageList.get(1).getAmbiance()));
 	}
 //---------------------------------------------------------------------------------------------------------------		
 	//décide des actions à faire en fonstion du contexte (menu utilisateur ou bien 
@@ -89,19 +86,19 @@ public class Synchronizer implements SynchronizerInterface  {
 		
 		switch(mouvement){
 		case "left":
-			documentCreator.createDocument(augmentedPageList.get(2), augmentedPageList.get(1));
+			doc = documentCreator.createDocument(augmentedPageList.get(2), augmentedPageList.get(1));
 			canvas.setDocument(doc);
 			menuActive = false;
 			visualUnit.display(canvas);
-			soundUnit.playSound(ressourcesAdress.concat(augmentedPageList.get(1).getAmbiance()));
+//			soundUnit.playSound(ressourcesAdress.concat(augmentedPageList.get(1).getAmbiance()));
 			break;
 		
 		case "right" :
-			documentCreator.createDocument(augmentedPageList.get(0), augmentedPageList.get(1));
+			doc = documentCreator.createDocument(augmentedPageList.get(0), augmentedPageList.get(1));
 			canvas.setDocument(doc);
 			menuActive = false;
 			visualUnit.display(canvas);
-			soundUnit.playSound(ressourcesAdress.concat(augmentedPageList.get(1).getAmbiance()));
+//			soundUnit.playSound(ressourcesAdress.concat(augmentedPageList.get(1).getAmbiance()));
 			break;
 		
 		case "select" :
@@ -118,13 +115,13 @@ public class Synchronizer implements SynchronizerInterface  {
 		AugmentedPage augmentedPage = this.classifier.sendAugmentedPage(mouvement);
 		switch(mouvement) {
 			case "right" : 
-				this.augmentedPageList.add(0, augmentedPage);
-				this.augmentedPageList.remove(3);
+				this.augmentedPageList.add(augmentedPage);
+				this.augmentedPageList.remove(0);
 				break;
 			
 			case "left" : 
-				this.augmentedPageList.add(augmentedPage);
-				this.augmentedPageList.remove(0);
+				this.augmentedPageList.add(0, augmentedPage);
+				this.augmentedPageList.remove(3);
 				break;			
 		}
 	}
