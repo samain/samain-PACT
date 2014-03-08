@@ -8,7 +8,7 @@ import org.apache.batik.swing.JSVGCanvas;
 public class VisualUnit implements TextAndBackgroundInterface {
 
 	private GraphicsDevice screen;
-	private JFrame Frame;
+	private JFrame frame;
 	private JSVGCanvas currentCanvas;
 	
 	public VisualUnit() {
@@ -16,18 +16,23 @@ public class VisualUnit implements TextAndBackgroundInterface {
 		GraphicsDevice[] list = environment.getScreenDevices();
 		screen = list[0]; // 0 for screen, 1 for projection
 		this.currentCanvas = new JSVGCanvas(null, true, false);
-		Frame = new JFrame();
-		Frame.setUndecorated(true);
-		Frame.setResizable(false);
-	    screen.setFullScreenWindow(Frame);
+		frame = new JFrame();
+		frame.setUndecorated(true);
+		frame.setResizable(false);
+	    screen.setFullScreenWindow(frame);
 	}
 	
 	public void display(JSVGCanvas canvas){
-		Frame.invalidate();
-		Frame.getContentPane().remove(currentCanvas);
+		frame.invalidate();
+		frame.getContentPane().remove(currentCanvas);
 		currentCanvas = canvas;
-		Frame.getContentPane().add(currentCanvas);// currentFrame.pack();
-		Frame.validate();
+		frame.getContentPane().add(currentCanvas);// currentframe.pack();
+		frame.validate();
+		frame.setVisible(true);
+	}
+	
+	public void setToBackground(boolean b) {
+		frame.setVisible(b);
 	}
 
 	public int[] getResolution() {

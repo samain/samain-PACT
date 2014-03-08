@@ -3,7 +3,6 @@ package Synchronisation;
 import java.util.ArrayList;
 
 import org.apache.batik.dom.svg.SVGDOMImplementation;
-import org.apache.batik.swing.JSVGCanvas;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -35,22 +34,21 @@ public class DocumentCreator {
 	private String ressourcesAdress;
 
 //------------------------------------------------------------------------------------------------------------------
-	public DocumentCreator(int font, int height, int width, String fontType){
+	public DocumentCreator(int font, int height, int width, String fontType, String ressourcesAdress){
 		this.linesGetter = new LinesGetter();
 		
 		this.font = font;
 		this.height = height;
 		this.width = width;
 		this.fontType = fontType;
+		this.ressourcesAdress = ressourcesAdress;
 		
 		this.fontStr = ((Integer)font).toString();
 		this.heightStr = ((Integer)height).toString();
 		this.widthStr = ((Integer)width).toString();
-		
-		this.ressourcesAdress = "file:///".concat(reverseSlash(System.getProperty("user.dir")).concat("/Ressources/"));
 	}
 //-----------------------------------------------------------------------------------------------------------------------	
-	public Document toDocument(AugmentedPage augmentedPage){
+	public Document createDocument(AugmentedPage augmentedPage){
 		
 		 Document doc = impl.createDocument(svgNS, "svg", null);
 		 Element svgRoot = doc.getDocumentElement();
@@ -70,44 +68,33 @@ public class DocumentCreator {
 	     
 	     ArrayList<String> listOfLines = linesGetter.getLines(augmentedPage.getText());
 	     
-	     createText(listOfLines, doc, svgRoot, height,width);
+	     int size = listOfLines.size();
 	     
+	     for(int i = 0; i<size; i++){
+	    	 Element text = doc.createElementNS(svgNS, "text");
+	    	 text.setAttributeNS(null, "x", "0");
+	    	 Integer integerY = new Integer(200 + ((height-100)/size)*i);
+	    	 text.setAttributeNS(null, "y", integerY.toString());
+	    	 text.setAttributeNS(null, "font-family", fontType);
+	    	 text.setAttributeNS(null, "font-size", fontStr);
+	    	 text.setAttributeNS(null, "fill", "black");
+	    	 
+	    	 Text textNode = doc.createTextNode(listOfLines.get(i));
+	    	 text.appendChild(textNode);
+	    	 svgRoot.appendChild(text);
+	     }
 	     return doc;
 		
 	}
-//-------------------------------------------------------------------------------------------------------------	
-	public void createText(ArrayList<String> listOfLines, Document doc, Element root, int height, int width){
-			 
-		int size = listOfLines.size();
-		String fontSize = (new Integer(this.font)).toString();
-		
-		for(int i = 0; i<size; i++){
-			Element text = doc.createElementNS(svgNS, "text");
-			text.setAttributeNS(null, "x", "0");
-			Integer integerY = new Integer(200 + ((height-100)/size)*i);
-			text.setAttributeNS(null, "y", integerY.toString());
-			text.setAttributeNS(null, "font-family", fontType);
-			text.setAttributeNS(null, "font-size", fontSize);
-			text.setAttributeNS(null, "fill", "black");
-			
-			Text textNode = doc.createTextNode(listOfLines.get(i));
-			text.appendChild(textNode);
-			root.appendChild(text);
-		}
-			 
-	}
 	
 //-------------------------------------------------------------------------------------------------------------	
-	public Document transition(AugmentedPage first, AugmentedPage second){
+	public Document createDocument(AugmentedPage first, AugmentedPage second){
 			
 		String text1 = first.getText();
 		String text2 = second.getText();
 			
 		String img1 = ressourcesAdress.concat(first.getAmbiance());
 		String img2 = ressourcesAdress.concat(second.getAmbiance());
-			
-		String svgNS = "http://www.w3.org/2000/svg";
-		String xlinkNS = "http://www.w3.org/1999/xlink";
 			
 		// Implement the SVG DOM and create a SVG Document
 		DOMImplementation impl = SVGDOMImplementation.getDOMImplementation();
@@ -143,9 +130,7 @@ public class DocumentCreator {
 		imgA.appendChild(animation11);
 		
 		svgRoot1.appendChild(imgA);
-		
-		
-		
+			
 		Element textA = doc1.createElementNS(svgNS, "text");
 		textA.setAttributeNS(null, "x", "0");
 		textA.setAttributeNS(null, "y", "200");
@@ -212,19 +197,6 @@ public class DocumentCreator {
 		return doc1;
 		
 		
-		}
-//-----------------------------------------------------------------------------------------------------------------	
-	public String reverseSlash(String path){
-		int length = path.length();
-     	if (System.getProperty("os.name").startsWith("Windows")){
-     		char[] array = path.toCharArray();
-     		for(int i = 0; i<length; i++){
-     			if(array[i] == '\\'){
-     				array[i] = '/';
-     			}
-     		}
-     		path = String.valueOf(array);
-     	}
-     	return path;
-     } 
+	}
+
 }

@@ -22,7 +22,6 @@ public class Synchronizer implements SynchronizerInterface  {
 	
      //Buffers de pages
     public ArrayList<AugmentedPage> augmentedPageList;
-	public ArrayList<Document> pagesList;
 	
 	//Taille police en String et int
 	private String fontStr; //police
@@ -40,9 +39,12 @@ public class Synchronizer implements SynchronizerInterface  {
 	// true - affichage du menu
 	private boolean menuActive;
 	
+	//Adresse complete des ressources
+	private String ressourcesAdress = "file:///".concat(reverseSlash(System.getProperty("user.dir")).concat("/Ressources/"));
+	
 	//OPTIONS EVENTUELLES
 	private String fontType;
-//------------------------------------------------------------------------------------------------------------	
+//-----------------------------------------------------------------------------------------------------------------	
 	public Synchronizer(){
 		this.visualUnit = new VisualUnit();
 		this.soundUnit = new SoundUnit();
@@ -55,77 +57,89 @@ public class Synchronizer implements SynchronizerInterface  {
 		this.width = visualUnit.getResolution()[0];
 		
 		this.augmentedPageList = null;
-		this.pagesList = null;
 		this.font = 0;
 		this.textURI = null;
 		this.menuActive=true;
 	}
-//-------------------------------------------------------------------------------------------------------------	
+//------------------------------------------------------------------------------------------------------------------	
 	//crée les documents svg de chaque écran de l'interface graphique
 	public void initialiseBook(String textURI, int font){
 		this.font = font;
 		this.textURI = textURI;
 		this.classifier = new Classifier(textURI, font);
-		this.documentCreator = new DocumentCreator(font, height, width, fontType);
+		this.documentCreator = new DocumentCreator(font, height, width, fontType, ressourcesAdress);
 		
 		this.augmentedPageList = this.classifier.firstAugmentedPages();
-		this.pagesList = new ArrayList<Document>();
-		for(int i = 0; i<3; i++){
-			Document doc = documentCreator.toDocument(this.augmentedPageList.get((i)));
-			this.pagesList.add(doc);
-		}
+		
+		Document doc = documentCreator.createDocument(this.augmentedPageList.get(1));
+		
 		JSVGCanvas canvas = new JSVGCanvas(null, true, false);
-		canvas.setDocument(pagesList.get(1));
+		canvas.setDocument(doc);
 		menuActive = false;
 		visualUnit.display(canvas);
+		soundUnit.playSound(ressourcesAdress.concat(augmentedPageList.get(1).getAmbiance()));
 	}
-//-------------------------------------------------------------------------------------------------------------		
+//---------------------------------------------------------------------------------------------------------------		
 	//décide des actions à faire en fonstion du contexte (menu utilisateur ou bien 
 	//lecture d'un livre)
 	public void receiveMouvement (String mouvement) {
 		createPage(mouvement);
+		Document doc = null;
+		JSVGCanvas canvas = new JSVGCanvas(null, true, false);
+		
 		switch(mouvement){
 		case "left":
-		documentCreator.transition(augmentedPageList.get(2), augmentedPageList.get(1));
-		break;
+			documentCreator.createDocument(augmentedPageList.get(2), augmentedPageList.get(1));
+			canvas.setDocument(doc);
+			menuActive = false;
+			visualUnit.display(canvas);
+			soundUnit.playSound(ressourcesAdress.concat(augmentedPageList.get(1).getAmbiance()));
+			break;
 		
 		case "right" :
-		documentCreator.transition(augmentedPageList.get(0), augmentedPageList.get(1));
-		break;
+			documentCreator.createDocument(augmentedPageList.get(0), augmentedPageList.get(1));
+			canvas.setDocument(doc);
+			menuActive = false;
+			visualUnit.display(canvas);
+			soundUnit.playSound(ressourcesAdress.concat(augmentedPageList.get(1).getAmbiance()));
+			break;
+		
+		case "select" :
+			menuActive = true;
+			visualUnit.setToBackground(true);
+			break;
+			
 		}
-			/* JSVGCanvas canvas = new JSVGCanvas(null, true, false);
-		    canvas.setDocument(pagesList.get(1));
-		    visualUnit.display(canvas); */ 
+			
 	}
-//-------------------------------------------------------------------------------------------------------------	
+//--------------------------------------------------------------------------------------------------------------
 	public void createPage(String mouvement){
 		
 		AugmentedPage augmentedPage = this.classifier.sendAugmentedPage(mouvement);
-		Document doc = documentCreator.toDocument(augmentedPage);
 		switch(mouvement) {
-			case "right" : turnRight(augmentedPage, doc);
-			break;
+			case "right" : 
+				this.augmentedPageList.add(0, augmentedPage);
+				this.augmentedPageList.remove(3);
+				break;
 			
-			case "left" : turnLeft(augmentedPage, doc);
-			break;			
+			case "left" : 
+				this.augmentedPageList.add(augmentedPage);
+				this.augmentedPageList.remove(0);
+				break;			
 		}
 	}
-//--------------------------------------------------------------------------------------------------		
-	 private void turnLeft(AugmentedPage page, Document doc){
-		 this.augmentedPageList.add(0, page);
-		 this.augmentedPageList.remove(3);
-		 System.out.println(augmentedPageList.size());
-		 this.pagesList.add(0, doc);
-		 this.pagesList.remove(3);
-		 System.out.println(pagesList.size());
-	 }
-//--------------------------------------------------------------------------------------------------	 
-	 private void turnRight(AugmentedPage page, Document doc){
-		 this.augmentedPageList.add(page);
-		 this.augmentedPageList.remove(0);
-		 System.out.println(augmentedPageList.size());
-		 this.pagesList.add(doc);
-		 this.pagesList.remove(0);
-		 System.out.println(pagesList.size());
-	 }	 
+//-----------------------------------------------------------------------------------------------------------------	
+	public String reverseSlash(String path){
+		int length = path.length();
+		if (System.getProperty("os.name").startsWith("Windows")){
+			char[] array = path.toCharArray();
+			for(int i = 0; i<length; i++){
+				if(array[i] == '\\'){
+					array[i] = '/';
+				}
+			}
+			path = String.valueOf(array);
+		}
+		return path;
+	} 
 }
