@@ -1,34 +1,37 @@
 package Classification;
 
-import augmentedPage.AugmentedPage;
-import decoupage.*;
-import java.util.*;
+import java.util.ArrayList;
 
-public class Classifier implements ClassifierInterface {
+import AugmentedPage.AugmentedPage;
+import Decoupage.PageMaker;
 
-	private PageMaker pageMaker;
+public class Classifier {
+
+private PageMaker pageMaker;
+private GetAtmosphere getAtmosphere;
 	
-	public Classifier(PageMaker pageMaker){
-		
-		this.pageMaker = pageMaker;
-		
-	};
+	public Classifier(String textURI, int font){
+		this.pageMaker = new PageMaker(textURI, font);
+		this.getAtmosphere = new GetAtmosphere();
+	}
 	
 	public AugmentedPage sendAugmentedPage(String mouvement){
-		String page = pageMaker.sendNewPage(mouvement);
-		AugmentedPage aP = new AugmentedPage(page, "2.jpg");
-		return aP;
-	};
+		
+		String text = pageMaker.sendNewPage(mouvement);
+		String atmosphereAdress = getAtmosphere.getTheAtmosphere(text);
+		AugmentedPage augmentedPage = new AugmentedPage(text, atmosphereAdress);
+		return augmentedPage;
+	}
 	
-	public ArrayList<AugmentedPage> firstAugmentedPages(String uri){
-		String[] pageList = pageMaker.setBook(uri);
+	public ArrayList<AugmentedPage> firstAugmentedPages(){
+		String[] pageList = pageMaker.firstPages();
 		ArrayList<AugmentedPage> aPL = new ArrayList<AugmentedPage>();
-		for(int i = 0; i<2; i++){
-			AugmentedPage aP = new AugmentedPage(pageList[i], "1.jpg");
+		for(int i = 0; i<3; i++){
+			String atmosphereAdress = getAtmosphere.getTheAtmosphere(pageList[i]);
+			AugmentedPage aP = new AugmentedPage(pageList[i], atmosphereAdress);
 			aPL.add(aP);
 		}
-		AugmentedPage aP = new AugmentedPage(pageList[2], "2.jpg");
-		aPL.add(aP);
 		return aPL;
 	}
+	
 }

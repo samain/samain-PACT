@@ -1,6 +1,6 @@
 package Classification;
 
-import augmentedPage.*;
+import AugmentedPage.AugmentedPage;
 
 public interface ClassifierInterface {
 

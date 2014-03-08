@@ -1,4 +1,4 @@
-package son;
+package Son;
 
 public class SoundUnit implements SoundInterface {
 

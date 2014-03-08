@@ -1,4 +1,4 @@
-package synchroniseur;
+package Synchronisation;
 
 public interface SynchronizerInterface {
 

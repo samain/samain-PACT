@@ -1,16 +1,14 @@
-package affichage;
+package Affichage;
 
-import menu.*;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
-import java.awt.event.*;
 import javax.swing.*;
 import org.apache.batik.swing.JSVGCanvas;
 
 public class VisualUnit implements TextAndBackgroundInterface {
 
 	private GraphicsDevice screen;
-	private JFrame currentFrame;
+	private JFrame Frame;
 	private JSVGCanvas currentCanvas;
 	
 	public VisualUnit() {
@@ -18,53 +16,18 @@ public class VisualUnit implements TextAndBackgroundInterface {
 		GraphicsDevice[] list = environment.getScreenDevices();
 		screen = list[0]; // 0 for screen, 1 for projection
 		this.currentCanvas = new JSVGCanvas(null, true, false);
-		currentFrame = new JFrame();
-	    screen.setFullScreenWindow(currentFrame);
-	};
-	
-	public void addKeyListener(final Menu menu){
-		currentFrame.addKeyListener(new KeyListener(){
-			public void keyPressed(KeyEvent e){
-			    final Menu menu2 = menu;
-				int code = e.getKeyCode();
-				switch(code){
-				case KeyEvent.VK_RIGHT : 
-					menu2.transferMovement("right");
-					break;
-				case KeyEvent.VK_LEFT : 
-					menu2.transferMovement("left");
-					break;
-				case KeyEvent.VK_UP :	
-					menu2.transferMovement("up");
-					break;
-				case KeyEvent.VK_DOWN :	
-					menu2.transferMovement("down");
-					break;
-				case KeyEvent.VK_ENTER :
-				menu2.transferMovement("select");
-				break;	
-				}
-				
-			}
-			
-			public void keyTyped(KeyEvent e){
-				
-			}
-			
-			public void keyReleased(KeyEvent e){
-				
-			}
-	    }	
-	);
-		
+		Frame = new JFrame();
+		Frame.setUndecorated(true);
+		Frame.setResizable(false);
+	    screen.setFullScreenWindow(Frame);
 	}
 	
 	public void display(JSVGCanvas canvas){
-		currentFrame.invalidate();
-		currentFrame.getContentPane().remove(currentCanvas);
+		Frame.invalidate();
+		Frame.getContentPane().remove(currentCanvas);
 		currentCanvas = canvas;
-		currentFrame.getContentPane().add(currentCanvas);// currentFrame.pack();
-		currentFrame.validate();
+		Frame.getContentPane().add(currentCanvas);// currentFrame.pack();
+		Frame.validate();
 	}
 
 	public int[] getResolution() {

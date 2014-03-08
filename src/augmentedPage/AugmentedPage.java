@@ -1,4 +1,5 @@
-package augmentedPage;
+package AugmentedPage;
+
 
 public class AugmentedPage {
 

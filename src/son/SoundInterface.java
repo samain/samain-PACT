@@ -1,4 +1,4 @@
-package son;
+package Son;
 
 public interface SoundInterface {
 

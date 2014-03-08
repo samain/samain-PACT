@@ -1,4 +1,4 @@
-package decoupage;
+package Decoupage;
 
 public interface PageInterface {
 

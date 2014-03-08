@@ -1,4 +1,4 @@
-package affichage;
+package Affichage;
 
 import org.apache.batik.swing.JSVGCanvas;
 

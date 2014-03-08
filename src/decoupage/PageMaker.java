@@ -1,31 +1,25 @@
-package decoupage;
+package Decoupage;
 
+import java.io.IOException;
 import java.util.*;
 
 
 public class PageMaker implements PageInterface {
-
+	private Text text;
 	private int currentPage;
 	
 	private ArrayList<String> pageList;
 	
-	public PageMaker()
+	public PageMaker(String textURI, int policeSize)
 	{
-		this.pageList = new ArrayList<String>();
+		this.text = new Text(textURI, policeSize);
+		try {
+			this.pageList = text.CutInPages();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.currentPage = 1;
-		pageList.add("");
-		pageList.add("Il était une fois dans la forêt...");
-		pageList.add("un petit lutin vivant avec sa famille.");
-		pageList.add("Ce foyer était chaleureux et plein d'amour");
-		pageList.add("Mais une nuit...");
-		pageList.add("La neige, jalouse de leur bonheur");
-		pageList.add("Emporta leur maion dans un grand blizzard");
-		pageList.add("Isolé des siens, errant ans la nuit,");
-		pageList.add("Il se dirigea avec tristesse vers la ville la plus proche.");
-		pageList.add("Là-bas, on lui vanta la mer");
-		pageList.add("n'ayant jamais été à la plage, il y cherchea du réconfort");
-		pageList.add("Il y fit une grande fête.");
-	};
+	}
 	
 	public String sendNewPage(String mouvement){
 		String newPage = "";
@@ -50,15 +44,16 @@ public class PageMaker implements PageInterface {
 		break;
 		}
 		return newPage;
-	};
+	}
 	
-	public String[] setBook(String uri){
+
+	public String[] firstPages() {
 		String[] pages = new String[3];
 		pages[0] = pageList.get(0);
 		pages[1] = pageList.get(1);
 		pages[2] = pageList.get(2);
 		
 		return	pages;
-	};
+	}
 	
 }
