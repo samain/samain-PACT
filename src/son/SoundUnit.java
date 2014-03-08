@@ -1,20 +1,41 @@
 package Son;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+
+import javazoom.jl.player.Player;
+
 public class SoundUnit implements SoundInterface {
-	private MP3 mp3;
-	
-	public SoundUnit(){
-		this.mp3 = null;
-	}
-	
-	
+	private String filename;
+    private Player player; 
+
+    public SoundUnit(String filename) {
+        this.filename = filename;
+        play();
+    }
+
+    public void close() { if (player != null) player.close(); }
+
+    public void play() {
+        try {
+            FileInputStream fis     = new FileInputStream(filename);
+            BufferedInputStream bis = new BufferedInputStream(fis);
+            player = new Player(bis);
+        }
+        catch (Exception e) {
+            System.out.println("Problem playing file " + filename);
+            System.out.println(e);
+        }
+
+        new Thread() {
+            public void run() {
+                try { player.play(); }
+                catch (Exception e) { System.out.println(e); }
+            }
+        }.start();
+    }
+
 	public void playSound(String uri) {
-		if(mp3 != null) mp3.close();
-		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {e.printStackTrace();}
 		
-		mp3 = new MP3(uri);
-		mp3.start();
 	}
 }

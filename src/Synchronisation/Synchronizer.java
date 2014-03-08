@@ -44,7 +44,8 @@ public class Synchronizer implements SynchronizerInterface  {
 //-----------------------------------------------------------------------------------------------------------------	
 	public Synchronizer(){
 		this.visualUnit = new VisualUnit();
-		this.soundUnit = new SoundUnit();
+//		this.soundUnit = new SoundUnit();
+		this.soundUnit = null;
 		this.classifier = null;
 		this.documentCreator = null;
 		

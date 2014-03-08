@@ -1,5 +1,6 @@
 package Decoupage;
 
+import java.io.IOException;
 import java.util.*;
 import java.io.*;
 
