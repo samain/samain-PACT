@@ -19,7 +19,8 @@ public class PageMaker implements PageInterface {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		this.currentPage = 1;
+
+		this.currentPage = 0;
 		/* this.pageList = new ArrayList<String>();
 		this.currentPage = 1;
 		pageList.add("");
@@ -90,10 +91,14 @@ public class PageMaker implements PageInterface {
 
 	public String[] firstPages() {
 		String[] pages = new String[3];
-		pages[0] = pageList.get(0);
-		pages[1] = pageList.get(1);
-		pages[2] = pageList.get(2);
-		
+	    pages[0] = "";
+	    pages[1] = pageList.get(0);
+	    if (pageList.size()<2){
+	    	pages[2] = "";
+	    }
+	    else{
+	    	pages[2] = pageList.get(1);
+	    }
 		return	pages;
 	}
 	

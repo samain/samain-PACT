@@ -88,7 +88,7 @@ public class Text {
 		
 		ArrayList<String> pagesContent = new ArrayList<String>();
 		
-		k = tabledelongueurs[1][this.font-10]*tabledelongueurs[2][this.font-10]/50;
+		k = tabledelongueurs[1][this.font-10]/*tabledelongueurs[2][this.font-10]/50 */;
 		
 		String text = this.convertToText();
 		int length = text.length();

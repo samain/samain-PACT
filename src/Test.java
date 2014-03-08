@@ -9,7 +9,9 @@ import java.util.ArrayList;
 public class Test {
 
 	public static void main(String[] args) {
-	   /* Text text = new Text(System.getProperty("user.dir") + "//Ressources//Texte1.txt", 30);
+	   
+		
+		/* Text text = new Text(System.getProperty("user.dir") + "//Ressources//Texte1.txt", 30);
         try{
 		System.out.println(text.convertToText());
 		ArrayList<String> list = text.CutInPages();
@@ -43,14 +45,15 @@ public class Test {
 	    for (int i = 0; i<8; i++){
 	    	AugmentedPage aP = classifier.sendAugmentedPage("left");
 	    	System.out.println(aP.getAmbiance());
-	    	System.out.println(aP.getText()+"\n");
+	    	System.out.println(aP.getText()+"\n"); 
 	    } 
 	    
 		/* PageMaker pageMaker = new PageMaker(System.getProperty("user.dir") + "//Ressources//Texte1.txt", 30);
 	    String[] tab =  pageMaker.firstPages();
-		System.out.println(tab[0]);
+	    String s = tab[0];
+	    System.out.println(s) ;
 		System.out.println(tab[1]);
-		System.out.println(tab[2]);
+	    System.out.println(tab[2]);
 		for(int i = 0; i<10; i++){
 			System.out.println(pageMaker.sendNewPage("right"));
 			
