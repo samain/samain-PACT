@@ -9,11 +9,11 @@ import java.util.ArrayList;
 
 public class Text {
 	private String fileName;
-	private int policeSize;
+	private int font;
 	
-	public Text(String fileName, int policeSize) {
+	public Text(String fileName, int font) {
         this.fileName = fileName;
-        this.policeSize= policeSize;
+        this.font= font;
 	}
 
 	public final int[][] tabledelongueurs=
@@ -26,7 +26,7 @@ public class Text {
 	public int getNumberOfPages() {
 		try {
 			int length = this.convertToText().length();
-			int caraNbr = tabledelongueurs[1][this.policeSize-10]*tabledelongueurs[2][this.policeSize-10];
+			int caraNbr = tabledelongueurs[1][this.font-10]*tabledelongueurs[2][this.font-10];
 			caraNbr = caraNbr / 50; //A MODIFIER POUR REGLER L'AFFICHAGE
 			
 			int pageNbr = (int) (length/caraNbr) + 1;
@@ -87,7 +87,7 @@ public class Text {
 		
 		ArrayList<String> pagesContent = new ArrayList<String>();
 		
-		k = tabledelongueurs[1][this.policeSize-10]*tabledelongueurs[2][this.policeSize-10]/50;
+		k = tabledelongueurs[1][this.font-10]*tabledelongueurs[2][this.font-10]/50;
 		
 		String text = this.convertToText();
 		

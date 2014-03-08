@@ -10,9 +10,9 @@ public class PageMaker implements PageInterface {
 	
 	private ArrayList<String> pageList;
 	
-	public PageMaker(String textURI, int policeSize)
+	public PageMaker(String textURI, int font)
 	{
-		this.text = new Text(textURI, policeSize);
+		this.text = new Text(textURI, font);
 		try {
 			this.pageList = text.CutInPages();
 		} catch (IOException e) {
