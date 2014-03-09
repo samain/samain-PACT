@@ -5,6 +5,8 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
+import Synchronisation.Synchronizer;
+
 public class Fenetreclayout implements ItemListener {
 	JPanel cards; // le panneau qui va contenir le CardLayout
 	final static String ACCUEIL = "Menu d'accueil";
@@ -90,20 +92,19 @@ public class Fenetreclayout implements ItemListener {
 
 		livre1.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// System.getProperty("user.dir") +
-				// "//Voyages de Gulliver -Espace-.txt";
+				Menu.synchronizer.initialiseBook(System.getProperty("user.dir") + "//Histoires du Grand Nord -Montagne-.txt", 40);
 			}
 		});
 
 		livre2.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// System.getProperty("user.dir") + "//Un autre livre.txt";
+				Menu.synchronizer.initialiseBook(System.getProperty("user.dir") + "//Histoires du Grand Nord -Plage-.txt", 40);
 			}
 		});
 
 		livre3.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// System.getProperty("user.dir") + "//Un autre livre.txt";
+				Menu.synchronizer.initialiseBook(System.getProperty("user.dir") + "//Voyages de Gulliver -Espace-.txt", 40);
 			}
 		});
 

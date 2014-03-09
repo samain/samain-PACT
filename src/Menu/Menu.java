@@ -1,5 +1,12 @@
 package Menu;
 
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 import org.jnativehook.keyboard.NativeKeyEvent;
@@ -10,10 +17,30 @@ import Synchronisation.Synchronizer;
 
 public class Menu{
 
-	private Synchronizer synchronizer;
+	static Synchronizer synchronizer;
 	
-	public Menu (Synchronizer synchronizer){
-		this.synchronizer = synchronizer;
+	public Menu (){
+		try {
+			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+		} catch (UnsupportedLookAndFeelException ex) {
+			ex.printStackTrace();
+		} catch (IllegalAccessException ex) {
+			ex.printStackTrace();
+		} catch (InstantiationException ex) {
+			ex.printStackTrace();
+		} catch (ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		UIManager.put("swing.boldMetal", Boolean.FALSE);
+
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				createAndShowGUI();
+			}
+		});
+		
+		Menu.synchronizer = new Synchronizer();
+		
 		try {
 			GlobalScreen.registerNativeHook();
 		}
@@ -59,7 +86,7 @@ public class Menu{
 			
 		});
 	}
-//---------------------------------------------------------------------------------------------------------	
+//----------------------------------------------------------------------------------------------------------	
 	public void transferMovement(String movement){
 		switch(movement){
 		case "select" : System.exit(0);
@@ -72,5 +99,25 @@ public class Menu{
 	public void close(){
 		GlobalScreen.unregisterNativeHook();
 	}
-	
+//----------------------------------------------------------------------------------------------------------
+	private static void createAndShowGUI() {
+		// On fabrique et on met en forme une fenêtre JFrame
+		JFrame principalFrame = new JFrame("Immersive Reading");
+		principalFrame.setSize(1200, 800);
+		principalFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		// On fabrique le contentPane
+		Fenetreclayout nappe = new Fenetreclayout();
+		nappe.addComponentToPane(principalFrame.getContentPane());
+		
+		GraphicsEnvironment environment = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		GraphicsDevice[] list = environment.getScreenDevices();
+		GraphicsDevice screen = list[0]; // 0 for screen, 1 for projection
+		
+		principalFrame.setUndecorated(true);
+		principalFrame.setResizable(false);
+	    screen.setFullScreenWindow(principalFrame);
+		
+		principalFrame.setVisible(true);
+	}
 }

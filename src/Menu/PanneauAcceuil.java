@@ -12,7 +12,7 @@ public class PanneauAcceuil extends JPanel {
 	public void paintComponent(Graphics g) {
 		try {
 			Image img = ImageIO.read(new File(
-					"/Users/paulinerabis/Documents/accueil.jpg"));
+					System.getProperty("user.dir") + "//Menu//accueil.jpg"));
 
 			// g.drawImage(img, 0, 0, this);
 

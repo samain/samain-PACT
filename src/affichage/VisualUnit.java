@@ -20,6 +20,7 @@ public class VisualUnit implements TextAndBackgroundInterface {
 		frame.setUndecorated(true);
 		frame.setResizable(false);
 	    screen.setFullScreenWindow(frame);
+	    frame.setVisible(false);
 	}
 //----------------------------------------------------------------------------------------------------
 	public void display(JSVGCanvas canvas){
