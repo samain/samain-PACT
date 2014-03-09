@@ -74,6 +74,8 @@ public class Synchronizer implements SynchronizerInterface  {
 		JSVGCanvas canvas = new JSVGCanvas(null, true, false);
 		canvas.setDocument(doc);
 		menuActive = false;
+		if(soundUnit != null) soundUnit.stop();
+		soundUnit = new SoundUnit("b.mp3");
 		visualUnit.display(canvas);
 //		soundUnit.playSound(ressourcesAdress.concat(augmentedPageList.get(1).getAmbiance()));
 	}
@@ -90,6 +92,8 @@ public class Synchronizer implements SynchronizerInterface  {
 			doc = documentCreator.createDocument(augmentedPageList.get(2), augmentedPageList.get(1));
 			canvas.setDocument(doc);
 			menuActive = false;
+			if(soundUnit != null) soundUnit.stop();
+			soundUnit = new SoundUnit("b.mp3");
 			visualUnit.display(canvas);
 //			soundUnit.playSound(ressourcesAdress.concat(augmentedPageList.get(1).getAmbiance()));
 			break;
@@ -98,6 +102,8 @@ public class Synchronizer implements SynchronizerInterface  {
 			doc = documentCreator.createDocument(augmentedPageList.get(0), augmentedPageList.get(1));
 			canvas.setDocument(doc);
 			menuActive = false;
+			if(soundUnit != null) soundUnit.stop();
+			soundUnit = new SoundUnit("a.mp3");
 			visualUnit.display(canvas);
 //			soundUnit.playSound(ressourcesAdress.concat(augmentedPageList.get(1).getAmbiance()));
 			break;
