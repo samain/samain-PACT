@@ -103,16 +103,17 @@ public class Menu{
 	private static void createAndShowGUI() {
 		// On fabrique et on met en forme une fenêtre JFrame
 		JFrame principalFrame = new JFrame("Immersive Reading");
-		principalFrame.setSize(1200, 800);
+		
+		GraphicsEnvironment environment = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		GraphicsDevice[] list = environment.getScreenDevices();
+		GraphicsDevice screen = list[0]; // 0 for screen, 1 for projection
+		
+		principalFrame.setSize(screen.getDisplayMode().getWidth(), screen.getDisplayMode().getHeight());
 		principalFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// On fabrique le contentPane
 		Fenetreclayout nappe = new Fenetreclayout();
 		nappe.addComponentToPane(principalFrame.getContentPane());
-		
-		GraphicsEnvironment environment = GraphicsEnvironment.getLocalGraphicsEnvironment();
-		GraphicsDevice[] list = environment.getScreenDevices();
-		GraphicsDevice screen = list[0]; // 0 for screen, 1 for projection
 		
 		principalFrame.setUndecorated(true);
 		principalFrame.setResizable(false);
