@@ -87,6 +87,7 @@ public class Text {
 	    int pagesNbr = this.getNumberOfPages();
 		
 		ArrayList<String> pagesContent = new ArrayList<String>();
+		pagesContent.clear();
 		
 		k = tabledelongueurs[1][this.font-10]/*tabledelongueurs[2][this.font-10]/50 */;
 		
@@ -99,7 +100,7 @@ public class Text {
 			while(h<text.length())
 			{		
 			    System.out.println("h = ");
-				System.out.println(h);
+			    System.out.println(h);
 				System.out.println("min(h+k, length) = ");
 				System.out.println(Math.min(h+k, length)); 
 				if(h+k>length){
@@ -110,7 +111,7 @@ public class Text {
 				if (text.substring(h, h+k).lastIndexOf(' ') == -1){		
 					pagesContent.add(text.substring(h, h+k));
 					System.out.println("dernière page ajoutée = ");
-				    System.out.println(text.substring(h, h+k));
+					System.out.println(text.substring(h, h+k));
 					h= h+k;
 					if(h<length){
 						if (text.charAt(h) == ' '){
@@ -119,12 +120,12 @@ public class Text {
 					}
 				}
 				else{	
-			    System.out.println("lastIndexOfSpace = ");	
-				System.out.println(text.substring(h, h+k).lastIndexOf(' ')+1+h);	
-				pagesContent.add(text.substring(h, text.substring(h, h+k).lastIndexOf(' ')+1+h));
-				System.out.println("dernière page ajoutée = ");
-			    System.out.println(text.substring(h, text.substring(h, h+k).lastIndexOf(' ')+1+h)); 
-				h= text.substring(h, h+k).lastIndexOf(' ')+1+h;
+					System.out.println("lastIndexOfSpace = ");	
+					System.out.println(text.substring(h, h+k).lastIndexOf(' ')+1+h);	
+					pagesContent.add(text.substring(h, text.substring(h, h+k).lastIndexOf(' ')+1+h));
+					System.out.println("dernière page ajoutée = ");
+					System.out.println(text.substring(h, text.substring(h, h+k).lastIndexOf(' ')+1+h)); 
+					h= text.substring(h, h+k).lastIndexOf(' ')+1+h;
 				}
 				}
 			}

@@ -14,7 +14,7 @@ public class SoundUnit implements SoundInterface {
         play();
     }
 
-    public void close() { if (player != null) player.close(); }
+    public void stop() { if (player != null) player.close(); }
 
     public void play() {
         try {
