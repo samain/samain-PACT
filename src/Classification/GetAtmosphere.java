@@ -158,8 +158,12 @@ private String resourcesAdress;
 			if (neige.contains(newPageWords[i])) neig=neig+1;
 			if (amour.contains(newPageWords[i])) amo=amo+1;
 			if (famille.contains(newPageWords[i])) fami=fami+1;
-			if (maison.contains(newPageWords[i])) mais=mais+1;
-			else nowherewords = nowherewords +1;
+			if (maison.contains(newPageWords[i])) {mais=mais+1;
+			System.out.println(newPageWords[i]);
+			}
+			else {nowherewords = nowherewords +1;
+			System.out.println(newPageWords[i]);
+			}
 		}
 		int[] resultat = new int[12];
 		resultat[0] = mont;

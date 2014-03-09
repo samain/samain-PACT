@@ -145,6 +145,8 @@ public class DocumentCreator {
 	    	 text.setAttributeNS(null, "font-family", fontType);
 	    	 text.setAttributeNS(null, "font-size", fontStr);
 	    	 text.setAttributeNS(null, "fill", "black");
+	    	 Text textNode = doc1.createTextNode(listOfLines.get(i));
+	    	 text.appendChild(textNode);
 	 		
 	 		Element animation13 = doc1.createElementNS(svgNS, "animate");
 	 		animation13.setAttributeNS(null, "attributeType", "CSS");
@@ -193,12 +195,16 @@ public class DocumentCreator {
 	    	 text.setAttributeNS(null, "font-family", fontType);
 	    	 text.setAttributeNS(null, "font-size", fontStr);
 	    	 text.setAttributeNS(null, "fill", "black");
+	    	 text.setAttributeNS(null, "opacity", "0");
+	    	 Text textNode = doc2.createTextNode(listOfLines2.get(i));
+	    	 text.appendChild(textNode);
+	 		
 	 		
 	 		Element animation13 = doc2.createElementNS(svgNS, "animate");
 	 		animation13.setAttributeNS(null, "attributeType", "CSS");
 	 		animation13.setAttributeNS(null, "attributeName", "opacity");
-	 		animation13.setAttributeNS(null, "from", "1");
-	 		animation13.setAttributeNS(null, "to", "0");
+	 		animation13.setAttributeNS(null, "from", "0");
+	 		animation13.setAttributeNS(null, "to", "1");
 	 		animation13.setAttributeNS(null, "dur", "2s");
 	 		animation13.setAttributeNS(null, "fill", "freeze");
 	 		

@@ -19,7 +19,7 @@ public class PageMaker implements PageInterface {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		this.currentPage = 1;
+		this.currentPage = 0;
 	}
 	
 	public String sendNewPage(String mouvement){
