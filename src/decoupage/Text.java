@@ -99,10 +99,6 @@ public class Text {
 			//for (int j =0; j < pagesNbr; j++)  //j = numéro de page
 			while(h<text.length())
 			{		
-			    System.out.println("h = ");
-			    System.out.println(h);
-				System.out.println("min(h+k, length) = ");
-				System.out.println(Math.min(h+k, length)); 
 				if(h+k>length){
 					pagesContent.add(text.substring(h, length));
 					h = h+k;
@@ -110,8 +106,6 @@ public class Text {
 				else{
 				if (text.substring(h, h+k).lastIndexOf(' ') == -1){		
 					pagesContent.add(text.substring(h, h+k));
-					System.out.println("dernière page ajoutée = ");
-					System.out.println(text.substring(h, h+k));
 					h= h+k;
 					if(h<length){
 						if (text.charAt(h) == ' '){
@@ -119,12 +113,8 @@ public class Text {
 						}
 					}
 				}
-				else{	
-					System.out.println("lastIndexOfSpace = ");	
-					System.out.println(text.substring(h, h+k).lastIndexOf(' ')+1+h);	
+				else{		
 					pagesContent.add(text.substring(h, text.substring(h, h+k).lastIndexOf(' ')+1+h));
-					System.out.println("dernière page ajoutée = ");
-					System.out.println(text.substring(h, text.substring(h, h+k).lastIndexOf(' ')+1+h)); 
 					h= text.substring(h, h+k).lastIndexOf(' ')+1+h;
 				}
 				}

@@ -28,11 +28,9 @@ public class PageMaker implements PageInterface {
 		case "right" : if ((currentPage<(pageList.size()-2))&&(currentPage>-3)){
 			newPage = pageList.get(currentPage+2);
 			currentPage++;
-		//	System.out.println("page courante : " + currentPage);
             }
             else{
             currentPage++;
-        //    System.out.println("page courante : " + currentPage);
             }
             break;
          case "left"  : if ((currentPage<pageList.size()+2)&&(currentPage>1)){
