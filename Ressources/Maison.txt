@@ -1,5 +1,5 @@
-maison  baraque, cabane, masure, foyer, toit, salle  bains
-cuisine
-chambre
-salon
-toilettes
+maison  baraque, cabane, masure chez-soi, foyer, toit,La salle de bains
+La cuisine
+La chambre
+Le salon
+Les toilettes
