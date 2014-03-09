@@ -6,17 +6,25 @@ import java.util.ArrayList;
 public class EnrichAtmosphere {
 	
 	private String[] atmosphereText;
+	private String[] atmosphereTextNewPage;
 	private Champlexical atmosphereList;
 	
 	public EnrichAtmosphere(String atmosphereAdresse, String motsasupprimerAdresse){
 		this.atmosphereText = (new NetTab(new FileText((new ReadAFile(atmosphereAdresse)).contenuFichier(), 
 				(new ReadAFile(motsasupprimerAdresse)).contenuFichier()))).getNetTab();
+		this.atmosphereTextNewPage = (new NetTab(new FileText((new ReadAFile(atmosphereAdresse)).contenuFichier(), 
+				(new ReadAFile(motsasupprimerAdresse)).contenuFichier()))).getNetTabNewPage();
 		this.atmosphereList = new Champlexical((new NetTab(new FileText((new ReadAFile(atmosphereAdresse)).contenuFichier(), 
 				(new ReadAFile(motsasupprimerAdresse)).contenuFichier()))));
 	}
 	
+	
 	public String[] getAtmosphereWords(){
 		return atmosphereText;
+	}
+	
+	public String[] getAtmosphereWordsNewPage(){
+		return atmosphereTextNewPage;
 	}
 	
 	public ArrayList<String> getAtmosphereWordsList(){

@@ -30,8 +30,20 @@ public class GetAtmosphere {
 	private ArrayList<String> amourImages;
 	private ArrayList<String> familleImages;
 	private ArrayList<String> maisonImages;
+	private String montagneMusic;
+	private String plageMusic; 
+	private String foretMusic;
+	private String merMusic;
+	private String feteMusic;
+	private String villeMusic;
+	private String espaceMusic;
+	private String nuitMusic;
+	private String neigeMusic;
+	private String amourMusic;
+	private String familleMusic;
+	private String maisonMusic;
 	
-	private String resourcesAdress;
+private String resourcesAdress;
 	
 	public GetAtmosphere(){
 		this.resourcesAdress = System.getProperty("user.dir")+"//Ressources";
@@ -117,8 +129,9 @@ public class GetAtmosphere {
 		maisonImages.add("Maison//maison3.jpg");
 	}
 	
-	public String getTheAtmosphere(String newPage){
+	public String[] getTheAtmosphere(String newPage){
 		TextProcessing newPage2 = new TextProcessing(newPage,this.resourcesAdress+"//StopWords.txt");
+		System.out.println(newPage);
 		String[] newPageWords= newPage2.getAtmosphereWords();
 		int mont = 0;
 		int pla = 0;
@@ -129,9 +142,9 @@ public class GetAtmosphere {
 		int espa = 0;
 		int nui = 0;
 		int neig = 0;
-		int fa = 0;
-		int am = 0;
-		int mais = 0;
+		int amo = 0;
+		int fami = 0;
+		int mais =0;
 		int nowherewords = 0;
 		for (int i=0; i<newPageWords.length; i++){
 			if (montagne.contains(newPageWords[i])) mont=mont+1;
@@ -143,11 +156,9 @@ public class GetAtmosphere {
 			if (espace.contains(newPageWords[i])) espa=espa+1;
 			if (nuit.contains(newPageWords[i])) nui=nui+1;
 			if (neige.contains(newPageWords[i])) neig=neig+1;
-			if (famille.contains(newPageWords[i])) fa++;
-			if (amour.contains(newPageWords[i])) am++;
-			if (maison.contains(newPageWords[i])) {mais++;
-			System.out.println((new Integer(fa)).toString());
-			}
+			if (amour.contains(newPageWords[i])) amo=amo+1;
+			if (famille.contains(newPageWords[i])) fami=fami+1;
+			if (maison.contains(newPageWords[i])) mais=mais+1;
 			else nowherewords = nowherewords +1;
 		}
 		int[] resultat = new int[12];
@@ -160,74 +171,76 @@ public class GetAtmosphere {
 		resultat[6] = espa;
 		resultat[7] = nui;
 		resultat[8] = neig;
-		resultat[9] = fa;
-		resultat[10] = am;
+		resultat[9] = amo;
+		resultat[10] = fami;
 		resultat[11] = mais;
 		Arrays.sort(resultat);
-		String reponse = "";
-		String adresseImage = "";
-		if (mont==0 && pla==0 && fo==0 && sea==0 && fet==0 && vil==0 && espa==0 && nui==0 && neig==0 && fa == 0 && am == 0 && mais == 0) return "1.jpg";
+		String[] reponse = new String[2];
+		if (mont==0 && pla==0 && fo==0 && sea==0 && fet==0 && vil==0 && espa==0 && nui==0 && neig==0 && amo==0 && fami==0 && mais==0){
+			reponse[0] = "Atmosphère non trouvée...";
+			reponse[1] = "Atmosphère non trouvée...";
+		}
 		if (resultat[11]==mont) {
-			reponse = reponse + " Montagne";
 			int hasard = (int) (Math.random() * (montagneImages.size()-1));
-			adresseImage = montagneImages.get(hasard);
+			reponse[0] = montagneImages.get(hasard);
+			reponse[1] = montagneMusic;
 		}
 		if (resultat[11]==pla) {
-			reponse = reponse + " Plage";
 			int hasard = (int) (Math.random() * (plageImages.size()-1));
-			adresseImage = plageImages.get(hasard);
+			reponse[0] = plageImages.get(hasard);
+			reponse[1] = plageMusic;
 		}
 		if (resultat[11]==fo) {
-			reponse = reponse + " Forêt";
 			int hasard = (int) (Math.random() * (foretImages.size()-1));
-			adresseImage = foretImages.get(hasard);
+			reponse[0] = foretImages.get(hasard);
+			reponse[1] = foretMusic;
 		}
 		if (resultat[11]==sea) {
-			reponse = reponse + " Mer";
 			int hasard = (int) (Math.random() * (merImages.size()-1));
-			adresseImage = merImages.get(hasard);
+			reponse[0] = merImages.get(hasard);
+			reponse[1] = merMusic;
 		}
 		if (resultat[11]==fet) {
-			reponse = reponse + " Fête";
 			int hasard = (int) (Math.random() * (feteImages.size()-1));
-			adresseImage = feteImages.get(hasard);
+			reponse[0] = feteImages.get(hasard);
+			reponse[1] = feteMusic;
 		}
 		if (resultat[11]==vil) {
-			reponse = reponse + " Ville";
 			int hasard = (int) (Math.random() * (villeImages.size()-1));
-			adresseImage = villeImages.get(hasard);
+			reponse[0] = villeImages.get(hasard);
+			reponse[1] = villeMusic;
 		}
 		if (resultat[11]==espa) {
-			reponse = reponse + " Espace";
 			int hasard = (int) (Math.random() * (espaceImages.size()-1));
-			adresseImage = espaceImages.get(hasard);
+			reponse[0] = espaceImages.get(hasard);
+			reponse[1] = espaceMusic;
 		}
 		if (resultat[11]==nui) {
-			reponse = reponse + " Nuit";
 			int hasard = (int) (Math.random() * (nuitImages.size()-1));
-			adresseImage = nuitImages.get(hasard);
+			reponse[0] = nuitImages.get(hasard);
+			reponse[1] = nuitMusic;
 		}
 		if (resultat[11]==neig) {
-			reponse = reponse + " Neige";
 			int hasard = (int) (Math.random() * (neigeImages.size()-1));
-			adresseImage = neigeImages.get(hasard);
+			reponse[0] = neigeImages.get(hasard);
+			reponse[1] = neigeMusic;
 		}
-		if (resultat[11]==fa) {
-			reponse = reponse + " Famille";
-			int hasard = (int) (Math.random() * (familleImages.size()-1));
-			adresseImage = familleImages.get(hasard);
-		}
-		if (resultat[11]==am) {
-			reponse = reponse + " Amour";
+		if (resultat[11]==amo) {
 			int hasard = (int) (Math.random() * (amourImages.size()-1));
-			adresseImage = amourImages.get(hasard);
+			reponse[0] = amourImages.get(hasard);
+			reponse[1] = amourMusic;
+		}
+		if (resultat[11]==fami) {
+			int hasard = (int) (Math.random() * (familleImages.size()-1));
+			reponse[0] = familleImages.get(hasard);
+			reponse[1] = familleMusic;
 		}
 		if (resultat[11]==mais) {
-			reponse = reponse + " Maison";
 			int hasard = (int) (Math.random() * (maisonImages.size()-1));
-			adresseImage = maisonImages.get(hasard);
+			reponse[0] = maisonImages.get(hasard);
+			reponse[1] = maisonMusic;
 		}
-		return adresseImage;
+		return reponse;
 				
 	}
 
