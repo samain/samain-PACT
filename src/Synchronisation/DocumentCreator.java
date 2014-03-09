@@ -82,7 +82,7 @@ public class DocumentCreator {
 	    	 Text textNode = doc.createTextNode(listOfLines.get(i));
 	    	 text.appendChild(textNode);
 	    	 svgRoot.appendChild(text);
-	     }
+	     } 
 	     return doc;
 		
 	}
@@ -92,6 +92,9 @@ public class DocumentCreator {
 			
 		String text1 = first.getText();
 		String text2 = second.getText();
+		
+		System.out.println("texte doc prec = " + text1);
+		System.out.println("texte doc suiv = " + text2);
 			
 		String img1 = ressourcesAdress.concat(first.getAmbiance());
 		String img2 = ressourcesAdress.concat(second.getAmbiance());
@@ -129,25 +132,34 @@ public class DocumentCreator {
 		imgA.appendChild(animation11);
 		
 		svgRoot1.appendChild(imgA);
-			
-		Element textA = doc1.createElementNS(svgNS, "text");
-		textA.setAttributeNS(null, "x", "0");
-		textA.setAttributeNS(null, "y", "200");
-		textA.setAttributeNS(null, "font-family", fontType);
-		textA.setAttributeNS(null, "font-size", fontStr);
-		textA.appendChild(doc1.createTextNode(text1));
+			  
+	    ArrayList<String> listOfLines = linesGetter.getLines(first.getText());
+	     
+	     int size = listOfLines.size();
+	     
+	     for(int i = 0; i<size; i++){
+	    	 Element text = doc1.createElementNS(svgNS, "text");
+	    	 text.setAttributeNS(null, "x", "0");
+	    	 Integer integerY = new Integer(200 + ((height-100)/size)*i);
+	    	 text.setAttributeNS(null, "y", integerY.toString());
+	    	 text.setAttributeNS(null, "font-family", fontType);
+	    	 text.setAttributeNS(null, "font-size", fontStr);
+	    	 text.setAttributeNS(null, "fill", "black");
+	 		
+	 		Element animation13 = doc1.createElementNS(svgNS, "animate");
+	 		animation13.setAttributeNS(null, "attributeType", "CSS");
+	 		animation13.setAttributeNS(null, "attributeName", "opacity");
+	 		animation13.setAttributeNS(null, "from", "1");
+	 		animation13.setAttributeNS(null, "to", "0");
+	 		animation13.setAttributeNS(null, "dur", "2s");
+	 		animation13.setAttributeNS(null, "fill", "freeze");
+	 		
+	 		text.appendChild(animation13);
+	 		
+	 		svgRoot1.appendChild(text);
+	     } 
 		
-		Element animation13 = doc1.createElementNS(svgNS, "animate");
-		animation13.setAttributeNS(null, "attributeType", "CSS");
-		animation13.setAttributeNS(null, "attributeName", "opacity");
-		animation13.setAttributeNS(null, "from", "1");
-		animation13.setAttributeNS(null, "to", "0");
-		animation13.setAttributeNS(null, "dur", "2s");
-		animation13.setAttributeNS(null, "fill", "freeze");
 		
-		textA.appendChild(animation13);
-		
-		svgRoot1.appendChild(textA);
 		
 		Element imgB = doc2.createElementNS(svgNS, "image");
 		imgB.setAttributeNS(xlinkNS, "href", img2);
@@ -169,25 +181,31 @@ public class DocumentCreator {
 		
 		svgRoot2.appendChild(imgB);
 		
-		Element textB = doc2.createElementNS(svgNS, "text");
-		textB.setAttributeNS(null, "x", "0");
-		textB.setAttributeNS(null, "y", "200");
-		textB.setAttributeNS(null, "font-family", fontType);
-		textB.setAttributeNS(null, "font-size", fontStr);
-		textB.setAttributeNS(null, "opacity", "0");
-		textB.appendChild(doc2.createTextNode(text2));
-		
-		Element animation22 = doc2.createElementNS(svgNS, "animate");
-		animation22.setAttributeNS(null, "attributeType", "CSS");
-		animation22.setAttributeNS(null, "attributeName", "opacity");
-		animation22.setAttributeNS(null, "from", "0");
-		animation22.setAttributeNS(null, "to", "1");
-		animation22.setAttributeNS(null, "dur", "2s");
-		animation22.setAttributeNS(null, "fill", "freeze");
-		
-		textB.appendChild(animation22);
-		
-		svgRoot2.appendChild(textB);
+	    ArrayList<String> listOfLines2 = linesGetter.getLines(second.getText());
+	     
+	    int size2 = listOfLines2.size();
+	     
+	     for(int i = 0; i<size2; i++){
+	    	 Element text = doc2.createElementNS(svgNS, "text");
+	    	 text.setAttributeNS(null, "x", "0");
+	    	 Integer integerY = new Integer(200 + ((height-100)/size)*i);
+	    	 text.setAttributeNS(null, "y", integerY.toString());
+	    	 text.setAttributeNS(null, "font-family", fontType);
+	    	 text.setAttributeNS(null, "font-size", fontStr);
+	    	 text.setAttributeNS(null, "fill", "black");
+	 		
+	 		Element animation13 = doc2.createElementNS(svgNS, "animate");
+	 		animation13.setAttributeNS(null, "attributeType", "CSS");
+	 		animation13.setAttributeNS(null, "attributeName", "opacity");
+	 		animation13.setAttributeNS(null, "from", "1");
+	 		animation13.setAttributeNS(null, "to", "0");
+	 		animation13.setAttributeNS(null, "dur", "2s");
+	 		animation13.setAttributeNS(null, "fill", "freeze");
+	 		
+	 		text.appendChild(animation13);
+	 		
+	 		svgRoot2.appendChild(text);
+	     } 
 		
 		Node importedNode = doc1.importNode(svgRoot2, true);
 		svgRoot1.appendChild(importedNode);

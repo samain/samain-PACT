@@ -20,16 +20,13 @@ public class ReadAFile {
 	}
 	
 	public String contenuFichier(){
+		String temp="";
 		String contenuMonFichier="";
 		try {
-			monFichier.mark(1);
-			while(monFichier.read()!= -1)
+			while((temp=monFichier.readLine())!=null)
 			{
-				monFichier.reset();
-				contenuMonFichier= contenuMonFichier + monFichier.readLine()+"\n";
-				monFichier.mark(1);
+				contenuMonFichier= contenuMonFichier + " " + temp;
 			}
-			// System.out.println(contenuMonFichier);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

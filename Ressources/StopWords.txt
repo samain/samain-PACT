@@ -1,7 +1,9 @@
-un, une, de, des alors, ai as a avons avez ont avais avait avions aviez été eu eue eues eus étés suis es est sont sommes êtes était étais étions 
-étiez étaient
-la il fois etait
-pour qui
+un, une, de, des alors, ai, as, a, avons, avez, ont, avais, avait, avions, aviez, été, eu, eue, eues, eus, étés, suis, es, est, sont, sommes, êtes, était, étais, étions, 
+étiez, étaient, la, il,
+ 
+fois 
+etait 
+pour qui 
 
 au
 

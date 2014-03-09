@@ -6,7 +6,7 @@ public class FileText {
 	private String[] wordsToDelete;
 	
 	public FileText(String s1, String s2){
-		this.brutTab = s1.replace('\n', ' ').split("[.,;:' ]+");
+		this.brutTab = s1.split("[.,;:' ]+");
 		this.wordsToDelete = s2.split("[.,;:' ]+");
 	}
 	
