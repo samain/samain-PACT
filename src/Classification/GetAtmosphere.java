@@ -150,20 +150,22 @@ private String resourcesAdress;
 			if (montagne.contains(newPageWords[i])) mont=mont+1;
 			if (plage.contains(newPageWords[i])) pla=pla+1;
 			if (foret.contains(newPageWords[i])) fo=fo+1;
-			if (mer.contains(newPageWords[i])) sea=sea+1;
+			if (mer.contains(newPageWords[i])) {sea=sea+1;
+			System.out.println("mer = " + newPageWords[i]);
+			}
 			if (fete.contains(newPageWords[i])) fet=fet+1;
 			if (ville.contains(newPageWords[i])) vil=vil+1;
 			if (espace.contains(newPageWords[i])) espa=espa+1;
 			if (nuit.contains(newPageWords[i])) nui=nui+1;
 			if (neige.contains(newPageWords[i])) neig=neig+1;
 			if (amour.contains(newPageWords[i])) amo=amo+1;
-			if (famille.contains(newPageWords[i])) fami=fami+1;
+			if (famille.contains(newPageWords[i])) {fami=fami+1;
+			System.out.println("famille = " +  newPageWords[i]);
+			}
 			if (maison.contains(newPageWords[i])) {mais=mais+1;
-			System.out.println(newPageWords[i]);
+			System.out.println("maison = " + newPageWords[i]);
 			}
-			else {nowherewords = nowherewords +1;
-			System.out.println(newPageWords[i]);
-			}
+			else nowherewords = nowherewords +1;
 		}
 		int[] resultat = new int[12];
 		resultat[0] = mont;
@@ -181,7 +183,7 @@ private String resourcesAdress;
 		Arrays.sort(resultat);
 		String[] reponse = new String[2];
 		if (mont==0 && pla==0 && fo==0 && sea==0 && fet==0 && vil==0 && espa==0 && nui==0 && neig==0 && amo==0 && fami==0 && mais==0){
-			reponse[0] = "Atmosphère non trouvée...";
+			reponse[0] = "//Défaut//image livre.jpg";
 			reponse[1] = "Atmosphère non trouvée...";
 		}
 		if (resultat[11]==mont) {

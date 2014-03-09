@@ -1,5 +1,5 @@
 un, une, de, des alors, ai, as, a, avons, avez, ont, avais, avait, avions, aviez, été, eu, eue, eues, eus, étés, suis, es, est, sont, sommes, êtes, était, étais, étions, 
-étiez, étaient, la, il,
+étiez, étaient, la, il, l, à, grand, grande
  
 fois 
 etait 

@@ -73,11 +73,11 @@ public class DocumentCreator {
 	     for(int i = 0; i<size; i++){
 	    	 Element text = doc.createElementNS(svgNS, "text");
 	    	 text.setAttributeNS(null, "x", "0");
-	    	 Integer integerY = new Integer(200 + ((height-100)/size)*i);
+	    	 Integer integerY = new Integer((height/(size+1))*(i+1));
 	    	 text.setAttributeNS(null, "y", integerY.toString());
 	    	 text.setAttributeNS(null, "font-family", fontType);
 	    	 text.setAttributeNS(null, "font-size", fontStr);
-	    	 text.setAttributeNS(null, "fill", "black");
+	    	 text.setAttributeNS(null, "fill", "green");
 	    	 
 	    	 Text textNode = doc.createTextNode(listOfLines.get(i));
 	    	 text.appendChild(textNode);
@@ -140,11 +140,11 @@ public class DocumentCreator {
 	     for(int i = 0; i<size; i++){
 	    	 Element text = doc1.createElementNS(svgNS, "text");
 	    	 text.setAttributeNS(null, "x", "0");
-	    	 Integer integerY = new Integer(200 + ((height-100)/size)*i);
+	    	 Integer integerY = new Integer((height/(size+1))*(i+1));
 	    	 text.setAttributeNS(null, "y", integerY.toString());
 	    	 text.setAttributeNS(null, "font-family", fontType);
 	    	 text.setAttributeNS(null, "font-size", fontStr);
-	    	 text.setAttributeNS(null, "fill", "black");
+	    	 text.setAttributeNS(null, "fill", "green");
 	    	 Text textNode = doc1.createTextNode(listOfLines.get(i));
 	    	 text.appendChild(textNode);
 	 		
@@ -190,11 +190,11 @@ public class DocumentCreator {
 	     for(int i = 0; i<size2; i++){
 	    	 Element text = doc2.createElementNS(svgNS, "text");
 	    	 text.setAttributeNS(null, "x", "0");
-	    	 Integer integerY = new Integer(200 + ((height-100)/size)*i);
+	    	 Integer integerY = new Integer((height/(size+1))*(i+1));
 	    	 text.setAttributeNS(null, "y", integerY.toString());
 	    	 text.setAttributeNS(null, "font-family", fontType);
 	    	 text.setAttributeNS(null, "font-size", fontStr);
-	    	 text.setAttributeNS(null, "fill", "black");
+	    	 text.setAttributeNS(null, "fill", "green");
 	    	 text.setAttributeNS(null, "opacity", "0");
 	    	 Text textNode = doc2.createTextNode(listOfLines2.get(i));
 	    	 text.appendChild(textNode);

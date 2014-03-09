@@ -15,7 +15,7 @@ public class LinesGetter {
 		 
 		for(int i = 0; i<length; i++){
 			if (text.charAt(i) == ' '){
-				if ((i-lastCut) > 30){
+				if ((i-lastCut) > 70){
 					if (lastIndexOfSpace<=lastCut){
 						stringList.add(text.substring(lastCut, i));
 						lastCut = i;
