@@ -191,10 +191,10 @@ public class DocumentCreator {
 	     
 	    int size2 = listOfLines2.size();
 	     
-	     for(int i = 0; i<size2; i++){
+	     for(int j = 0; j<size2; j++){
 	    	 Element text = doc2.createElementNS(svgNS, "text");
 	    	 text.setAttributeNS(null, "x", "5");
-	    	 Integer integerY = new Integer((height/(size+1))*(i+1));
+	    	 Integer integerY = new Integer((height/(size2+1))*(j+1));
 	    	 text.setAttributeNS(null, "y", integerY.toString());
 	    	 text.setAttributeNS(null, "font-family", fontType);
 	    	 text.setAttributeNS(null, "font-size", fontStr);
@@ -202,7 +202,7 @@ public class DocumentCreator {
 	    	 text.setAttributeNS(null, "stroke", "black");
 	    	 text.setAttributeNS(null, "stroke-width", "1px");
 	    	 text.setAttributeNS(null, "opacity", "0");
-	    	 Text textNode = doc2.createTextNode(listOfLines2.get(i));
+	    	 Text textNode = doc2.createTextNode(listOfLines2.get(j));
 	    	 text.appendChild(textNode);
 	 		
 	 		
