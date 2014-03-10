@@ -1,4 +1,4 @@
-nuit nuits sombre sombres noir noire noires noirs coucher lune étoile étoiles filante filantes dormir dodo dors dorment dormons dormez dormais dormait dormaient
+horizon nuit nuits sombre sombres noir noire noires noirs coucher lune étoile étoiles filante filantes dormir dodo dors dorment dormons dormez dormais dormait dormaient
 dort obscurité cauchemars 
 soir 
 soirée 
@@ -14,3 +14,5 @@ obscurité
 astre 
 nuisette
 rêve
+aube
+silence

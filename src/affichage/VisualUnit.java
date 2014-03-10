@@ -2,14 +2,9 @@ package Affichage;
 
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 import javax.swing.*;
 
 import org.apache.batik.swing.JSVGCanvas;
-
-import Synchronisation.Synchronizer;
 
 public class VisualUnit implements TextAndBackgroundInterface {
 
