@@ -91,21 +91,25 @@ public class Synchronizer implements SynchronizerInterface  {
 		
 		switch(mouvement){
 		case "left":
+			if ((augmentedPageList.get(2).getText() !=  "")&&(augmentedPageList.get(1).getText() !=  "")){
 			doc = documentCreator.createDocument(augmentedPageList.get(2), augmentedPageList.get(1));
 			canvas.setDocument(doc);
 			menuActive = false;
 			if(soundUnit != null) soundUnit.stop();
 			if(augmentedPageList.get(1).getAmbiance()[1] != null) soundUnit = new SoundUnit("Ressources\\" + augmentedPageList.get(1).getAmbiance()[1]);
 			visualUnit.display(canvas);
+			}
 			break;
 		
 		case "right" :
+			if ((augmentedPageList.get(0).getText() !=  "")&&(augmentedPageList.get(1).getText() !=  "")){
 			doc = documentCreator.createDocument(augmentedPageList.get(0), augmentedPageList.get(1));
 			canvas.setDocument(doc);
 			menuActive = false;
 			if(soundUnit != null) soundUnit.stop();
 			if(augmentedPageList.get(1).getAmbiance()[1] != null) soundUnit = new SoundUnit("Ressources\\" + augmentedPageList.get(1).getAmbiance()[1]);
 			visualUnit.display(canvas);
+			}
 			break;
 		
 		case "select" :
