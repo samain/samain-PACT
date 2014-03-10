@@ -60,7 +60,7 @@ public class DocumentCreator {
 	     image.setAttributeNS(null, "y", "0");
 	     image.setAttributeNS(null, "width", widthStr);
 	     image.setAttributeNS(null, "height", heightStr);
-	     image.setAttributeNS(xlinkNS, "xlink:href", ressourcesAdress.concat(augmentedPage.getAmbiance()));
+	     image.setAttributeNS(xlinkNS, "xlink:href", ressourcesAdress.concat(augmentedPage.getAmbiance()[0]));
 	     image.setAttributeNS(null, "visibility", "visible");
 	     image.setAttributeNS(null, "opacity", "1");
 	     
@@ -72,12 +72,14 @@ public class DocumentCreator {
 	     
 	     for(int i = 0; i<size; i++){
 	    	 Element text = doc.createElementNS(svgNS, "text");
-	    	 text.setAttributeNS(null, "x", "0");
+	    	 text.setAttributeNS(null, "x", "5");
 	    	 Integer integerY = new Integer((height/(size+1))*(i+1));
 	    	 text.setAttributeNS(null, "y", integerY.toString());
 	    	 text.setAttributeNS(null, "font-family", fontType);
 	    	 text.setAttributeNS(null, "font-size", fontStr);
-	    	 text.setAttributeNS(null, "fill", "green");
+	    	 text.setAttributeNS(null, "fill", "white");
+	    	 text.setAttributeNS(null, "stroke", "black");
+	    	 text.setAttributeNS(null, "stroke-width", "1px");
 	    	 
 	    	 Text textNode = doc.createTextNode(listOfLines.get(i));
 	    	 text.appendChild(textNode);
@@ -96,8 +98,8 @@ public class DocumentCreator {
 		System.out.println("texte doc prec = " + text1);
 		System.out.println("texte doc suiv = " + text2);
 			
-		String img1 = ressourcesAdress.concat(first.getAmbiance());
-		String img2 = ressourcesAdress.concat(second.getAmbiance());
+		String img1 = ressourcesAdress.concat(first.getAmbiance()[0]);
+		String img2 = ressourcesAdress.concat(second.getAmbiance()[0]);
 			
 		// Implement the SVG DOM and create a SVG Document
 		Document doc1 = impl.createDocument(svgNS, "svg", null);
@@ -139,12 +141,14 @@ public class DocumentCreator {
 	     
 	     for(int i = 0; i<size; i++){
 	    	 Element text = doc1.createElementNS(svgNS, "text");
-	    	 text.setAttributeNS(null, "x", "0");
+	    	 text.setAttributeNS(null, "x", "5");
 	    	 Integer integerY = new Integer((height/(size+1))*(i+1));
 	    	 text.setAttributeNS(null, "y", integerY.toString());
 	    	 text.setAttributeNS(null, "font-family", fontType);
 	    	 text.setAttributeNS(null, "font-size", fontStr);
-	    	 text.setAttributeNS(null, "fill", "green");
+	    	 text.setAttributeNS(null, "fill", "white");
+	    	 text.setAttributeNS(null, "stroke", "black");
+	    	 text.setAttributeNS(null, "stroke-width", "1px");
 	    	 Text textNode = doc1.createTextNode(listOfLines.get(i));
 	    	 text.appendChild(textNode);
 	 		
@@ -189,12 +193,14 @@ public class DocumentCreator {
 	     
 	     for(int i = 0; i<size2; i++){
 	    	 Element text = doc2.createElementNS(svgNS, "text");
-	    	 text.setAttributeNS(null, "x", "0");
+	    	 text.setAttributeNS(null, "x", "5");
 	    	 Integer integerY = new Integer((height/(size+1))*(i+1));
 	    	 text.setAttributeNS(null, "y", integerY.toString());
 	    	 text.setAttributeNS(null, "font-family", fontType);
 	    	 text.setAttributeNS(null, "font-size", fontStr);
-	    	 text.setAttributeNS(null, "fill", "green");
+	    	 text.setAttributeNS(null, "fill", "white");
+	    	 text.setAttributeNS(null, "stroke", "black");
+	    	 text.setAttributeNS(null, "stroke-width", "1px");
 	    	 text.setAttributeNS(null, "opacity", "0");
 	    	 Text textNode = doc2.createTextNode(listOfLines2.get(i));
 	    	 text.appendChild(textNode);

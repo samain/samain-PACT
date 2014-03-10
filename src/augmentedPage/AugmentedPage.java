@@ -4,9 +4,9 @@ package AugmentedPage;
 public class AugmentedPage {
 
 	private String page;
-	private String ambiance;
+	private String[] ambiance;
 	
-	public AugmentedPage(String page, String ambiance){
+	public AugmentedPage(String page, String[] ambiance){
 		this.page = page;
 		this.ambiance = ambiance;
 	}
@@ -15,7 +15,7 @@ public class AugmentedPage {
 		return page;
 	}
 	
-	public String getAmbiance(){
+	public String[] getAmbiance(){
 		return ambiance;
 	}
 }

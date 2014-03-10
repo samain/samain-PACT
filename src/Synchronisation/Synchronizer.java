@@ -44,6 +44,7 @@ public class Synchronizer implements SynchronizerInterface  {
 //-----------------------------------------------------------------------------------------------------------------	
 	public Synchronizer(){
 		this.visualUnit = new VisualUnit();
+		
 //		this.soundUnit = new SoundUnit();
 		this.soundUnit = null;
 		this.classifier = null;
@@ -75,7 +76,8 @@ public class Synchronizer implements SynchronizerInterface  {
 		canvas.setDocument(doc);
 		menuActive = false;
 		if(soundUnit != null) soundUnit.stop();
-		soundUnit = new SoundUnit("b.mp3");
+		if(augmentedPageList.get(1).getAmbiance()[1] != null) soundUnit = new SoundUnit("Ressources\\" + augmentedPageList.get(1).getAmbiance()[1]);
+
 		visualUnit.display(canvas);
 //		soundUnit.playSound(ressourcesAdress.concat(augmentedPageList.get(1).getAmbiance()));
 	}
@@ -93,9 +95,8 @@ public class Synchronizer implements SynchronizerInterface  {
 			canvas.setDocument(doc);
 			menuActive = false;
 			if(soundUnit != null) soundUnit.stop();
-			soundUnit = new SoundUnit("b.mp3");
+			if(augmentedPageList.get(1).getAmbiance()[1] != null) soundUnit = new SoundUnit("Ressources\\" + augmentedPageList.get(1).getAmbiance()[1]);
 			visualUnit.display(canvas);
-//			soundUnit.playSound(ressourcesAdress.concat(augmentedPageList.get(1).getAmbiance()));
 			break;
 		
 		case "right" :
@@ -103,14 +104,13 @@ public class Synchronizer implements SynchronizerInterface  {
 			canvas.setDocument(doc);
 			menuActive = false;
 			if(soundUnit != null) soundUnit.stop();
-			soundUnit = new SoundUnit("a.mp3");
+			if(augmentedPageList.get(1).getAmbiance()[1] != null) soundUnit = new SoundUnit("Ressources\\" + augmentedPageList.get(1).getAmbiance()[1]);
 			visualUnit.display(canvas);
-//			soundUnit.playSound(ressourcesAdress.concat(augmentedPageList.get(1).getAmbiance()));
 			break;
 		
 		case "select" :
 			menuActive = true;
-			visualUnit.setToBackground(true);
+			if(soundUnit != null) soundUnit.stop();
 			break;
 			
 		}
@@ -145,5 +145,5 @@ public class Synchronizer implements SynchronizerInterface  {
 			path = String.valueOf(array);
 		}
 		return path;
-	} 
+	}
 }

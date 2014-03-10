@@ -2,8 +2,14 @@ package Affichage;
 
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.swing.*;
+
 import org.apache.batik.swing.JSVGCanvas;
+
+import Synchronisation.Synchronizer;
 
 public class VisualUnit implements TextAndBackgroundInterface {
 
@@ -16,6 +22,7 @@ public class VisualUnit implements TextAndBackgroundInterface {
 		GraphicsDevice[] list = environment.getScreenDevices();
 		screen = list[1]; // 0 for screen, 1 for projection
 		this.currentCanvas = new JSVGCanvas(null, true, false);
+		currentCanvas.setDisableInteractions(true);
 		frame = new JFrame();
 		frame.setUndecorated(true);
 		frame.setResizable(false);
@@ -27,19 +34,15 @@ public class VisualUnit implements TextAndBackgroundInterface {
 		frame.invalidate();
 		frame.getContentPane().remove(currentCanvas);
 		currentCanvas = canvas;
+		canvas.setDisableInteractions(true);
 		frame.getContentPane().add(currentCanvas);// currentframe.pack();
 		frame.validate();
 		frame.setVisible(true);
-	}
-//----------------------------------------------------------------------------------------------------	
-	public void setToBackground(boolean b) {
-		frame.setVisible(b);
 	}
 //----------------------------------------------------------------------------------------------------
 	public int[] getResolution() {
 		int[] res = {screen.getDisplayMode().getWidth(), screen.getDisplayMode().getHeight()};
 		return res;
 	}
-	
 }
 

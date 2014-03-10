@@ -19,7 +19,7 @@ private GetAtmosphere getAtmosphere;
 		
 		String text = pageMaker.sendNewPage(mouvement);
 		String[] atmosphereAdress = getAtmosphere.getTheAtmosphere(text);
-		AugmentedPage augmentedPage = new AugmentedPage(text, atmosphereAdress[0]);
+		AugmentedPage augmentedPage = new AugmentedPage(text, atmosphereAdress);
 		return augmentedPage;
 	}
 	
@@ -28,7 +28,7 @@ private GetAtmosphere getAtmosphere;
 		ArrayList<AugmentedPage> aPL = new ArrayList<AugmentedPage>();
 		for(int i = 0; i<3; i++){
 			String[] atmosphereAdress = getAtmosphere.getTheAtmosphere(pageList[i]);
-			AugmentedPage aP = new AugmentedPage(pageList[i], atmosphereAdress[0]);
+			AugmentedPage aP = new AugmentedPage(pageList[i], atmosphereAdress);
 			aPL.add(aP);
 		}
 		return aPL;

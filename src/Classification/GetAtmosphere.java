@@ -30,18 +30,18 @@ public class GetAtmosphere {
 	private ArrayList<String> amourImages;
 	private ArrayList<String> familleImages;
 	private ArrayList<String> maisonImages;
-	private String montagneMusic;
-	private String plageMusic; 
-	private String foretMusic;
-	private String merMusic;
-	private String feteMusic;
-	private String villeMusic;
-	private String espaceMusic;
-	private String nuitMusic;
-	private String neigeMusic;
-	private String amourMusic;
-	private String familleMusic;
-	private String maisonMusic;
+	private String montagneMusic = "Montagne\\montagne.mp3";
+	private String plageMusic = "Plage\\plage.mp3"; 
+	private String foretMusic = "Foret\\foret.mp3";
+	private String merMusic = "Mer\\mer.mp3";
+	private String feteMusic = "Fete\\fete.mp3";
+	private String villeMusic = "Ville\\ville.mp3";
+	private String espaceMusic = "Espace\\espace.mp3";
+	private String nuitMusic = "Nuit\\nuit.mp3";
+	private String neigeMusic = "Neige\\neige.mp3";
+	private String amourMusic = "Amour\\amour.mp3";
+	private String familleMusic = "Famille\\famille.mp3";
+	private String maisonMusic = "Maison\\maison.mp3";
 	
 private String resourcesAdress;
 	
@@ -184,7 +184,7 @@ private String resourcesAdress;
 		String[] reponse = new String[2];
 		if (mont==0 && pla==0 && fo==0 && sea==0 && fet==0 && vil==0 && espa==0 && nui==0 && neig==0 && amo==0 && fami==0 && mais==0){
 			reponse[0] = "//Défaut//image livre.jpg";
-			reponse[1] = "Atmosphère non trouvée...";
+			reponse[1] = null;
 		}
 		if (resultat[11]==mont) {
 			int hasard = (int) (Math.random() * (montagneImages.size()-1));
@@ -246,6 +246,7 @@ private String resourcesAdress;
 			reponse[0] = maisonImages.get(hasard);
 			reponse[1] = maisonMusic;
 		}
+
 		return reponse;
 				
 	}

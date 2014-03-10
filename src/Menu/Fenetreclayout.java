@@ -92,19 +92,19 @@ public class Fenetreclayout implements ItemListener {
 
 		livre1.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				Menu.synchronizer.initialiseBook(System.getProperty("user.dir") + "//Histoires du Grand Nord -Montagne-.txt", 40);
+				Menu.synchronizer.initialiseBook(System.getProperty("user.dir") + "//Textes//Les raisins de la colère -Nuit-.txt", 35);
 			}
 		});
 
 		livre2.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				Menu.synchronizer.initialiseBook(System.getProperty("user.dir") + "//Histoires du Grand Nord -Plage-.txt", 40);
+				Menu.synchronizer.initialiseBook(System.getProperty("user.dir") + "//Textes//Histoires du Grand Nord -Plage-.txt", 35);
 			}
 		});
 
 		livre3.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				Menu.synchronizer.initialiseBook(System.getProperty("user.dir") + "//Voyages de Gulliver -Espace-.txt", 40);
+				Menu.synchronizer.initialiseBook(System.getProperty("user.dir") + "//Textes//Voyages de Gulliver -Espace-.txt", 35);
 			}
 		});
 

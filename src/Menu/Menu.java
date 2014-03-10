@@ -67,7 +67,7 @@ public class Menu{
 					break;
 				case NativeKeyEvent.VK_ENTER :
 					transferMovement("select");
-				break;	
+				break;
 				}
 				
 			}
@@ -89,10 +89,13 @@ public class Menu{
 //----------------------------------------------------------------------------------------------------------	
 	public void transferMovement(String movement){
 		switch(movement){
-		case "select" : System.exit(0);
-		                break;
-	    default : synchronizer.receiveMouvement(movement);
-	              break;
+		case "select" :
+			synchronizer.receiveMouvement(movement);
+//			System.exit(0);
+			break;
+	    default : 
+	    	synchronizer.receiveMouvement(movement);
+	    	break;
 		}
 	}
 //----------------------------------------------------------------------------------------------------------
