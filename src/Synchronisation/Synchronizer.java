@@ -10,6 +10,8 @@ import Son.SoundUnit;
 import org.apache.batik.swing.JSVGCanvas;
 import org.w3c.dom.*;
 
+//classe à l'articulation entre l'utilisateur, l'analyse lexicale et les sorties audios et vidéos. 
+
 public class Synchronizer implements SynchronizerInterface  {
 	
 	private Classifier classifier;
@@ -79,7 +81,6 @@ public class Synchronizer implements SynchronizerInterface  {
 		if(augmentedPageList.get(1).getAmbiance()[1] != null) soundUnit = new SoundUnit("Ressources\\" + augmentedPageList.get(1).getAmbiance()[1]);
 
 		visualUnit.display(canvas);
-//		soundUnit.playSound(ressourcesAdress.concat(augmentedPageList.get(1).getAmbiance()));
 	}
 //---------------------------------------------------------------------------------------------------------------		
 	//décide des actions à faire en fonstion du contexte (menu utilisateur ou bien 
@@ -121,6 +122,7 @@ public class Synchronizer implements SynchronizerInterface  {
 			
 	}
 //--------------------------------------------------------------------------------------------------------------
+	//reçoit la page demandée par le lecteur et la place au bon endroit. 
 	public void createPage(String mouvement){
 		
 		AugmentedPage augmentedPage = this.classifier.sendAugmentedPage(mouvement);
@@ -137,6 +139,7 @@ public class Synchronizer implements SynchronizerInterface  {
 		}
 	}
 //-----------------------------------------------------------------------------------------------------------------	
+	// renverse les slash dans une adresse uri.
 	public String reverseSlash(String path){
 		int length = path.length();
 		if (System.getProperty("os.name").startsWith("Windows")){

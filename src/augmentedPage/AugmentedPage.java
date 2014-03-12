@@ -1,5 +1,6 @@
 package AugmentedPage;
 
+// classe stockant la page lue et l'ambiance visuelle et sonore associée.
 
 public class AugmentedPage {
 

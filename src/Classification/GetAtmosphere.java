@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 
+//classe servant à analyser l'ambiance d'un texte
+
 public class GetAtmosphere {
 	
 	private ArrayList<String> montagne;

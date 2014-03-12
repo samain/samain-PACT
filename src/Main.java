@@ -1,5 +1,6 @@
 import Menu.Menu;
 
+//la classe dont la méthode main est à exécuter 
 
 public class Main {
 

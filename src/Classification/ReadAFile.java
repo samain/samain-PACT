@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+//classe convertissant un ficher texte en une String.
 
 public class ReadAFile {
 	

@@ -14,6 +14,7 @@ import org.jnativehook.keyboard.NativeKeyListener;
 
 import Synchronisation.Synchronizer;
 
+//classe du menu
 
 public class Menu{
 
@@ -49,6 +50,8 @@ public class Menu{
 			e.printStackTrace();
 			System.exit(1);
 		}
+		
+		//listener gérant les controles au clavier de l'utilisateur
 		GlobalScreen.getInstance().addNativeKeyListener(new NativeKeyListener(){
 			public void nativeKeyReleased(NativeKeyEvent e) {
 				int code = e.getKeyCode();
@@ -87,11 +90,11 @@ public class Menu{
 		});
 	}
 //----------------------------------------------------------------------------------------------------------	
+	//transfère le mouvement au synchroniseur lorsqu'il y a lieu d'être, et quitte sinon.
 	public void transferMovement(String movement){
 		switch(movement){
 		case "select" :
-			synchronizer.receiveMouvement(movement);
-//			System.exit(0);
+			System.exit(0);
 			break;
 	    default : 
 	    	synchronizer.receiveMouvement(movement);
@@ -103,6 +106,7 @@ public class Menu{
 		GlobalScreen.unregisterNativeHook();
 	}
 //----------------------------------------------------------------------------------------------------------
+	//affiche le menu
 	private static void createAndShowGUI() {
 		// On fabrique et on met en forme une fenêtre JFrame
 		JFrame principalFrame = new JFrame("Immersive Reading");

@@ -2,6 +2,8 @@ package Classification;
 
 import java.util.ArrayList;
 
+//classe implémentant la méthode pour garder les mots pertnants à analyser pour déterminer l'ambiance 
+// du texte
 
 public class NetTab {
 	

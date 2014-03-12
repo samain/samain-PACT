@@ -11,6 +11,8 @@ import org.w3c.dom.Text;
 
 import AugmentedPage.AugmentedPage;
 
+
+// classe s'occuppant de créer les documents 
 public class DocumentCreator {
 	private LinesGetter linesGetter;
 	
@@ -48,6 +50,7 @@ public class DocumentCreator {
 		this.widthStr = ((Integer)width).toString();
 	}
 //-----------------------------------------------------------------------------------------------------------------------	
+	// crée le document associé au fichier SVG d'une page qui sera affiché
 	public Document createDocument(AugmentedPage augmentedPage){
 		
 		 Document doc = impl.createDocument(svgNS, "svg", null);
@@ -90,8 +93,8 @@ public class DocumentCreator {
 	}
 	
 //-------------------------------------------------------------------------------------------------------------	
+	//crée un document de transition entre deux pages, qui se termine sur la page demandée par le lecteur
 	public Document createDocument(AugmentedPage first, AugmentedPage second){
-			
 		String text1 = first.getText();
 		String text2 = second.getText();
 		

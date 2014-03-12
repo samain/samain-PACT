@@ -79,6 +79,8 @@ public class Fenetreclayout implements ItemListener {
 				System.exit(0);
 			}
 		});
+		
+		//ajout des bouton spour sélectionner les livres.
 
 		JPanel livres = new Panneau();
 		JButton livre1 = new JButton("Livre 1");
@@ -90,6 +92,8 @@ public class Fenetreclayout implements ItemListener {
 		livres.add(livre3);
 		livres.add(quitlivre);
 
+		//ajout des listeners sur les boutons du panneau où l'on choisit son livre
+		
 		livre1.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				Menu.synchronizer.initialiseBook(System.getProperty("user.dir") + "//Textes//Les raisins de la colère -Nuit-.txt", 35);

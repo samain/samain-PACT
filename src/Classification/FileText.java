@@ -2,6 +2,8 @@ package Classification;
 
 public class FileText {
 	
+	//récupère les mots dans le fchier à analyser et le fichers des mots à supprimer 
+	
 	private String[] brutTab;
 	private String[] wordsToDelete;
 	

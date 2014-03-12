@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import AugmentedPage.AugmentedPage;
 import Decoupage.PageMaker;
 
+// classe implémentant le classificateur
+
 public class Classifier {
 
 private PageMaker pageMaker;

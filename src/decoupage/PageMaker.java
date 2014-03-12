@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.*;
 import java.io.*;
 
+//classe rélisant les fonctions du découpage en page d'un livre
 
 public class PageMaker implements PageInterface {
 	private Text text;

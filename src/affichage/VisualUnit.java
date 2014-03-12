@@ -15,7 +15,7 @@ public class VisualUnit implements TextAndBackgroundInterface {
 	public VisualUnit() {
 		GraphicsEnvironment environment = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		GraphicsDevice[] list = environment.getScreenDevices();
-		screen = list[1]; // 0 for screen, 1 for projection
+		screen = list[0]; // 0 for screen, 1 for projection
 		this.currentCanvas = new JSVGCanvas(null, true, false);
 		currentCanvas.setDisableInteractions(true);
 		frame = new JFrame();
@@ -25,12 +25,13 @@ public class VisualUnit implements TextAndBackgroundInterface {
 	    frame.setVisible(false);
 	}
 //----------------------------------------------------------------------------------------------------
+	//méthode pour afficher le contenu d'un canvas.
 	public void display(JSVGCanvas canvas){
 		frame.invalidate();
 		frame.getContentPane().remove(currentCanvas);
 		currentCanvas = canvas;
 		canvas.setDisableInteractions(true);
-		frame.getContentPane().add(currentCanvas);// currentframe.pack();
+		frame.getContentPane().add(currentCanvas);
 		frame.validate();
 		frame.setVisible(true);
 	}

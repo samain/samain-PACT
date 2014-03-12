@@ -2,12 +2,15 @@ package Synchronisation;
 
 import java.util.ArrayList;
 
+
+//classe s'occuppant de donner les lignes du texte à afficher sur le SVG.
+
 public class LinesGetter {
 	public LinesGetter(){
 		
 	}
 	
-	public ArrayList<String> getLines(String text){
+	public ArrayList<String> getLines(String text){ //renvoie la liste des lignes à afficher dans le SVG
 		int lastIndexOfSpace = -1;
 		int lastCut = 0;
 		int length = text.length();

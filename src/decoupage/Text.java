@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+// classe réalisant le découpage en page d'un fichier .txt
 
 public class Text {
 	private String fileName;
