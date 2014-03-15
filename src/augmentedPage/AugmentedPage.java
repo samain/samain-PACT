@@ -1,4 +1,4 @@
-package AugmentedPage;
+package augmentedPage;
 
 // classe stockant la page lue et l'ambiance visuelle et sonore associée.
 

@@ -1,4 +1,4 @@
-package Son;
+package son;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;

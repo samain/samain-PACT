@@ -1,4 +1,4 @@
-package Affichage;
+package affichage;
 
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;

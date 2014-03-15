@@ -1,7 +1,7 @@
 import Classification.*;
-import Decoupage.*;
-import Son.SoundUnit;
-import AugmentedPage.*;
+import decoupage.*;
+import son.SoundUnit;
+import augmentedPage.*;
 
 import java.io.*;
 import java.util.ArrayList;

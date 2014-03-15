@@ -2,8 +2,8 @@ package Classification;
 
 import java.util.ArrayList;
 
-import AugmentedPage.AugmentedPage;
-import Decoupage.PageMaker;
+import augmentedPage.AugmentedPage;
+import decoupage.PageMaker;
 
 // classe implémentant le classificateur
 

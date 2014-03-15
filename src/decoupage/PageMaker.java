@@ -1,4 +1,4 @@
-package Decoupage;
+package decoupage;
 
 import java.io.IOException;
 import java.util.*;

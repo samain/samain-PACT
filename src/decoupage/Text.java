@@ -1,4 +1,4 @@
-package Decoupage;
+package decoupage;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

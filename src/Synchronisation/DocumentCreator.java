@@ -9,7 +9,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.Text;
 
-import AugmentedPage.AugmentedPage;
+import augmentedPage.AugmentedPage;
 
 
 // classe s'occuppant de créer les documents 
