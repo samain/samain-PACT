@@ -13,7 +13,7 @@ import augmentedPage.AugmentedPage;
 
 
 // classe s'occuppant de créer les documents 
-public class DocumentCreator {
+public class DocumentCreator implements DocumentCreatorInterface {
 	private LinesGetter linesGetter;
 	
 	//Police de caractère

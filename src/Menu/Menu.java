@@ -12,13 +12,13 @@ import org.jnativehook.NativeHookException;
 import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
 
-import Synchronisation.Synchronizer;
+import Synchronisation.*;
 
 //classe du menu
 
 public class Menu{
 
-	static Synchronizer synchronizer;
+	static SynchronizerInterface synchronizer;
 	
 	public Menu (){
 		try {

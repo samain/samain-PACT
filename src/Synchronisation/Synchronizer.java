@@ -14,10 +14,10 @@ import org.w3c.dom.*;
 
 public class Synchronizer implements SynchronizerInterface  {
 	
-	private Classifier classifier;
-	private VisualUnit visualUnit;
-	private SoundUnit soundUnit;
-	private DocumentCreator documentCreator;
+	private ClassifierInterface classifier;
+	private TextAndBackgroundInterface visualUnit;
+	private SoundInterface soundUnit;
+	private DocumentCreatorInterface documentCreator;
 	
      //Buffers de pages
     public ArrayList<AugmentedPage> augmentedPageList;

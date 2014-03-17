@@ -3,7 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="batik-1.7/batik.jar"/>
-	<classpathentry kind="lib" path="jl1.0.1.jar"/>
-	<classpathentry kind="lib" path="JNativeHook.jar"/>
+	<classpathentry kind="lib" path="bibliothèques/jl1.0.1.jar"/>
+	<classpathentry kind="lib" path="bibliothèques/JNativeHook.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

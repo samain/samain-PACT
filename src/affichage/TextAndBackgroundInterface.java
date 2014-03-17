@@ -6,4 +6,6 @@ public interface TextAndBackgroundInterface {
 
 	public void display(JSVGCanvas canvas);
 	
+	public int[] getResolution();
+	
 }

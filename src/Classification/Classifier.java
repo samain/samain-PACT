@@ -7,9 +7,9 @@ import decoupage.PageMaker;
 
 // classe implémentant le classificateur
 
-public class Classifier {
+public class Classifier implements ClassifierInterface {
 
-private PageMaker pageMaker;
+private PageInterface pageMaker;
 private GetAtmosphere getAtmosphere;
 	
 	public Classifier(String textURI, int font){
