@@ -2,7 +2,7 @@ package Classification;
 
 import java.util.ArrayList;
 
-import AugmentedPage.AugmentedPage;
+import augmentedPage.AugmentedPage;
 
 public interface ClassifierInterface {
 

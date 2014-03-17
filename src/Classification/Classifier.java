@@ -3,7 +3,7 @@ package Classification;
 import java.util.ArrayList;
 
 import augmentedPage.AugmentedPage;
-import decoupage.PageMaker;
+import decoupage.*;
 
 // classe implémentant le classificateur
 

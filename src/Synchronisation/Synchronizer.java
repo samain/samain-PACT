@@ -2,10 +2,10 @@ package Synchronisation;
 
 import java.util.*;
 
-import affichage.VisualUnit;
+import affichage.*;
 import augmentedPage.AugmentedPage;
 import Classification.*;
-import son.SoundUnit;
+import son.*;
 
 import org.apache.batik.swing.JSVGCanvas;
 import org.w3c.dom.*;
