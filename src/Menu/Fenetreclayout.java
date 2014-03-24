@@ -2,6 +2,7 @@ package Menu;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 
 import javax.swing.*;
 
@@ -13,6 +14,7 @@ public class Fenetreclayout implements ItemListener {
 	final static String THEMES = "Menu des thèmes";
 	final static String AMBIANCES = "Menu des ambiances";
 	final static String LIVRES = "Menu des livres";
+	String currentBook = null;
 
 	// JFrame principalFrame = new JFrame("Immersive Reading");
 
@@ -83,18 +85,35 @@ public class Fenetreclayout implements ItemListener {
 		//ajout des bouton spour sélectionner les livres.
 
 		JPanel livres = new Panneau();
-		JButton livre1 = new JButton("Livre 1");
+/*		JButton livre1 = new JButton("Livre 1");
 		JButton livre2 = new JButton("Livre 2");
 		JButton livre3 = new JButton("Livre 3");
+*/
+		File file = new File("Textes");
+		File[] filesList = file.listFiles();
+		String comboBoxItemsLivres[] = new String[filesList.length];
+		for(int i = 0 ; i<filesList.length; i++){
+			comboBoxItemsLivres[i] = filesList[i].getName();
+		}
+		JComboBox cbLivres = new JComboBox(comboBoxItemsLivres);
+		cbLivres.setEditable(false);
+		cbLivres.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent event) {
+				currentBook = (String)event.getItem();
+			}
+		});
+		livres.add(cbLivres);
+		JButton launchlivre = new JButton("Lire");
 		JButton quitlivre = new JButton("Quitter");
-		livres.add(livre1);
+/*		livres.add(livre1);
 		livres.add(livre2);
 		livres.add(livre3);
-		livres.add(quitlivre);
+*/		livres.add(quitlivre);
+		livres.add(launchlivre);
 
 		//ajout des listeners sur les boutons du panneau où l'on choisit son livre
 		
-		livre1.addMouseListener(new MouseAdapter() {
+/*		livre1.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				Menu.synchronizer.initialiseBook(System.getProperty("user.dir") + "//Textes//Les raisins de la colère -Nuit-.txt", 35);
 			}
@@ -111,7 +130,13 @@ public class Fenetreclayout implements ItemListener {
 				Menu.synchronizer.initialiseBook(System.getProperty("user.dir") + "//Textes//Voyages de Gulliver -Espace-.txt", 35);
 			}
 		});
-
+*/
+		launchlivre.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				Menu.synchronizer.initialiseBook(System.getProperty("user.dir") + "//Textes//" + currentBook, 35);
+			}
+		});
+		
 		quitlivre.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				System.exit(0);

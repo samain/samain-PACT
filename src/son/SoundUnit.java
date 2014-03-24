@@ -9,14 +9,19 @@ import javazoom.jl.player.Player;
 
 public class SoundUnit implements SoundInterface {
 	private String filename;
-    private Player player; 
+    private Player player;
+    private boolean looping;
 
     public SoundUnit(String filename) {
-        this.filename = filename;
-        play();
+    	this.looping = true;
+    	this.filename = filename;
+    	play();
     }
 
-    public void stop() { if (player != null) player.close(); }
+    public void stop() { 
+    	looping = false;
+    	if (player != null) player.close(); 
+    }
 
     public void play() {
         try {
@@ -31,7 +36,9 @@ public class SoundUnit implements SoundInterface {
 
         new Thread() {
             public void run() {
-                try { player.play(); }
+            	try { 
+                	while(looping){player.play(); }
+                }
                 catch (Exception e) { System.out.println(e); }
             }
         }.start();
