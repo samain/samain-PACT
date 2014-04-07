@@ -2,7 +2,6 @@ package decoupage;
 
 import java.io.IOException;
 import java.util.*;
-import java.io.*;
 
 //classe rélisant les fonctions du découpage en page d'un livre
 
@@ -26,39 +25,30 @@ public class PageMaker implements PageInterface {
 	public String sendNewPage(String mouvement){
 		String newPage = "";
 		switch(mouvement){
-		case "right" : if ((currentPage<(pageList.size()-2))&&(currentPage>-3)){
-			newPage = pageList.get(currentPage+2);
+		case "right" : if (!isLast()){
+			newPage = pageList.get(currentPage+1);
 			currentPage++;
             }
-            else{
-            currentPage++;
-            }
             break;
-         case "left"  : if ((currentPage<pageList.size()+2)&&(currentPage>1)){
-            newPage =  pageList.get(currentPage-2);
-            currentPage--;
-            }
-            else{
+         case "left"  : if (!isFirst()){
+            newPage =  pageList.get(currentPage-1);
             currentPage--;
             }
             break;
-            }
+         case "this" : newPage = pageList.get(currentPage);
+                       break;
+         }
 		return newPage;
 	}
 	
 	
-
-	public String[] firstPages() {
-		String[] pages = new String[3];
-	    pages[0] = "";
-	    pages[1] = pageList.get(0);
-	    if (pageList.size()<2){
-	    	pages[2] = "";
-	    }
-	    else{
-	    	pages[2] = pageList.get(1);
-	    }
-		return	pages;
+	public boolean isFirst(){
+		return (currentPage == 0);
 	}
+	
+	public boolean isLast(){
+		return (currentPage == (pageList.size() - 1));
+	}
+
 	
 }

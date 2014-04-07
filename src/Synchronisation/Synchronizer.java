@@ -1,5 +1,7 @@
 package Synchronisation;
 
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.util.*;
 
 import affichage.*;
@@ -7,7 +9,6 @@ import augmentedPage.AugmentedPage;
 import Classification.*;
 import son.*;
 
-import org.apache.batik.swing.JSVGCanvas;
 import org.w3c.dom.*;
 
 //classe à l'articulation entre l'utilisateur, l'analyse lexicale et les sorties audios et vidéos. 
@@ -15,13 +16,11 @@ import org.w3c.dom.*;
 public class Synchronizer implements SynchronizerInterface  {
 	
 	private ClassifierInterface classifier;
-	private TextAndBackgroundInterface visualUnit;
+	private VisualUnit visualUnit;
 	private SoundInterface soundUnit;
 	private DocumentCreatorInterface documentCreator;
 	
-     //Buffers de pages
-    public ArrayList<AugmentedPage> augmentedPageList;
-	
+     
 	//Taille police en String et int
 	private String fontStr; //police
 	private int font;
@@ -43,9 +42,10 @@ public class Synchronizer implements SynchronizerInterface  {
 	
 	//OPTIONS EVENTUELLES
 	private String fontType;
+	
 //-----------------------------------------------------------------------------------------------------------------	
 	public Synchronizer(){
-		this.visualUnit = new VisualUnit();
+		this.visualUnit = null;
 		
 //		this.soundUnit = new SoundUnit();
 		this.soundUnit = null;
@@ -54,10 +54,12 @@ public class Synchronizer implements SynchronizerInterface  {
 		
 		this.fontType = "Arial";
 		
-		this.height = visualUnit.getResolution()[1];
-		this.width = visualUnit.getResolution()[0];
+		int[] res = this.getResolution();
 		
-		this.augmentedPageList = null;
+		this.height = res[1];
+		this.width = res[0];
+		
+	//	this.augmentedPageList = null;
 		this.font = 0;
 		this.textURI = null;
 		this.menuActive=true;
@@ -70,73 +72,62 @@ public class Synchronizer implements SynchronizerInterface  {
 		this.classifier = new Classifier(textURI, font);
 		this.documentCreator = new DocumentCreator(font, height, width, fontType, ressourcesAdress);
 		
-		this.augmentedPageList = this.classifier.firstAugmentedPages();
+	//	this.augmentedPageList = this.classifier.firstAugmentedPages();
 		
-		Document doc = documentCreator.createDocument(this.augmentedPageList.get(1));
+		AugmentedPage aP = createPage("this");
 		
-		JSVGCanvas canvas = new JSVGCanvas(null, true, false);
-		canvas.setDocument(doc);
-		menuActive = false;
+		documentCreator.createDocument(aP);
+		
+	//	JSVGCanvas canvas = new JSVGCanvas(null, true, false);
+	//	canvas.setDocument(doc);
+ 		menuActive = false;
 		if(soundUnit != null) soundUnit.stop();
-		if(augmentedPageList.get(1).getAmbiance()[1] != null) soundUnit = new SoundUnit("Ressources\\" + augmentedPageList.get(1).getAmbiance()[1]);
+		if(aP.getAmbiance()[1] != null) soundUnit = new SoundUnit("Ressources\\" + aP.getAmbiance()[1]);
 
-		visualUnit.display(canvas);
+		this.visualUnit = new VisualUnit();
 	}
 //---------------------------------------------------------------------------------------------------------------		
 	//décide des actions à faire en fonstion du contexte (menu utilisateur ou bien 
 	//lecture d'un livre)
 	public void receiveMouvement (String mouvement) {
-		createPage(mouvement);
-		Document doc = null;
-		JSVGCanvas canvas = new JSVGCanvas(null, true, false);
+	    AugmentedPage aP = null;
 		
 		switch(mouvement){
 		case "left":
-			if ((augmentedPageList.get(2).getText() !=  "")&&(augmentedPageList.get(1).getText() !=  "")){
-			doc = documentCreator.createDocument(augmentedPageList.get(2), augmentedPageList.get(1));
-			canvas.setDocument(doc);
+			if (!classifier.isFirst()){
+			aP = createPage(mouvement);
+			documentCreator.createDocument(aP);
 			menuActive = false;
 			if(soundUnit != null) soundUnit.stop();
-			if(augmentedPageList.get(1).getAmbiance()[1] != null) soundUnit = new SoundUnit("Ressources\\" + augmentedPageList.get(1).getAmbiance()[1]);
-			visualUnit.display(canvas);
+			if(aP.getAmbiance()[1] != null) soundUnit = new SoundUnit("Ressources\\" + aP.getAmbiance()[1]);
+			visualUnit.display(mouvement);
 			}
 			break;
 		
 		case "right" :
-			if ((augmentedPageList.get(0).getText() !=  "")&&(augmentedPageList.get(1).getText() !=  "")){
-			doc = documentCreator.createDocument(augmentedPageList.get(0), augmentedPageList.get(1));
-			canvas.setDocument(doc);
+			if (!classifier.isLast()){	
+			aP = createPage(mouvement);	
+			documentCreator.createDocument(aP);
 			menuActive = false;
 			if(soundUnit != null) soundUnit.stop();
-			if(augmentedPageList.get(1).getAmbiance()[1] != null) soundUnit = new SoundUnit("Ressources\\" + augmentedPageList.get(1).getAmbiance()[1]);
-			visualUnit.display(canvas);
+			if(aP.getAmbiance()[1] != null) soundUnit = new SoundUnit("Ressources\\" + aP.getAmbiance()[1]);
+			visualUnit.display(mouvement);
 			}
 			break;
-		
+			
 		case "select" :
 			menuActive = true;
 			if(soundUnit != null) soundUnit.stop();
 			break;
 			
 		}
+		
 			
 	}
 //--------------------------------------------------------------------------------------------------------------
 	//reçoit la page demandée par le lecteur et la place au bon endroit. 
-	public void createPage(String mouvement){
-		
-		AugmentedPage augmentedPage = this.classifier.sendAugmentedPage(mouvement);
-		switch(mouvement) {
-			case "right" : 
-				this.augmentedPageList.add(augmentedPage);
-				this.augmentedPageList.remove(0);
-				break;
-			
-			case "left" : 
-				this.augmentedPageList.add(0, augmentedPage);
-				this.augmentedPageList.remove(3);
-				break;			
-		}
+	public AugmentedPage createPage(String mouvement){
+		return this.classifier.sendAugmentedPage(mouvement);
 	}
 //-----------------------------------------------------------------------------------------------------------------	
 	// renverse les slash dans une adresse uri.
@@ -152,5 +143,22 @@ public class Synchronizer implements SynchronizerInterface  {
 			path = String.valueOf(array);
 		}
 		return path;
+	}
+	
+//--------------------------------------------------------------------------------------------------------------------	
+	public int[] getResolution() {
+		
+		GraphicsEnvironment environment = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		GraphicsDevice[] list = environment.getScreenDevices();
+		GraphicsDevice screen = null;
+		if (list.length == 1){
+		screen = list[0];
+		}
+		else{
+		screen = list[1];	
+		}
+			
+		int[] res = {screen.getDisplayMode().getWidth(), screen.getDisplayMode().getHeight()};
+		return res;
 	}
 }

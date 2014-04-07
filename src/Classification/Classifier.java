@@ -1,7 +1,5 @@
 package Classification;
 
-import java.util.ArrayList;
-
 import augmentedPage.AugmentedPage;
 import decoupage.*;
 
@@ -25,15 +23,12 @@ private GetAtmosphere getAtmosphere;
 		return augmentedPage;
 	}
 	
-	public ArrayList<AugmentedPage> firstAugmentedPages(){
-		String[] pageList = pageMaker.firstPages();
-		ArrayList<AugmentedPage> aPL = new ArrayList<AugmentedPage>();
-		for(int i = 0; i<3; i++){
-			String[] atmosphereAdress = getAtmosphere.getTheAtmosphere(pageList[i]);
-			AugmentedPage aP = new AugmentedPage(pageList[i], atmosphereAdress);
-			aPL.add(aP);
-		}
-		return aPL;
+	public boolean isFirst(){
+		return pageMaker.isFirst(); 
+	}
+	
+	public boolean isLast(){
+		return  pageMaker.isLast(); 
 	}
 	
 }

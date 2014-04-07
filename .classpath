@@ -31,5 +31,7 @@
 	<classpathentry kind="lib" path="batik-1.7/lib/xml-apis.jar"/>
 	<classpathentry kind="lib" path="batik-1.7/batik-rasterizer.jar"/>
 	<classpathentry kind="lib" path="batik-1.7/batik-squiggle.jar"/>
+	<classpathentry kind="lib" path="jogamp/jogamp-all-platforms/jar/gluegen-rt.jar"/>
+	<classpathentry kind="lib" path="jogamp/jogamp-all-platforms/jar/jogl-all.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

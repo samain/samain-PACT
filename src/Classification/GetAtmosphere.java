@@ -133,7 +133,6 @@ private String resourcesAdress;
 	
 	public String[] getTheAtmosphere(String newPage){
 		TextProcessing newPage2 = new TextProcessing(newPage,this.resourcesAdress+"//StopWords.txt");
-		System.out.println(newPage);
 		String[] newPageWords= newPage2.getAtmosphereWords();
 		int mont = 0;
 		int pla = 0;
@@ -152,21 +151,15 @@ private String resourcesAdress;
 			if (montagne.contains(newPageWords[i])) mont=mont+1;
 			if (plage.contains(newPageWords[i])) pla=pla+1;
 			if (foret.contains(newPageWords[i])) fo=fo+1;
-			if (mer.contains(newPageWords[i])) {sea=sea+1;
-			System.out.println("mer = " + newPageWords[i]);
-			}
+			if (mer.contains(newPageWords[i])) sea=sea+1;
 			if (fete.contains(newPageWords[i])) fet=fet+1;
 			if (ville.contains(newPageWords[i])) vil=vil+1;
 			if (espace.contains(newPageWords[i])) espa=espa+1;
 			if (nuit.contains(newPageWords[i])) nui=nui+1;
 			if (neige.contains(newPageWords[i])) neig=neig+1;
 			if (amour.contains(newPageWords[i])) amo=amo+1;
-			if (famille.contains(newPageWords[i])) {fami=fami+1;
-			System.out.println("famille = " +  newPageWords[i]);
-			}
-			if (maison.contains(newPageWords[i])) {mais=mais+1;
-			System.out.println("maison = " + newPageWords[i]);
-			}
+			if (famille.contains(newPageWords[i])) fami=fami+1;
+			if (maison.contains(newPageWords[i])) mais=mais+1;
 			else nowherewords = nowherewords +1;
 		}
 		int[] resultat = new int[12];
