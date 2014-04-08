@@ -1,8 +1,11 @@
 package Synchronisation;
 
+import java.awt.image.BufferedImage;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.util.*;
+
+import java.io.*;
 
 import affichage.*;
 import augmentedPage.AugmentedPage;
@@ -76,7 +79,7 @@ public class Synchronizer implements SynchronizerInterface  {
 		
 		AugmentedPage aP = createPage("this");
 		
-		documentCreator.createDocument(aP);
+		InputStream in = documentCreator.createDocument(aP);
 		
 	//	JSVGCanvas canvas = new JSVGCanvas(null, true, false);
 	//	canvas.setDocument(doc);
@@ -84,7 +87,7 @@ public class Synchronizer implements SynchronizerInterface  {
 		if(soundUnit != null) soundUnit.stop();
 		if(aP.getAmbiance()[1] != null) soundUnit = new SoundUnit("Ressources\\" + aP.getAmbiance()[1]);
 
-		this.visualUnit = new VisualUnit();
+		this.visualUnit = new VisualUnit(in);
 	}
 //---------------------------------------------------------------------------------------------------------------		
 	//décide des actions à faire en fonstion du contexte (menu utilisateur ou bien 
@@ -96,22 +99,22 @@ public class Synchronizer implements SynchronizerInterface  {
 		case "left":
 			if (!classifier.isFirst()){
 			aP = createPage(mouvement);
-			documentCreator.createDocument(aP);
+			InputStream in = documentCreator.createDocument(aP);
 			menuActive = false;
 			if(soundUnit != null) soundUnit.stop();
 			if(aP.getAmbiance()[1] != null) soundUnit = new SoundUnit("Ressources\\" + aP.getAmbiance()[1]);
-			visualUnit.display(mouvement);
+			visualUnit.display(in, mouvement);
 			}
 			break;
 		
 		case "right" :
 			if (!classifier.isLast()){	
 			aP = createPage(mouvement);	
-			documentCreator.createDocument(aP);
+			InputStream in = documentCreator.createDocument(aP);
 			menuActive = false;
 			if(soundUnit != null) soundUnit.stop();
 			if(aP.getAmbiance()[1] != null) soundUnit = new SoundUnit("Ressources\\" + aP.getAmbiance()[1]);
-			visualUnit.display(mouvement);
+			visualUnit.display(in, mouvement);
 			}
 			break;
 			

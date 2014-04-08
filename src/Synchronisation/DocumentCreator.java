@@ -1,6 +1,8 @@
 package Synchronisation;
 
 import java.util.ArrayList;
+import java.awt.image.BufferedImage;
+import java.io.InputStream;
 
 import org.apache.batik.dom.svg.SVGDOMImplementation;
 import org.w3c.dom.DOMImplementation;
@@ -55,7 +57,9 @@ public class DocumentCreator implements DocumentCreatorInterface {
 	}
 //-----------------------------------------------------------------------------------------------------------------------	
 	// crée le document associé au fichier SVG d'une page qui sera affiché
-	public void createDocument(AugmentedPage augmentedPage){
+	public InputStream createDocument(AugmentedPage augmentedPage){
+		
+		 long time1 = System.currentTimeMillis();
 		
 		 Document doc = impl.createDocument(svgNS, "svg", null);
 		 Element svgRoot = doc.getDocumentElement();
@@ -93,9 +97,13 @@ public class DocumentCreator implements DocumentCreatorInterface {
 	    	 svgRoot.appendChild(text);
 	     } 
 	     
+	     long time2 = System.currentTimeMillis();
+	     
+	     System.out.println("DocumentCreator : createDocument : création du document : " + (time2-time1));
 	  
-	     png.save(doc, System.getProperty("user.dir")+ "\\Images\\img.png");
+	     InputStream in= png.save(doc, System.getProperty("user.dir")+ "\\Images\\img.png");
 
+	     return in;
 		
 	}
 	

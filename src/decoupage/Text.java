@@ -83,6 +83,8 @@ public class Text {
 	
 	public ArrayList<String> CutInPages() throws IOException {
 		
+		long time1 = System.currentTimeMillis();
+		
 		int k = 0; //nombre de caractère par page
 		int h = 0; //curseur
 	    int pagesNbr = this.getNumberOfPages();
@@ -122,6 +124,11 @@ public class Text {
 			}
 			
 		}
+		
+		long time2 = System.currentTimeMillis();
+		
+		System.out.println("Text : cutInPages : " + (time2-time1));
+		
 		return pagesContent;	
 	}
 }

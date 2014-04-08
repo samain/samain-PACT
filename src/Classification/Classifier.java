@@ -16,10 +16,12 @@ private GetAtmosphere getAtmosphere;
 	}
 	
 	public AugmentedPage sendAugmentedPage(String mouvement){
-		
+		long time1 = System.currentTimeMillis();
 		String text = pageMaker.sendNewPage(mouvement);
 		String[] atmosphereAdress = getAtmosphere.getTheAtmosphere(text);
 		AugmentedPage augmentedPage = new AugmentedPage(text, atmosphereAdress);
+		long time2 = System.currentTimeMillis();
+		System.out.println("Classifier : sendAugmentedPAge : " +  (time2-time1));
 		return augmentedPage;
 	}
 	

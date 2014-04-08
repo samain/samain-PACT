@@ -1,10 +1,14 @@
 package affichage;
 
+import java.awt.image.BufferedImage;
 import javax.media.opengl.*;
 import javax.media.opengl.fixedfunc.*;
+import javax.media.opengl.glu.GLU;
 
 import com.jogamp.opengl.util.texture.Texture;
+import com.jogamp.opengl.util.texture.TextureData;
 import com.jogamp.opengl.util.texture.TextureIO;
+
 
 
 import java.io.*;
@@ -21,10 +25,14 @@ public class TourneDePage implements GLEventListener {
 	private boolean isTurned = true;
 	private boolean isLoaded = true;
 	private Object lock = new Object();
-	private File f;
- 
+	// private File f; 
+    private InputStream in;
 	
 	
+    public TourneDePage(InputStream in){
+    	this.in = in;
+    }
+    
 	@Override
 	public void display(GLAutoDrawable gLDrawable) {
 		
@@ -35,6 +43,9 @@ public class TourneDePage implements GLEventListener {
 		gl.glClear(GL.GL_COLOR_BUFFER_BIT);
 		gl.glClear(GL.GL_DEPTH_BUFFER_BIT);
 		
+		
+		System.out.println("TourneDePage : display : ");
+		System.out.println(in);
 		
 		
 		if (isTurned ==true){	
@@ -47,10 +58,14 @@ public class TourneDePage implements GLEventListener {
 			Texture newTexture = null;
 			
 			try{
-				newTexture = TextureIO.newTexture(f, false);
+				long time1 = System.currentTimeMillis();
+				
+				newTexture = TextureIO.newTexture(in, false, "png");
 				newTexture.setTexParameteri(gl, GL2.GL_TEXTURE_MIN_FILTER, GL.GL_LINEAR);
 				newTexture.setTexParameteri(gl, GL2.GL_TEXTURE_MAG_FILTER, GL.GL_LINEAR);
+				long time2 = System.currentTimeMillis();
 				
+				System.out.println("TourneDePage : execution conversion du fichier en nouvelle texture : "+ (time2-time1) );
 				}
 				catch (Exception e){
 					System.out.println("erreur : " + e.getMessage());
@@ -84,7 +99,7 @@ public class TourneDePage implements GLEventListener {
   
     
 		gl.glLoadIdentity();
-		gl.glTranslatef(0.0f, 0.0f, -2.0f);
+		gl.glTranslatef(0.0f, 0.0f, -5.0f);
 
 		
 		// Draw A Quad
@@ -106,7 +121,7 @@ public class TourneDePage implements GLEventListener {
   
     
 		gl.glLoadIdentity();
-		gl.glTranslatef((float) (Math.cos(Math.PI*((double)rotateT)/180)) - 1.0f, 0.0f, -2.0f + (float) (Math.sin(Math.PI*((double)rotateT)/180)));
+		gl.glTranslatef((float) (Math.cos(Math.PI*((double)rotateT)/180)) - 1.0f, 0.0f, -5.0f + (float) (Math.sin(Math.PI*((double)rotateT)/180)));
 
 		
 		gl.glRotatef(rotateT, 0.0f, -1.0f, 0.0f);
@@ -130,7 +145,7 @@ public class TourneDePage implements GLEventListener {
 
 		gl.glLoadIdentity();
  
-		gl.glTranslatef(0.0f, 0.0f, -4.0f + (float) (iteration*(2.0/91)) );
+		gl.glTranslatef(0.0f, 0.0f, -7.0f + (float) (iteration*(2.0/901)) );
  
 		gl.glBegin(GL2.GL_QUADS);    
 			gl.glColor3f(0.0f, 1.0f, 1.0f);   // set the color of the quad
@@ -145,7 +160,7 @@ public class TourneDePage implements GLEventListener {
 
 		// increasing rotation for the next iteration       
 		if (rotateT<180f){
-			rotateT += 2.0f;
+			rotateT += 0.2f;
 		    iteration = iteration+1;
 		}
 		
@@ -167,7 +182,7 @@ public class TourneDePage implements GLEventListener {
   
     
 		gl.glLoadIdentity();
-		gl.glTranslatef((float) (Math.cos(Math.PI*((double)(180.0f - rotateT))/180)) - 1.0f, 0.0f, -2.0f + (float) (Math.sin(Math.PI*((double)(180.0f - rotateT))/180)));
+		gl.glTranslatef((float) (Math.cos(Math.PI*((double)(180.0f - rotateT))/180)) - 1.0f, 0.0f, -5.0f + (float) (Math.sin(Math.PI*((double)(180.0f - rotateT))/180)));
 
 		gl.glRotatef(180.0f - rotateT, 0.0f, -1.0f, 0.0f);
 		
@@ -190,7 +205,7 @@ public class TourneDePage implements GLEventListener {
 
 		gl.glLoadIdentity();
  
-		gl.glTranslatef(0.0f, 0.0f, -3.0f - (float) (iteration*(2.0/91)) );
+		gl.glTranslatef(0.0f, 0.0f, -3.0f - (float) (iteration*(2.0/901)) );
  
 		gl.glBegin(GL2.GL_QUADS);    
 			gl.glColor3f(0.0f, 1.0f, 1.0f);   // set the color of the quad
@@ -206,7 +221,7 @@ public class TourneDePage implements GLEventListener {
 
 		// increasing rotation for the next iteration       
 		if (rotateT<180f){
-			rotateT += 2.0f;
+			rotateT += 0.2f;
 			iteration = iteration+1;
 		}
 		
@@ -223,6 +238,7 @@ public class TourneDePage implements GLEventListener {
 	
 	@Override
 	public void init(GLAutoDrawable glDrawable) {
+		long time1 = System.currentTimeMillis();
 		GL2 gl = glDrawable.getGL().getGL2();
 		gl.glShadeModel(GLLightingFunc.GL_SMOOTH);
 		gl.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
@@ -233,27 +249,46 @@ public class TourneDePage implements GLEventListener {
 		gl.glEnable(GL.GL_BLEND); 
 		gl.glDepthFunc(GL.GL_LEQUAL);
 		gl.glHint(GL2ES1.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST);
+		long time2 =  System.currentTimeMillis();
+		
+		/* System.out.println("TournedePage : init : intialisation des paramètres : " + (time2-time1));
 		
 		try{
+			long time3 =  System.currentTimeMillis();
 			f = new File(System.getProperty("user.dir") + "\\Images\\img.png");
+			long time4 =  System.currentTimeMillis();
+			System.out.println("TournedePage : init : ouverture du fichier : " + (time4-time3));
 			currentTexture = TextureIO.newTexture(f, false);
 			currentTexture.setTexParameteri(gl, GL2.GL_TEXTURE_MIN_FILTER, GL.GL_LINEAR);
 			currentTexture.setTexParameteri(gl, GL2.GL_TEXTURE_MAG_FILTER, GL.GL_LINEAR);
 		   
 			}
 			catch (Exception e){
-				System.out.println("erreur reshape  : " + e.getMessage());
+				System.out.println("erreur init  : " + e.getMessage());
 			}
 			finally{
 				
-			}
+			} */
 		
+		try{
+			currentTexture = TextureIO.newTexture(in, false, "png");
+			currentTexture.setTexParameteri(gl, GL2.GL_TEXTURE_MIN_FILTER, GL.GL_LINEAR);
+			currentTexture.setTexParameteri(gl, GL2.GL_TEXTURE_MAG_FILTER, GL.GL_LINEAR);
+		}
+		catch(Exception e){
+			
+		}
+		finally{
+			
+		}
 		
 		previousTexture = currentTexture;
 	}
  
 	@Override
 	public void reshape(GLAutoDrawable gLDrawable, int x, int y, int width, int height) {
+		System.out.println(Thread.currentThread());
+		long time1 = System.currentTimeMillis();
 		GL2 gl = gLDrawable.getGL().getGL2();
 		final float aspect = (float) width / (float) height;
 		gl.glMatrixMode(GLMatrixFunc.GL_PROJECTION);
@@ -263,8 +298,8 @@ public class TourneDePage implements GLEventListener {
 		gl.glFrustumf(-fw, fw, -fh, fh, 1.0f, 1000.0f);
 		gl.glMatrixMode(GLMatrixFunc.GL_MODELVIEW);
 		gl.glLoadIdentity();
-		
-		
+		long time2 = System.currentTimeMillis();
+		System.out.println("TourneDePage : reshape : " + (time2-time1));
 		
 		
 	}
@@ -279,9 +314,10 @@ public class TourneDePage implements GLEventListener {
 	}
  
 	
-	public void turnPage(String direction){
+	public void turnPage(InputStream in, String direction){
 		
 		synchronized(lock){
+		this.in = in;
 		this.direction = direction;
 		isLoaded = false;
 		isTurned = false;
