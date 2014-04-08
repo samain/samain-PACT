@@ -16,7 +16,7 @@ class MainLayout {
 		Fenetreclayout nappe = new Fenetreclayout();
 		nappe.addComponentToPane(principalFrame.getContentPane());
 
-		principalFrame.pack();
+		
 		principalFrame.setVisible(true);
 
 	}
