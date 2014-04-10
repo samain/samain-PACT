@@ -21,6 +21,7 @@ public class PanneauAmbiances extends JPanel {
 	private JRadioButton jr3 = new JRadioButton("Sommeil");
 	
 	public PanneauAmbiances() {
+		Color trans = new Color(255, 255, 255, 0);
 		this.setLayout(new GridBagLayout());
 
 		this.setPreferredSize(new Dimension(600, 500));
@@ -39,45 +40,69 @@ public class PanneauAmbiances extends JPanel {
 		cell3.setPreferredSize(new Dimension(60, 40));
 		cell3.add(jr3);
 		JPanel cell4 = new JPanel();
-		cell4.setBackground(Color.black);
+		cell4.setBackground(trans);
 		cell4.setPreferredSize(new Dimension(60, 40));
 		JPanel cell5 = new JPanel();
-		cell5.setBackground(Color.cyan);
+		cell5.setBackground(trans);
 		cell5.setPreferredSize(new Dimension(60, 40));
 		JPanel cell6 = new JPanel();
-		cell6.setBackground(Color.BLUE);
+		cell6.setBackground(trans);
 		cell6.setPreferredSize(new Dimension(60, 40));
 		JPanel cell7 = new JPanel();
-		cell7.setBackground(Color.orange);
+		cell7.setBackground(trans);
 		cell7.setPreferredSize(new Dimension(60, 40));
 		JPanel cell8 = new JPanel();
-		cell8.setBackground(Color.DARK_GRAY);
+		cell8.setBackground(trans);
 		cell8.setPreferredSize(new Dimension(60, 40));
 		
 
 		// L'objet servant à positionner les composants
-		GridBagConstraints gbc = new GridBagConstraints(0, 0,
+		/*GridBagConstraints gbc = new GridBagConstraints(100, 100,
 				GridBagConstraints.REMAINDER, GridBagConstraints.REMAINDER, 1,
 				1, GridBagConstraints.FIRST_LINE_START,
-				GridBagConstraints.BOTH, new Insets(1, 1, 0, 0), 0, 0);
+				GridBagConstraints.BOTH, new Insets(1, 1, 0, 0), 0, 0);*/
+		GridBagConstraints gbc = new GridBagConstraints(0, 0,
+				GridBagConstraints.REMAINDER, GridBagConstraints.REMAINDER, 1,
+				1, GridBagConstraints.SOUTH,
+				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0);
 
 		// On positionne la case de départ du composant
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		// La taille en hauteur et en largeur
-		gbc.gridheight = 1;
-		gbc.gridwidth = 1;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+	    gbc.gridwidth = GridBagConstraints.REMAINDER;
+		this.add(cell4, gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridheight = 2;
+		gbc.gridwidth = 2;
+		this.add(cell5, gbc);
+		
+		gbc.gridx = 2;
+		gbc.gridheight = 2;
+		gbc.gridwidth = 2;
 		this.add(cell1, gbc);
 		// ---------------------------------------------
-		gbc.gridx = 1;
+		gbc.gridx = 4;
 		this.add(cell2, gbc);
 		// ---------------------------------------------
-		gbc.gridx = 2;
+
+		gbc.gridx = 6;
 		this.add(cell3, gbc);
+		
+		gbc.gridx = 8;
+		gbc.gridwidth = GridBagConstraints.REMAINDER;
+		this.add(cell6,gbc);
+		
+		gbc.fill=GridBagConstraints.HORIZONTAL;
+		gbc.gridy=3;
+		this.add(cell7,gbc);
+		
 		// ---------------------------------------------
 		// Cette instruction informe le layout que c'est une fin de ligne
-		gbc.gridwidth = GridBagConstraints.REMAINDER;
-		gbc.gridx = 3;
+		
+		/*gbc.gridx = 3;
 		this.add(cell4, gbc);
 		// ---------------------------------------------
 		gbc.gridx = 0;
@@ -85,13 +110,13 @@ public class PanneauAmbiances extends JPanel {
 		gbc.gridwidth = 1;
 		gbc.gridheight = 2;
 		// Celle-ci indique que la cellule se réplique de façon verticale
-		gbc.fill = GridBagConstraints.VERTICAL;
+		
 		this.add(cell5, gbc);
 		// ---------------------------------------------
 		gbc.gridx = 1;
 		gbc.gridheight = 1;
 		// Celle-ci indique que la cellule se réplique de façon horizontale
-		gbc.fill = GridBagConstraints.HORIZONTAL;
+		
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		this.add(cell6, gbc);
 		// ---------------------------------------------
@@ -103,7 +128,7 @@ public class PanneauAmbiances extends JPanel {
 		gbc.gridx = 3;
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		this.add(cell8, gbc);
-		
+		*/
 		
 	}
 	protected void paintComponent(Graphics g) {
