@@ -1,25 +1,41 @@
 package myIHM;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class PanneauLivres extends JPanel {
+public class PanneauLivres extends JPanel{
+	private Bouton gauche = new Bouton("", new File("/Users/paulinerabis/Documents/Images-PACT/fleche-gauche.png"));
+	private Bouton droite = new Bouton("", new File("/Users/paulinerabis/Documents/Images-PACT/fleche-droite.png"));
+	JLabel label = new JLabel("Livres");
 
-	JLabel label = new JLabel("               Livres"); // Marche quand on le marque dans la
-											// fenêtre mais faut que j'essaie de
-											// le mettre dans le JLabel
-	public PanneauLivres(){
-		 this.setLayout(new BorderLayout());
-		 this.add(label, BorderLayout.NORTH);
-		 this.add(new IHMDefile());
+	Font police = new Font("Garamond", Font.BOLD, 24);
+
+	public PanneauLivres() {
+		label.setFont(police);
+		label.setForeground(Color.darkGray);
+		label.setHorizontalAlignment(JLabel.CENTER);
+		gauche.setPreferredSize(new Dimension(100, 90));
+		droite.setPreferredSize(new Dimension(90, 90));
+		this.setLayout(new BorderLayout());
+		this.add(label, BorderLayout.NORTH);
+		this.add(gauche, BorderLayout.WEST);
+		this.add(droite, BorderLayout.EAST);
+		this.add(new IHMDefile());
+		
 	}
+
 	protected void paintComponent(Graphics g) {
 
 		try {
@@ -35,5 +51,3 @@ public class PanneauLivres extends JPanel {
 	}
 
 }
-
-
