@@ -33,7 +33,7 @@ class IHMDefile extends JPanel implements ActionListener {
 }
 
 	void construireImage() {
-		Image bfg, kaiken, prince, voyage;
+		Image bfg, kaiken, prince, voyage, heidi;
 		String chaine = "Immersive Reading - Be inside. Dive inside. Enjoy";
 	
 		try {
@@ -41,6 +41,7 @@ class IHMDefile extends JPanel implements ActionListener {
 			prince = javax.imageio.ImageIO.read (new File("/Users/paulinerabis/Documents/Images-PACT/petit-prince.jpg"));
 			kaiken = javax.imageio.ImageIO.read (new File("/Users/paulinerabis/Documents/Images-PACT/kaiken.jpg"));
 			voyage = javax.imageio.ImageIO.read (new File("/Users/paulinerabis/Documents/Images-PACT/voyage.jpg"));
+			heidi = javax.imageio.ImageIO.read (new File("/Users/paulinerabis/Documents/Images-PACT/heidi.jpg"));
 			int largeurbfg = bfg.getWidth(this);
 			int hauteurbfg = bfg.getHeight(this);
 			int largeurprince = prince.getWidth(this);
@@ -49,13 +50,15 @@ class IHMDefile extends JPanel implements ActionListener {
 			int hauteurkaiken = kaiken.getHeight(this);
 			int largeurvoyage = voyage.getWidth(this);
 			int hauteurvoyage = voyage.getHeight(this);
+			int largeurheidi = heidi.getWidth(this);
+			int hauteurheidi = heidi.getHeight(this);
 			/*Font fonte = new Font("Garamond",Font.PLAIN, 25);
 			FontMetrics mesure = getFontMetrics(fonte);
 			int hauteurChaine = mesure.getHeight();
 			int largeurChaine = mesure.stringWidth(chaine);*/
 
-			largeurImage = largeurbfg + 10 + largeurprince + 10 + largeurkaiken + 10 + largeurvoyage + 10;
-			int hauteurImage = (hauteurbfg > hauteurprince ?hauteurbfg : hauteurprince);
+			largeurImage = largeurbfg + 10 + largeurprince + 10 + largeurkaiken + 10 + largeurvoyage + largeurheidi + 20;
+			int hauteurImage = (hauteurheidi > hauteurprince ?hauteurheidi : hauteurprince);
 			//int yChaine = (hauteurImage + mesure.getAscent())/2;
 
 			image = createImage(largeurImage, hauteurImage);
@@ -69,6 +72,7 @@ class IHMDefile extends JPanel implements ActionListener {
 			g.drawImage(prince, largeurbfg + 10, (hauteurImage - hauteurprince)/2,this);
 			g.drawImage(kaiken, largeurbfg + largeurprince + 20, (hauteurImage - hauteurkaiken)/2,this);
 			g.drawImage(voyage, largeurbfg + largeurprince + largeurkaiken + 30, (hauteurImage - hauteurvoyage)/2,this);
+			g.drawImage(heidi, largeurbfg + largeurprince + largeurkaiken + largeurvoyage + 40, (hauteurImage - hauteurvoyage)/2,this);
 			g.dispose();
 			javax.imageio.ImageIO.write((java.awt.image.BufferedImage)image, "jpeg", new java.io.File("defile.jpg"));
 		}

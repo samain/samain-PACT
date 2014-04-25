@@ -1,24 +1,20 @@
 package myIHM;
 
 public class ZDialogInfo {
-	  private String nom, sexe, age, cheveux, taille;
+	  private String nom, police;
 	  public ZDialogInfo(){}
-	  public ZDialogInfo(String nom, String sexe, String age, String cheveux, String taille){
+	  public ZDialogInfo(String nom, String police){
 	    this.nom = nom;
-	    this.sexe = sexe;
-	    this.age = age;
-	    this.cheveux = cheveux;
-	    this.taille = taille;
+	    this.police = police;
+	   
 	  }
 	  public String toString(){
 	    String str;
-	    if(this.nom != null && this.sexe != null && this.taille != null && this.age != null && this.cheveux != null){
+	    if(this.nom != null && this.police != null){
 	      str = "Description de l'objet InfoZDialog";
 	      str += "Nom : " + this.nom + "\n";
-	      str += "Sexe : " + this.sexe + "\n";
-	      str += "Age : " + this.age + "\n";
-	      str += "Cheveux : " + this.cheveux + "\n";
-	      str += "Taille : " + this.taille + "\n";
+	      str += "Police : " + this.police + "\n";
+	     
 	    }
 	    else{
 	      str = "Aucune information !";
