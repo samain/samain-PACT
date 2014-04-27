@@ -1,4 +1,4 @@
-package myIHM;
+package Menu;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -37,11 +37,11 @@ class IHMDefile extends JPanel implements ActionListener {
 		String chaine = "Immersive Reading - Be inside. Dive inside. Enjoy";
 	
 		try {
-			bfg = javax.imageio.ImageIO.read (new File("/Users/paulinerabis/Documents/Images-PACT/bfg.jpg"));
-			prince = javax.imageio.ImageIO.read (new File("/Users/paulinerabis/Documents/Images-PACT/petit-prince.jpg"));
-			kaiken = javax.imageio.ImageIO.read (new File("/Users/paulinerabis/Documents/Images-PACT/kaiken.jpg"));
-			voyage = javax.imageio.ImageIO.read (new File("/Users/paulinerabis/Documents/Images-PACT/voyage.jpg"));
-			heidi = javax.imageio.ImageIO.read (new File("/Users/paulinerabis/Documents/Images-PACT/heidi.jpg"));
+			bfg = javax.imageio.ImageIO.read (new File(System.getProperty("user.dir") + "/Images-PACT/bfg.jpg"));
+			prince = javax.imageio.ImageIO.read (new File(System.getProperty("user.dir") + "/Images-PACT/petit-prince.jpg"));
+			kaiken = javax.imageio.ImageIO.read (new File(System.getProperty("user.dir") + "/Images-PACT/kaiken.jpg"));
+			voyage = javax.imageio.ImageIO.read (new File(System.getProperty("user.dir") + "/Images-PACT/voyage.jpg"));
+			heidi = javax.imageio.ImageIO.read (new File(System.getProperty("user.dir") + "/Images-PACT/heidi.jpg"));
 			int largeurbfg = bfg.getWidth(this);
 			int hauteurbfg = bfg.getHeight(this);
 			int largeurprince = prince.getWidth(this);
@@ -52,14 +52,11 @@ class IHMDefile extends JPanel implements ActionListener {
 			int hauteurvoyage = voyage.getHeight(this);
 			int largeurheidi = heidi.getWidth(this);
 			int hauteurheidi = heidi.getHeight(this);
-			/*Font fonte = new Font("Garamond",Font.PLAIN, 25);
-			FontMetrics mesure = getFontMetrics(fonte);
-			int hauteurChaine = mesure.getHeight();
-			int largeurChaine = mesure.stringWidth(chaine);*/
+			
 
 			largeurImage = largeurbfg + 10 + largeurprince + 10 + largeurkaiken + 10 + largeurvoyage + largeurheidi + 20;
 			int hauteurImage = (hauteurheidi > hauteurprince ?hauteurheidi : hauteurprince);
-			//int yChaine = (hauteurImage + mesure.getAscent())/2;
+			
 
 			image = createImage(largeurImage, hauteurImage);
 
@@ -67,8 +64,6 @@ class IHMDefile extends JPanel implements ActionListener {
 			g.setColor(trans);
 			g.fillRect(0, 0, largeurImage, hauteurImage);
 			g.drawImage(bfg, 0, (hauteurImage - hauteurbfg)/2, this);
-			//g.setFont(fonte);
-			//g.setColor(Color.RED);
 			g.drawImage(prince, largeurbfg + 10, (hauteurImage - hauteurprince)/2,this);
 			g.drawImage(kaiken, largeurbfg + largeurprince + 20, (hauteurImage - hauteurkaiken)/2,this);
 			g.drawImage(voyage, largeurbfg + largeurprince + largeurkaiken + 30, (hauteurImage - hauteurvoyage)/2,this);

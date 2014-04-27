@@ -1,4 +1,4 @@
-package myIHM;
+package Menu;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -26,16 +26,14 @@ public class PanneauAmbiances extends JPanel {
 
 		this.setPreferredSize(new Dimension(600, 500));
 
-		JPanel cell1 = new Cellule(new File("/Users/paulinerabis/Documents/Images-PACT/relaxation.jpg"));
-		//cell1.setBackground(Color.YELLOW);
+		JPanel cell1 = new Cellule(new File(System.getProperty("user.dir")+"/Images-PACT/relaxation.jpg"));
 		cell1.add(jr1);
 		
 		cell1.setPreferredSize(new Dimension(60, 40));
-		JPanel cell2 = new Cellule(new File("/Users/paulinerabis/Documents/Images-PACT/aventure.jpg"));
-		//cell2.setBackground(Color.red);
+		JPanel cell2 = new Cellule(new File(System.getProperty("user.dir")+"/Images-PACT/aventure.jpg"));
 		cell2.add(jr2);
 		cell2.setPreferredSize(new Dimension(60, 40));
-		JPanel cell3 = new Cellule(new File("/Users/paulinerabis/Documents/Images-PACT/nuit.jpg"));
+		JPanel cell3 = new Cellule(new File(System.getProperty("user.dir")+"/Images-PACT/nuit.jpg"));
 		cell3.setBackground(Color.green);
 		cell3.setPreferredSize(new Dimension(60, 40));
 		cell3.add(jr3);
@@ -57,34 +55,27 @@ public class PanneauAmbiances extends JPanel {
 		
 
 		// L'objet servant à positionner les composants
-		/*GridBagConstraints gbc = new GridBagConstraints(100, 100,
-				GridBagConstraints.REMAINDER, GridBagConstraints.REMAINDER, 1,
-				1, GridBagConstraints.FIRST_LINE_START,
-				GridBagConstraints.BOTH, new Insets(1, 1, 0, 0), 0, 0);*/
 		GridBagConstraints gbc = new GridBagConstraints(0, 0,
 				GridBagConstraints.REMAINDER, GridBagConstraints.REMAINDER, 1,
 				1, GridBagConstraints.SOUTH,
 				GridBagConstraints.BOTH, new Insets(1, 1, 0, 0), 0, 0);
 
-		// On positionne la case de départ du composant
+		// On positionne la case de dÈpart du composant
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridheight = 1;
 		gbc.gridwidth = 1;
 		// La taille en hauteur et en largeur
-		//gbc.fill = GridBagConstraints.HORIZONTAL;
 	    gbc.gridwidth = GridBagConstraints.REMAINDER;
 		this.add(cell4, gbc);
 		
 		gbc.gridx = 0;
 		gbc.gridy = 1;
-		//gbc.fill = GridBagConstraints.VERTICAL;
 		gbc.gridheight = 1;
 		gbc.gridwidth = 1;
 		this.add(cell5, gbc);
 		
 		gbc.gridx = 1;
-		//gbc.fill = GridBagConstraints.VERTICAL;
 		gbc.gridheight = 1;
 		gbc.gridwidth = 1;
 		this.add(cell1, gbc);
@@ -100,47 +91,17 @@ public class PanneauAmbiances extends JPanel {
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		this.add(cell6,gbc);
 		
-		//gbc.fill=GridBagConstraints.HORIZONTAL;
 		gbc.gridy=2;
 		gbc.gridx=0;
 		this.add(cell7,gbc);
 		
-		// ---------------------------------------------
-		// Cette instruction informe le layout que c'est une fin de ligne
 		
-		/*gbc.gridx = 3;
-		this.add(cell4, gbc);
-		// ---------------------------------------------
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		gbc.gridwidth = 1;
-		gbc.gridheight = 2;
-		// Celle-ci indique que la cellule se réplique de façon verticale
-		
-		this.add(cell5, gbc);
-		// ---------------------------------------------
-		gbc.gridx = 1;
-		gbc.gridheight = 1;
-		// Celle-ci indique que la cellule se réplique de façon horizontale
-		
-		gbc.gridwidth = GridBagConstraints.REMAINDER;
-		this.add(cell6, gbc);
-		// ---------------------------------------------
-		gbc.gridx = 1;
-		gbc.gridy = 2;
-		gbc.gridwidth = 2;
-		this.add(cell7, gbc);
-		// ---------------------------------------------
-		gbc.gridx = 3;
-		gbc.gridwidth = GridBagConstraints.REMAINDER;
-		this.add(cell8, gbc);
-		*/
 		
 	}
 	protected void paintComponent(Graphics g) {
 
 		try {
-			Image img = ImageIO.read(new File("/Users/paulinerabis/Documents/Images-PACT/cubes.jpg"));
+			Image img = ImageIO.read(new File(System.getProperty("user.dir")+"/Images-PACT/cubes.jpg"));
 
 			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
 

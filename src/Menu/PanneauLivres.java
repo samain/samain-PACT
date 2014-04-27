@@ -1,4 +1,4 @@
-package myIHM;
+package Menu;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -16,8 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class PanneauLivres extends JPanel{
-	private Bouton gauche = new Bouton("", new File("/Users/paulinerabis/Documents/Images-PACT/fleche-gauche.png"));
-	private Bouton droite = new Bouton("", new File("/Users/paulinerabis/Documents/Images-PACT/fleche-droite.png"));
+	private Bouton gauche = new Bouton("", new File(System.getProperty("user.dir")+"/Images-PACT/fleche-gauche.png"));
+	private Bouton droite = new Bouton("", new File(System.getProperty("user.dir")+"/Images-PACT/fleche-droite.png"));
 	JLabel label = new JLabel("Livres");
 
 	Font police = new Font("Garamond", Font.BOLD, 24);
@@ -40,7 +40,7 @@ public class PanneauLivres extends JPanel{
 
 		try {
 			Image img = ImageIO.read(new File(
-					"/Users/paulinerabis/Documents/Images-PACT/light.png"));
+					System.getProperty("user.dir")+"/Images-PACT/light.png"));
 
 			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
 

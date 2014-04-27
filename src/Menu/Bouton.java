@@ -1,4 +1,4 @@
-package myIHM;
+package Menu;
 
 import java.awt.Color;
 import java.awt.Graphics;
