@@ -19,14 +19,17 @@
 package be.pwnt.jflow;
 
 import java.awt.Color;
+import java.io.File;
 
 public class Configuration {
 	public enum VerticalAlignment {
 		TOP, MIDDLE, BOTTOM
 	}
-
+	//Color trans = new Color(255,255,255,0);
 	public Shape[] shapes;
-
+	
+	public File file;
+	
 	public double shapeWidth = 1.0 / 3;
 
 	public VerticalAlignment verticalShapeAlignment = VerticalAlignment.BOTTOM;
@@ -59,7 +62,7 @@ public class Configuration {
 	
 	public int activeShapeBorderWidth = 3;
 
-	public Color backgroundColor = Color.black;
+	public Color backgroundColor = Color.BLACK;
 
 	public Color activeShapeBorderColor = Color.yellow;
 	

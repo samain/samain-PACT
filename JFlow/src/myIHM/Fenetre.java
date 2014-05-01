@@ -1,5 +1,6 @@
 package myIHM;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -9,6 +10,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -31,14 +33,69 @@ public class Fenetre extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		// On crée nos différents conteneurs de couleur différente
-		JPanel cell1 = new PanneauAmbiances();
-		// cell1.setBackground(Color.YELLOW);
-		cell1.setPreferredSize(new Dimension(300, 900));
+		
+		be.pwnt.jflow.demo.Configuration2 conf2 = new be.pwnt.jflow.demo.Configuration2();
+		/*Cellule cell1 = new Cellule(new File("/Users/paulinerabis/Documents/Images-PACT/galaxy.jpg"));
+		cell1.setLayout(new BorderLayout());*/
+		
+		final JFlowPanel case1 = new JFlowPanel(conf2);
+		// cell4.setBackground(Color.black);
+		case1.setPreferredSize(new Dimension(400, 900));
+		//pan.setLayout(new FlowLayout());
+		//cell4.add(pan);
+		case1.addListener(new ShapeListener() {
+			@Override
+			public void shapeClicked(ShapeEvent e) {
+				MouseEvent me = e.getMouseEvent();
+				if (!me.isConsumed() && me.getButton() == MouseEvent.BUTTON1
+						&& me.getClickCount() == 1) {
+					JOptionPane.showMessageDialog(case1,
+							"Vous avez choisi : " + e.getShape() + ".",
+							"Immersive Reading", JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
 
-		JPanel cell2 = new PanneauThemes();
+			@Override
+			public void shapeActivated(ShapeEvent e) {
+			}
+
+			@Override
+			public void shapeDeactivated(ShapeEvent e) {
+			}
+		});
+			
+		//cell1.add(case1, BorderLayout.CENTER);
+		/*JPanel cell2 = new PanneauThemes();
 		// cell2.setBackground(Color.red);
-		cell2.setPreferredSize(new Dimension(600, 900));
+		cell2.setPreferredSize(new Dimension(500, 900));*/
+be.pwnt.jflow.demo.Configration3 conf3 = new be.pwnt.jflow.demo.Configration3();
+		
+		final JFlowPanel cell2 = new JFlowPanel(conf3);
+		// cell4.setBackground(Color.black);
+		cell2.setPreferredSize(new Dimension(400, 900));
+		//pan.setLayout(new FlowLayout());
+		//cell4.add(pan);
+		cell2.addListener(new ShapeListener() {
+			@Override
+			public void shapeClicked(ShapeEvent e) {
+				MouseEvent me = e.getMouseEvent();
+				if (!me.isConsumed() && me.getButton() == MouseEvent.BUTTON1
+						&& me.getClickCount() == 1) {
+					JOptionPane.showMessageDialog(cell2,
+							"Vous avez choisi : " + e.getShape() + ".",
+							"Immersive Reading", JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
 
+			@Override
+			public void shapeActivated(ShapeEvent e) {
+			}
+
+			@Override
+			public void shapeDeactivated(ShapeEvent e) {
+			}
+		});
+		
 		//JPanel cell4 = new PanneauLivres();
 		be.pwnt.jflow.demo.Configuration conf = new be.pwnt.jflow.demo.Configuration();
 		/*conf.shapes = new Shape[5];
@@ -100,7 +157,7 @@ public class Fenetre extends JFrame {
 		gbc.gridheight = 2;
 		gbc.gridwidth = 1;
 
-		content.add(cell1, gbc);
+		content.add(case1, gbc);
 
 		gbc.gridx = 1;
 		gbc.gridheight = 2;
@@ -111,14 +168,14 @@ public class Fenetre extends JFrame {
 		gbc.gridy = 2;
 		gbc.gridwidth = 2;
 		gbc.gridheight = 1;
-		// Celle-ci indique que la cellule se réplique de façon verticale
+		
 
 		content.add(cell4, gbc);
 
 		this.setContentPane(content);
 		content.add(bouton);
 		this.setVisible(true);
-		//go();
+
 
 		bouton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -131,60 +188,6 @@ public class Fenetre extends JFrame {
 			}
 		});
 	}
-
-	/*private void go() {
-		// Les coordonnées de départ de notre rond
-		int x = pan.getPosX(), y = pan.getPosY();
-		// Le booléen pour savoir si l'on recule ou non sur l'axe x
-		boolean backX = false;
-		// Le booléen pour savoir si l'on recule ou non sur l'axe y
-		boolean backY = false;
-
-		// Dans cet exemple, j'utilise une boucle while
-		// Vous verrez qu'elle fonctionne très bien
-		while (true) {
-			// Si la coordonnée x est inférieure à 1, on avance
-			if (x < 1)
-				backX = false;
-
-			// Si la coordonnée x est supérieure à la taille du Panneau moins la
-			// taille du rond, on recule
-			if (x > pan.getWidth() - 50)
-				backX = true;
-
-			// Idem pour l'axe y
-			if (y < 1)
-				backY = false;
-			if (y > pan.getHeight() - 50)
-				backY = true;
-
-			// Si on avance, on incrémente la coordonnée
-			// backX est un booléen, donc !backX revient à écrire
-			// if (backX == false)
-			if (!backX)
-				pan.setPosX(++x);
-
-			// Sinon, on décrémente
-			else
-				pan.setPosX(--x);
-
-			// Idem pour l'axe Y
-			if (!backY)
-				pan.setPosY(++y);
-			else
-				pan.setPosY(--y);
-
-			// On redessine notre Panneau
-			pan.repaint();
-
-			// Comme on dit : la pause s'impose ! Ici, trois millièmes de
-			// seconde
-			try {
-				Thread.sleep(3);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}*/
 }
 
+	

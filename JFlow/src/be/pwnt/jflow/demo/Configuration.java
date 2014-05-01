@@ -19,6 +19,7 @@
 package be.pwnt.jflow.demo;
 
 import java.awt.Color;
+import java.io.File;
 import java.io.IOException;
 
 import be.pwnt.jflow.Shape;
@@ -26,6 +27,7 @@ import be.pwnt.jflow.shape.Picture;
 
 public class Configuration extends be.pwnt.jflow.Configuration {
 	public Configuration() {
+		file = new File(System.getProperty("user.dir")+"Images-PACT/galaxy.jpg");
 		shapes = new Shape[8];
 		/*
 		shapes = new Shape[9];

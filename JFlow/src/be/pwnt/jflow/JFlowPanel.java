@@ -20,15 +20,19 @@ package be.pwnt.jflow;
 
 import java.awt.Cursor;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -198,6 +202,16 @@ public class JFlowPanel extends JPanel implements MouseListener,
 	@Override
 	public synchronized void paintComponent(Graphics g) {
 		super.paintComponent(g);
+
+			try {
+				Image img = ImageIO.read(config.file);
+
+				g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
 		// respect stacking order
 		for (int i = 0; i < config.shapes.length / 2; i++) {
 			paintShape(config.shapes[untranspose(i)], g);
@@ -350,4 +364,5 @@ public class JFlowPanel extends JPanel implements MouseListener,
 			updateCursor();
 		}
 	}
+	
 }

@@ -27,7 +27,7 @@ public class PanneauThemes extends JPanel {
 		Color trans = new Color(255, 255, 255, 0);
 		this.setLayout(new GridBagLayout());
 
-		this.setPreferredSize(new Dimension(600, 500));
+		this.setPreferredSize(new Dimension(500, 500));
 
 		JPanel cell1 = new Cellule(new File("/Users/paulinerabis/Documents/Images-PACT/policier.jpg"));
 		//cell1.setBackground(Color.YELLOW);
