@@ -26,7 +26,7 @@ import be.pwnt.jflow.shape.Picture;
 
 public class Configuration extends be.pwnt.jflow.Configuration {
 	public Configuration() {
-		shapes = new Shape[5];
+		shapes = new Shape[8];
 		/*
 		shapes = new Shape[9];
 		for (int i = 0; i < shapes.length; i++) {
@@ -48,6 +48,12 @@ public class Configuration extends be.pwnt.jflow.Configuration {
 					"img/bfg.jpg"));
 			shapes[4] = new Picture(getClass().getResource(
 					"img/voyage.jpg"));
+			shapes[5] = new Picture(getClass().getResource(
+					"img/gulliver.png"));
+			shapes[6] = new Picture(getClass().getResource(
+					"img/histoire-grand-nord.jpg"));
+			shapes[7] = new Picture(getClass().getResource(
+					"img/raisins.png"));
 				
 		} catch (Exception e) {
 			System.out.println("Exception a l'ouverture du cover Flow : " + e.getMessage());

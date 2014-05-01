@@ -10,9 +10,9 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.JButton;
+import javax.swing.JRadioButton;
 
-public class Bouton extends JButton implements MouseListener{
+public class Bouton extends JRadioButton implements MouseListener{
 	private String name;
 	private Image img;
 	private File image;

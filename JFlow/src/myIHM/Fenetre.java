@@ -8,6 +8,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -56,12 +57,31 @@ public class Fenetre extends JFrame {
 			System.out.println("Exception a l'ouverture du cover Flow : " + e.getMessage());
 		}
 		*/
-		JPanel cell4 = new JFlowPanel(conf);
+		final JFlowPanel cell4 = new JFlowPanel(conf);
 		// cell4.setBackground(Color.black);
 		cell4.setPreferredSize(new Dimension(300, 900));
 		//pan.setLayout(new FlowLayout());
 		//cell4.add(pan);
+		cell4.addListener(new ShapeListener() {
+			@Override
+			public void shapeClicked(ShapeEvent e) {
+				MouseEvent me = e.getMouseEvent();
+				if (!me.isConsumed() && me.getButton() == MouseEvent.BUTTON1
+						&& me.getClickCount() == 1) {
+					JOptionPane.showMessageDialog(cell4,
+							"Vous avez choisi : " + e.getShape() + ".",
+							"Immersive Reading", JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
 
+			@Override
+			public void shapeActivated(ShapeEvent e) {
+			}
+
+			@Override
+			public void shapeDeactivated(ShapeEvent e) {
+			}
+		});
 		// Le conteneur principal
 		JPanel content = new JPanel();
 		content.setPreferredSize(new Dimension(1200, 900));

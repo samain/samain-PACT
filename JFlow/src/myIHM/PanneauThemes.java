@@ -17,11 +17,11 @@ import javax.swing.JRadioButton;
 
 public class PanneauThemes extends JPanel {
 
-	private JRadioButton jr1 = new JRadioButton("Romans policiers");
+	private JRadioButton jr1 = new JRadioButton("Roman policier");
 	private JRadioButton jr2 = new JRadioButton("Thriller");
 	private JRadioButton jr3 = new JRadioButton("Heroic Fantasy");
 	private JRadioButton jr5 = new JRadioButton("Science Fiction");
-	private JRadioButton jr6 = new JRadioButton("Littérature enfantine");
+	private JRadioButton jr6 = new JRadioButton("Livres pour enfants");
 	
 	public PanneauThemes() {
 		Color trans = new Color(255, 255, 255, 0);

@@ -45,9 +45,9 @@ public class Configuration {
 
 	public boolean inverseScrolling = false;
 
-	public boolean enableShapeSelection = /*true*/false;
+	public boolean enableShapeSelection = true/*false*/;
 
-	public int framesPerSecond = 50;
+	public int framesPerSecond = 100;
 
 	public double reflectionOpacity = 1.0 / 4;
 	
