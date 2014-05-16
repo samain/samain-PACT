@@ -20,7 +20,7 @@ public class SaveAsPNG {
 		
 	}
 
-    public InputStream save(Document doc, String svgURI) {
+    public void save(Document doc, String svgURI) {
 
        
         long time1 = System.currentTimeMillis();
@@ -47,7 +47,7 @@ public class SaveAsPNG {
     	System.out.println("SaveAsPNG : save : création BufferedImage : " + (time8-time7));
     	*/
     	
-    	/*
+    	
         try{
         	 OutputStream ostream = new FileOutputStream(svgURI);
         	 TranscoderOutput output = new TranscoderOutput(ostream);
@@ -75,13 +75,12 @@ public class SaveAsPNG {
         finally{
         	
         }
-        */
+        
         
         long time2 = System.currentTimeMillis();
         
         System.out.println("SaveAsPNG : save : " + (time2-time1));
         
-        return in;
-     
+          
     }
 }

@@ -25,14 +25,9 @@ public class TourneDePage implements GLEventListener {
 	private boolean isTurned = true;
 	private boolean isLoaded = true;
 	private Object lock = new Object();
-	// private File f; 
-    private InputStream in;
-	
-	
-    public TourneDePage(InputStream in){
-    	this.in = in;
-    }
-    
+	private File f; 
+   
+
 	@Override
 	public void display(GLAutoDrawable gLDrawable) {
 		
@@ -45,7 +40,7 @@ public class TourneDePage implements GLEventListener {
 		
 		
 		System.out.println("TourneDePage : display : ");
-		System.out.println(in);
+		// System.out.println(in);
 		
 		
 		if (isTurned ==true){	
@@ -60,7 +55,7 @@ public class TourneDePage implements GLEventListener {
 			try{
 				long time1 = System.currentTimeMillis();
 				
-				newTexture = TextureIO.newTexture(in, false, "png");
+				newTexture = TextureIO.newTexture(f, false);
 				newTexture.setTexParameteri(gl, GL2.GL_TEXTURE_MIN_FILTER, GL.GL_LINEAR);
 				newTexture.setTexParameteri(gl, GL2.GL_TEXTURE_MAG_FILTER, GL.GL_LINEAR);
 				long time2 = System.currentTimeMillis();
@@ -99,12 +94,12 @@ public class TourneDePage implements GLEventListener {
   
     
 		gl.glLoadIdentity();
-		gl.glTranslatef(0.0f, 0.0f, -5.0f);
+		gl.glTranslatef(0.0f, 0.0f, -1.5f);
 
 		
 		// Draw A Quad
 		gl.glBegin(GL2.GL_QUADS);       
-			gl.glColor3f(0.0f, 1.0f, 1.0f);   // set the color of the quad
+			//gl.glColor3f(0.0f, 1.0f, 1.0f);   // set the color of the quad
 			gl.glTexCoord2f(0.0f, 1.0f); gl.glVertex3f(-1.0f, 1.0f, 0.0f);   // Top Left
 			gl.glTexCoord2f(1.0f, 1.0f); gl.glVertex3f( 1.0f, 1.0f, 0.0f);   // Top Right
 			gl.glTexCoord2f(1.0f, 0.0f); gl.glVertex3f( 1.0f,-1.0f, 0.0f);   // Bottom Right
@@ -121,14 +116,14 @@ public class TourneDePage implements GLEventListener {
   
     
 		gl.glLoadIdentity();
-		gl.glTranslatef((float) (Math.cos(Math.PI*((double)rotateT)/180)) - 1.0f, 0.0f, -5.0f + (float) (Math.sin(Math.PI*((double)rotateT)/180)));
+		gl.glTranslatef((float) (Math.cos(Math.PI*((double)rotateT)/180)) - 1.0f, 0.0f, -1.5f + (float) (Math.sin(Math.PI*((double)rotateT)/180)));
 
 		
 		gl.glRotatef(rotateT, 0.0f, -1.0f, 0.0f);
 		
 		// Draw A Quad
 		gl.glBegin(GL2.GL_QUADS);       
-			gl.glColor3f(0.0f, 1.0f, 1.0f);   // set the color of the quad
+			//gl.glColor3f(0.0f, 1.0f, 1.0f);   // set the color of the quad
 			gl.glTexCoord2f(0.0f, 1.0f); gl.glVertex3f(-1.0f, 1.0f, 0.0f);   // Top Left
 			gl.glTexCoord2f(1.0f, 1.0f); gl.glVertex3f( 1.0f, 1.0f, 0.0f);   // Top Right
 			gl.glTexCoord2f(1.0f, 0.0f); gl.glVertex3f( 1.0f,-1.0f, 0.0f);   // Bottom Right
@@ -145,10 +140,10 @@ public class TourneDePage implements GLEventListener {
 
 		gl.glLoadIdentity();
  
-		gl.glTranslatef(0.0f, 0.0f, -7.0f + (float) (iteration*(2.0/901)) );
+		gl.glTranslatef(0.0f, 0.0f, -3.5f + (float) (iteration*(2.0/901)) );
  
 		gl.glBegin(GL2.GL_QUADS);    
-			gl.glColor3f(0.0f, 1.0f, 1.0f);   // set the color of the quad
+			//gl.glColor3f(0.0f, 1.0f, 1.0f);   // set the color of the quad
 			gl.glTexCoord2f(0.0f, 1.0f); gl.glVertex3f(-1.0f, 1.0f, 0.0f);   // Top Left
 			gl.glTexCoord2f(1.0f, 1.0f); gl.glVertex3f( 1.0f, 1.0f, 0.0f);   // Top Right
 			gl.glTexCoord2f(1.0f, 0.0f); gl.glVertex3f( 1.0f,-1.0f, 0.0f);   // Bottom Right
@@ -182,14 +177,14 @@ public class TourneDePage implements GLEventListener {
   
     
 		gl.glLoadIdentity();
-		gl.glTranslatef((float) (Math.cos(Math.PI*((double)(180.0f - rotateT))/180)) - 1.0f, 0.0f, -5.0f + (float) (Math.sin(Math.PI*((double)(180.0f - rotateT))/180)));
+		gl.glTranslatef((float) (Math.cos(Math.PI*((double)(180.0f - rotateT))/180)) - 1.0f, 0.0f, -1.5f + (float) (Math.sin(Math.PI*((double)(180.0f - rotateT))/180)));
 
 		gl.glRotatef(180.0f - rotateT, 0.0f, -1.0f, 0.0f);
 		
 		
 		// Draw A Quad
 		gl.glBegin(GL2.GL_QUADS);       
-			gl.glColor3f(0.0f, 1.0f, 1.0f);   // set the color of the quad
+			//gl.glColor3f(0.0f, 1.0f, 1.0f);   // set the color of the quad
 			gl.glTexCoord2f(0.0f, 1.0f); gl.glVertex3f(-1.0f, 1.0f, 0.0f);   // Top Left
 			gl.glTexCoord2f(1.0f, 1.0f); gl.glVertex3f( 1.0f, 1.0f, 0.0f);   // Top Right
 			gl.glTexCoord2f(1.0f, 0.0f); gl.glVertex3f( 1.0f,-1.0f, 0.0f);   // Bottom Right
@@ -205,10 +200,10 @@ public class TourneDePage implements GLEventListener {
 
 		gl.glLoadIdentity();
  
-		gl.glTranslatef(0.0f, 0.0f, -3.0f - (float) (iteration*(2.0/901)) );
+		gl.glTranslatef(0.0f, 0.0f, -1.5f - (float) (iteration*(2.0/901)) );
  
 		gl.glBegin(GL2.GL_QUADS);    
-			gl.glColor3f(0.0f, 1.0f, 1.0f);   // set the color of the quad
+			//gl.glColor3f(0.0f, 1.0f, 1.0f);   // set the color of the quad
 			gl.glTexCoord2f(0.0f, 1.0f); gl.glVertex3f(-1.0f, 1.0f, 0.0f);   // Top Left
 			gl.glTexCoord2f(1.0f, 1.0f); gl.glVertex3f( 1.0f, 1.0f, 0.0f);   // Top Right
 			gl.glTexCoord2f(1.0f, 0.0f); gl.glVertex3f( 1.0f,-1.0f, 0.0f);   // Bottom Right
@@ -251,7 +246,7 @@ public class TourneDePage implements GLEventListener {
 		gl.glHint(GL2ES1.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST);
 		long time2 =  System.currentTimeMillis();
 		
-		/* System.out.println("TournedePage : init : intialisation des paramètres : " + (time2-time1));
+		 System.out.println("TournedePage : init : intialisation des paramètres : " + (time2-time1));
 		
 		try{
 			long time3 =  System.currentTimeMillis();
@@ -268,8 +263,9 @@ public class TourneDePage implements GLEventListener {
 			}
 			finally{
 				
-			} */
+			} 
 		
+		/*
 		try{
 			currentTexture = TextureIO.newTexture(in, false, "png");
 			currentTexture.setTexParameteri(gl, GL2.GL_TEXTURE_MIN_FILTER, GL.GL_LINEAR);
@@ -281,6 +277,8 @@ public class TourneDePage implements GLEventListener {
 		finally{
 			
 		}
+		
+		*/
 		
 		previousTexture = currentTexture;
 	}
@@ -314,10 +312,9 @@ public class TourneDePage implements GLEventListener {
 	}
  
 	
-	public void turnPage(InputStream in, String direction){
+	public void turnPage(String direction){
 		
 		synchronized(lock){
-		this.in = in;
 		this.direction = direction;
 		isLoaded = false;
 		isTurned = false;

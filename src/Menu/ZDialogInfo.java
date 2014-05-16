@@ -1,4 +1,4 @@
-package myIHM;
+package Menu;
 
 public class ZDialogInfo {
 	  private String nom, police;

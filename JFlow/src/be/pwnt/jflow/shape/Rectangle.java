@@ -23,8 +23,8 @@ import java.awt.Color;
 import be.pwnt.jflow.geometry.Point3D;
 
 public class Rectangle extends Polygon {
-	public Rectangle(Point3D p1, Point3D p2, Color color) {
-		super(color);
+	public Rectangle(String name, Point3D p1, Point3D p2, Color color) {
+		super(name, color);
 		setCoordinates(p1, p2);
 	}
 

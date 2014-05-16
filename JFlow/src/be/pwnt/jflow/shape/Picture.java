@@ -44,16 +44,16 @@ public class Picture extends Rectangle {
 
 	private Point3D[] projectedPoints;
 
-	public Picture(BufferedImage image) {
-		super(new Point3D(0, 0, 0), new Point3D(0, 0, 0), Color.black);
+	public Picture(String name, BufferedImage image) {
+		super(name, new Point3D(0, 0, 0), new Point3D(0, 0, 0), Color.black);
 		this.image = image;
 		projectedPoints = new Point3D[4];
 		setCoordinates(new Point3D(0, 0, 0), new Point3D(image.getWidth(),
 				image.getHeight(), 0));
 	}
 
-	public Picture(URL url) throws IOException {
-		this(ImageIO.read(url));
+	public Picture(String name, URL url) throws IOException {
+		this(name, ImageIO.read(url));
 	}
 
 	public int getWidth() {

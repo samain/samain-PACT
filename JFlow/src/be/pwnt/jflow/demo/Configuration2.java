@@ -1,14 +1,14 @@
 package be.pwnt.jflow.demo;
 
-import java.io.File;
+import java.awt.Color;
+import java.io.IOException;
 
 import be.pwnt.jflow.Shape;
 import be.pwnt.jflow.shape.Picture;
 
-public class Configuration2 extends be.pwnt.jflow.Configuration {
+public class Configuration2  extends be.pwnt.jflow.Configuration {
 	public Configuration2() {
-		shapes = new Shape[3];
-		file = new File(System.getProperty("user.dir")+"Images-PACT/cubes.jpg");
+		shapes = new Shape[9];
 		/*
 		shapes = new Shape[9];
 		for (int i = 0; i < shapes.length; i++) {
@@ -20,22 +20,43 @@ public class Configuration2 extends be.pwnt.jflow.Configuration {
 		}
 		*/
 		try {
-			shapes[0] = new Picture(getClass().getResource(
-					"img/aventure.jpg"));
-			shapes[1] = new Picture(getClass().getResource(
-					"img/nuit.jpg"));
-			shapes[2] = new Picture(getClass().getResource(
-					"img/relaxation.jpg"));
-			/*shapes[3] = new Picture(getClass().getResource(
-					"img/bfg.jpg"));
-			shapes[4] = new Picture(getClass().getResource(
-					"img/voyage.jpg"));
-			shapes[5] = new Picture(getClass().getResource(
-					"img/gulliver.png"));
-			shapes[6] = new Picture(getClass().getResource(
-					"img/histoire-grand-nord.jpg"));
-			shapes[7] = new Picture(getClass().getResource(
-					"img/raisins.png"));*/
+		    System.out.println("chargement amour");
+			shapes[0] = new Picture("Amour.txt", getClass().getResource(
+					"img/amour1.jpg"));
+			System.out.println("chargement espace");
+			shapes[1] = new Picture("Espace.txt", getClass().getResource(
+					"img/espace1.jpg"));
+			System.out.println("chargement famille");
+		    /* shapes[2] = new Picture("Famille.txt", getClass().getResource(
+					"img/famille1.jpg")); */ 
+			System.out.println("chargement fete");
+			shapes[2] = new Picture("Fête.txt", getClass().getResource(
+					"img/fete1.jpg"));
+			System.out.println("chargement foret");
+		   /* shapes[4] = new Picture("Forêt.txt", getClass().getResource(
+					"img/foret1.jpg")); */			
+			System.out.println("chargement maison"); 
+			/* shapes[5] = new Picture("Maison.txt" ,getClass().getResource(
+					"img/maison1.jpg")); */ 
+			System.out.println("chargement mer"); 
+			 shapes[3] = new Picture("Mer.txt" ,getClass().getResource(
+					"img/mer1.jpg")); 
+			System.out.println("chargement montagne");
+			shapes[4] = new Picture("Montagne.txt" ,getClass().getResource(
+					"img/montagne1.jpg"));
+			System.out.println("chargement neige");
+			shapes[5] = new Picture("Neige.txt" ,getClass().getResource(
+					"img/neige1.jpg"));
+			System.out.println("chargement nuit");
+			shapes[6] = new Picture("Nuit.txt" ,getClass().getResource(
+					"img/nuit1.jpg"));
+			 System.out.println("chargement plage");
+			shapes[7] = new Picture("Plage.txt" ,getClass().getResource(
+					"img/plage1.jpg"));
+			System.out.println("chargement ville");
+			shapes[8] = new Picture("Ville.txt" ,getClass().getResource(
+					"img/ville1.jpg")); 
+			
 				
 		} catch (Exception e) {
 			System.out.println("Exception a l'ouverture du cover Flow : " + e.getMessage());
@@ -44,3 +65,4 @@ public class Configuration2 extends be.pwnt.jflow.Configuration {
 		//backgroundColor = new Color(255, 255, 255, 0);
 	}
 }
+

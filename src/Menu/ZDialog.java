@@ -1,4 +1,4 @@
-package myIHM;
+package Menu;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -70,20 +70,30 @@ public class ZDialog extends JDialog {
 	    JButton okBouton = new JButton("OK");
 	    
 	    okBouton.addActionListener(new ActionListener(){
-	      public void actionPerformed(ActionEvent arg0) {        
+	      public void actionPerformed(ActionEvent arg0) { 
+	    	  
 	        zInfo = new ZDialogInfo(nom.getText(), (String)police.getSelectedItem());
+	        
+	        System.out.println((String)police.getSelectedItem());
+	        
+	        switch((String)police.getSelectedItem()){
+	        
+	        	case "Moyenne" : 
+	        	    Fenetre.font = 35;
+	        		break;
+	        		
+	        	case "Grande" :
+	        		Fenetre.font = 55;
+	        		break;
+	        		
+	        	case "Petite" :
+	        		Fenetre.font = 15;
+	        		break; 		
+	        }
+	        
 	        setVisible(false);
-	      }
-	      /*public String getAge(){
-	        return (tranche1.isSelected()) ? tranche1.getText() : 
-	               (tranche2.isSelected()) ? tranche2.getText() : 
-	               (tranche3.isSelected()) ? tranche3.getText() : 
-	               (tranche4.isSelected()) ? tranche4.getText() : 
-	                tranche1.getText();  
-	      }
-	      public String getTaille(){
-	        return (taille.getText().equals("")) ? "180" : taille.getText();
-	      }   */   
+	        
+	      } 
 	    });
 	    JButton cancelBouton = new JButton("Annuler");
 	    cancelBouton.addActionListener(new ActionListener(){

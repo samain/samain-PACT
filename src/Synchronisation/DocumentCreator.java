@@ -57,7 +57,9 @@ public class DocumentCreator implements DocumentCreatorInterface {
 	}
 //-----------------------------------------------------------------------------------------------------------------------	
 	// crée le document associé au fichier SVG d'une page qui sera affiché
-	public InputStream createDocument(AugmentedPage augmentedPage){
+	public void createDocument(AugmentedPage augmentedPage){
+		
+		 System.out.println("createDocument : texte : " + augmentedPage.getText());
 		
 		 long time1 = System.currentTimeMillis();
 		
@@ -101,10 +103,9 @@ public class DocumentCreator implements DocumentCreatorInterface {
 	     
 	     System.out.println("DocumentCreator : createDocument : création du document : " + (time2-time1));
 	  
-	     InputStream in= png.save(doc, System.getProperty("user.dir")+ "\\Images\\img.png");
+	     png.save(doc, System.getProperty("user.dir")+ "\\Images\\img.png");
 
-	     return in;
-		
+	     	
 	}
 	
 

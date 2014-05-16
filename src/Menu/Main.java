@@ -1,4 +1,4 @@
-package myIHM;
+package Menu;
 
 import javax.swing.JFrame;
 

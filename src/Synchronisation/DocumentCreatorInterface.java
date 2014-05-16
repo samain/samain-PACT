@@ -6,7 +6,7 @@ import java.io.*;
 
 public interface DocumentCreatorInterface {
 
-	public InputStream createDocument(AugmentedPage augmentedPage);
+	public void createDocument(AugmentedPage augmentedPage);
 	
 	
 }

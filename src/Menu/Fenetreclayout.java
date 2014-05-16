@@ -133,6 +133,7 @@ public class Fenetreclayout implements ItemListener {
 */
 		launchlivre.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				System.out.println(currentBook);
 				Menu.synchronizer.initialiseBook(System.getProperty("user.dir") + "//Textes//" + currentBook, 35);
 			}
 		});

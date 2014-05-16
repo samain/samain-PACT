@@ -35,8 +35,8 @@ public abstract class Polygon extends Shape {
 
 	private Color color;
 
-	protected Polygon(Color color) {
-		super();
+	protected Polygon(String name, Color color) {
+		super(name);
 		points = new Vector<Point3D>();
 		setColor(color);
 	}

@@ -18,7 +18,7 @@ import org.w3c.dom.*;
 
 public class Synchronizer implements SynchronizerInterface  {
 	
-	private ClassifierInterface classifier;
+	private ClassifierTFIDF classifier;
 	private VisualUnit visualUnit;
 	private SoundInterface soundUnit;
 	private DocumentCreatorInterface documentCreator;
@@ -29,7 +29,7 @@ public class Synchronizer implements SynchronizerInterface  {
 	private int font;
 	
 	//Livre en cours de lecture
-	private String textURI;
+	//private String textURI;
 	
 	//Infos écran/projecteur
 	private int height;
@@ -63,32 +63,64 @@ public class Synchronizer implements SynchronizerInterface  {
 		this.width = res[0];
 		
 	//	this.augmentedPageList = null;
-		this.font = 0;
-		this.textURI = null;
+		// this.font = 0;
+		//this.textURI = null;
 		this.menuActive=true;
+		
+		// this.soundUnit = new SoundUnit();
+		
+		this.classifier = new ClassifierTFIDF();
 	}
 //------------------------------------------------------------------------------------------------------------------	
 	//crée les documents svg de chaque écran de l'interface graphique
 	public void initialiseBook(String textURI, int font){
-		this.font = font;
-		this.textURI = textURI;
-		this.classifier = new Classifier(textURI, font);
+		// this.font = font;
+		//this.textURI = textURI;
+		
+		classifier.setBook(font, textURI);
+		
 		this.documentCreator = new DocumentCreator(font, height, width, fontType, ressourcesAdress);
 		
 	//	this.augmentedPageList = this.classifier.firstAugmentedPages();
 		
 		AugmentedPage aP = createPage("this");
 		
-		InputStream in = documentCreator.createDocument(aP);
+		documentCreator.createDocument(aP);
 		
 	//	JSVGCanvas canvas = new JSVGCanvas(null, true, false);
 	//	canvas.setDocument(doc);
  		menuActive = false;
-		if(soundUnit != null) soundUnit.stop();
-		if(aP.getAmbiance()[1] != null) soundUnit = new SoundUnit("Ressources\\" + aP.getAmbiance()[1]);
+		 if(soundUnit != null) soundUnit.stop();
+		 if(aP.getAmbiance()[1] != null) soundUnit = new SoundUnit("Ressources\\" + aP.getAmbiance()[1]);
 
-		this.visualUnit = new VisualUnit(in);
+		this.visualUnit = new VisualUnit();
 	}
+//--------------------------------------------------------------------------------------------------------------	
+	public void initialiseAtmosphere(String atmosphereURI, int font){
+		// this.font = font;
+		// this.textURI = textURI;
+		
+		classifier.chooseBook(font, atmosphereURI);
+		
+		this.documentCreator = new DocumentCreator(font, height, width, fontType, ressourcesAdress);
+		
+	//	this.augmentedPageList = this.classifier.firstAugmentedPages();
+		
+		AugmentedPage aP = createPage("this");
+		
+		documentCreator.createDocument(aP);
+		
+	//	JSVGCanvas canvas = new JSVGCanvas(null, true, false);
+	//	canvas.setDocument(doc);
+ 		menuActive = false;
+ 		System.out.println(aP.getAmbiance()[1]);
+		 if(soundUnit != null) soundUnit.stop();
+		 if(aP.getAmbiance()[1] != null) soundUnit = new SoundUnit("Ressources\\" + aP.getAmbiance()[1]);
+
+		this.visualUnit = new VisualUnit();
+	}
+	
+	
 //---------------------------------------------------------------------------------------------------------------		
 	//décide des actions à faire en fonstion du contexte (menu utilisateur ou bien 
 	//lecture d'un livre)
@@ -99,22 +131,26 @@ public class Synchronizer implements SynchronizerInterface  {
 		case "left":
 			if (!classifier.isFirst()){
 			aP = createPage(mouvement);
-			InputStream in = documentCreator.createDocument(aP);
+			documentCreator.createDocument(aP);
 			menuActive = false;
 			if(soundUnit != null) soundUnit.stop();
-			if(aP.getAmbiance()[1] != null) soundUnit = new SoundUnit("Ressources\\" + aP.getAmbiance()[1]);
-			visualUnit.display(in, mouvement);
+			//System.out.println(aP.getAmbiance()[1]);
+			 if(aP.getAmbiance()[1] != null) soundUnit = new SoundUnit("Ressources\\" + aP.getAmbiance()[1]);
+		
+					visualUnit.display(mouvement);
 			}
 			break;
 		
 		case "right" :
 			if (!classifier.isLast()){	
 			aP = createPage(mouvement);	
-			InputStream in = documentCreator.createDocument(aP);
+			documentCreator.createDocument(aP);
 			menuActive = false;
-			if(soundUnit != null) soundUnit.stop();
-			if(aP.getAmbiance()[1] != null) soundUnit = new SoundUnit("Ressources\\" + aP.getAmbiance()[1]);
-			visualUnit.display(in, mouvement);
+			 if(soundUnit != null) soundUnit.stop();
+			// System.out.println(aP.getAmbiance()[1]);
+			 if(aP.getAmbiance()[1] != null) soundUnit = new SoundUnit("Ressources\\" + aP.getAmbiance()[1]);
+			
+			visualUnit.display(mouvement);
 			}
 			break;
 			
@@ -163,5 +199,10 @@ public class Synchronizer implements SynchronizerInterface  {
 			
 		int[] res = {screen.getDisplayMode().getWidth(), screen.getDisplayMode().getHeight()};
 		return res;
+	}
+	
+//-----------------------------------------------------------------------------------------------------------------------
+	public void setFont(int font){
+		this.font = font;
 	}
 }

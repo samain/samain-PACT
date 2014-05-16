@@ -19,7 +19,6 @@
 package be.pwnt.jflow.demo;
 
 import java.awt.Color;
-import java.io.File;
 import java.io.IOException;
 
 import be.pwnt.jflow.Shape;
@@ -27,8 +26,7 @@ import be.pwnt.jflow.shape.Picture;
 
 public class Configuration extends be.pwnt.jflow.Configuration {
 	public Configuration() {
-		file = new File(System.getProperty("user.dir")+"Images-PACT/galaxy.jpg");
-		shapes = new Shape[8];
+		shapes = new Shape[3];
 		/*
 		shapes = new Shape[9];
 		for (int i = 0; i < shapes.length; i++) {
@@ -40,7 +38,7 @@ public class Configuration extends be.pwnt.jflow.Configuration {
 		}
 		*/
 		try {
-			shapes[0] = new Picture(getClass().getResource(
+			/* shapes[0] = new Picture(getClass().getResource(
 					"img/kaiken.jpg"));
 			shapes[1] = new Picture(getClass().getResource(
 					"img/heidi.jpg"));
@@ -49,12 +47,13 @@ public class Configuration extends be.pwnt.jflow.Configuration {
 			shapes[3] = new Picture(getClass().getResource(
 					"img/bfg.jpg"));
 			shapes[4] = new Picture(getClass().getResource(
-					"img/voyage.jpg"));
-			shapes[5] = new Picture(getClass().getResource(
+					"img/voyage.jpg")); */
+			
+			shapes[0] = new Picture("Voyages de Gulliver -Espace-.txt" ,getClass().getResource(
 					"img/gulliver.png"));
-			shapes[6] = new Picture(getClass().getResource(
+			shapes[1] = new Picture("Histoires du Grand Nord -Plage-.txt" ,getClass().getResource(
 					"img/histoire-grand-nord.jpg"));
-			shapes[7] = new Picture(getClass().getResource(
+			shapes[2] = new Picture("Les raisins de la colère -Nuit-.txt" ,getClass().getResource(
 					"img/raisins.png"));
 				
 		} catch (Exception e) {

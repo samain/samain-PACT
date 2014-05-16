@@ -25,13 +25,21 @@ import be.pwnt.jflow.geometry.Point3D;
 import be.pwnt.jflow.geometry.RotationMatrix;
 
 public abstract class Shape {
+	
+	private String name;
+	
 	private Point3D location;
 
 	private RotationMatrix rotationMatrix;
 
-	public Shape() {
+	public Shape(String name) {
 		setLocation(new Point3D(0, 0, 0));
 		setRotationMatrix(new RotationMatrix(0, 0, 0));
+		this.name = name;
+	}
+	
+	public String getName(){
+		return name;
 	}
 
 	public Point3D getLocation() {

@@ -23,7 +23,7 @@ public class VisualUnit {
 	private TourneDePage tDP; 
 	private final Animator animator;
 //----------------------------------------------------------------------------------------------------	
-	public VisualUnit(InputStream in) {
+	public VisualUnit() {
 		GraphicsEnvironment environment = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		GraphicsDevice[] list = environment.getScreenDevices();
 		
@@ -45,7 +45,7 @@ public class VisualUnit {
 		final GLCanvas canvas = new GLCanvas();
 		final Frame frame = new Frame("ImmersiveReading");
 		animator = new Animator(canvas);
-		this.tDP = new TourneDePage(in);
+		this.tDP = new TourneDePage();
 		canvas.addGLEventListener(tDP);
 		frame.add(canvas);
 		frame.setSize(640, 480);
@@ -66,7 +66,7 @@ public class VisualUnit {
 	}
 //----------------------------------------------------------------------------------------------------
 	//méthode pour afficher le contenu d'un canvas.
-	public void display(InputStream in, String direction){
-		tDP.turnPage(in, direction);
+	public void display(String direction){
+		tDP.turnPage(direction);
 	}
 }
