@@ -67,7 +67,6 @@ public class Fenetre extends JFrame {
 					JOptionPane.showMessageDialog(cell1,
 							"Vous avez choisi un livre. Bonne lecture !",
 							"Immersive Reading", JOptionPane.INFORMATION_MESSAGE);
-					
 					 
 					 		//transmission de la taille désirée de la police pour le livre lu
 							Fenetre.synchronizer.setFont(font);

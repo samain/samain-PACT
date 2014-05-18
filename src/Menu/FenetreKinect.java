@@ -29,8 +29,8 @@ import Kinect.GravityCenter;
 public class FenetreKinect extends JFrame {
 	
 	private JButton bouton = new JButton("Réglages");
-
-	public static SynchronizerInterface synchronizer = new Synchronizer();
+	
+	public static SynchronizerInterface synchronizer =  new Synchronizer();
 	
 	public static int font = 35;
 	
@@ -66,15 +66,14 @@ public class FenetreKinect extends JFrame {
 							"Vous avez choisi un livre. Bonne lecture !",
 							"Immersive Reading", JOptionPane.INFORMATION_MESSAGE);
 					
-					 
 					 		//transmission de la taille désirée de la police pour le livre lu
-							Fenetre.synchronizer.setFont(font);
+							FenetreKinect.synchronizer.setFont(font);
 							
 							//création du livre et affichage de la première page
-							Fenetre.synchronizer.initialiseBook(System.getProperty("user.dir") + "//Textes//" + e.getShape().getName(), font);
+							FenetreKinect.synchronizer.initialiseBook(System.getProperty("user.dir") + "//Textes//" + e.getShape().getName(), font);
 					
 							//démarrage de la détection de mouvement
-							GravityCenter grav = new GravityCenter();
+							GravityCenter grav = new GravityCenter(synchronizer);
 							Thread thread = new Thread(grav);
 							thread.start();
 							
@@ -105,16 +104,15 @@ public class FenetreKinect extends JFrame {
 					JOptionPane.showMessageDialog(cell2,
 							"Vous avez choisi une ambiance. Bonne lecture !",
 							"Immersive Reading", JOptionPane.INFORMATION_MESSAGE);
-					
-					 
+							
 					 		//transmission de la taille désirée de la police pour le livre lu
-							Fenetre.synchronizer.setFont(font);
+							FenetreKinect.synchronizer.setFont(font);
 							
 							//choix du livre le mieux approprié à l'ambinance choisie, création du livre et affichage de la première page
-							Fenetre.synchronizer.initialiseAtmosphere(System.getProperty("user.dir") + "//Ressources//" + e.getShape().getName(), font);
+							FenetreKinect.synchronizer.initialiseAtmosphere(System.getProperty("user.dir") + "//Ressources//" + e.getShape().getName(), font);
 					
 							//démarrage de la détection de mouvement
-							GravityCenter grav = new GravityCenter();
+							GravityCenter grav = new GravityCenter(synchronizer);
 							Thread thread = new Thread(grav);
 							thread.start();
 							

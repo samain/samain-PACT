@@ -17,8 +17,12 @@ import javax.swing.JRootPane;
 
 import java.awt.GridLayout;
 
+import Menu.FenetreKinect;
+import Synchronisation.SynchronizerInterface;
+
 public class GravityCenter implements Runnable {
 
+	
 	public void run(){
 	      boolean record = false;
 	      int codec4cc = CV_FOURCC('D','I','B',' ');
@@ -122,14 +126,14 @@ public class GravityCenter implements Runnable {
 	          	}
 	          	
 	          	if (zone == -1) { 
-	          	System.out.println("droite") ;
 	          	zone = -2 ; //on change la valeur de l'entier pour que le mot ne s'affiche qu'une fois
+	            FenetreKinect.synchronizer.receiveMouvement("right");
 	          	}
 	          	
 	          	
 	          	if (zone == 1) { 
-		        System.out.println("gauche") ;
 		        zone = 2 ; //même remarque
+		        FenetreKinect.synchronizer.receiveMouvement("left");
 		        }
 	          	
 	        
