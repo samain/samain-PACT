@@ -2,7 +2,7 @@ package Classification;
 
 import java.util.ArrayList;
 
-//classe implémentant la méthode pour garder les mots pertnants à analyser pour déterminer l'ambiance 
+//classe implémentant la méthode pour garder les mots pertinents à analyser pour déterminer l'ambiance 
 // du texte
 
 public class NetTab {
@@ -11,7 +11,8 @@ public class NetTab {
 	private String[] wordsToDelete;
 	private ArrayList<String> wordsToDeleteList;
 	private ArrayList<String> netList;
-	
+//-------------------------------------------------------------------------------------------
+	//constructeur de la classe NetTab
 	public NetTab(FileText fileText){
 		this.brutTab= fileText.getBrutTab();
 		this.wordsToDelete= fileText.getWordsToDelete();
@@ -19,8 +20,8 @@ public class NetTab {
 		for (int i=0; i<wordsToDelete.length; i++) wordsToDeleteList.add(wordsToDelete[i]);
 		this.netList = new ArrayList<String>();
 	}	
-		
-	
+//--------------------------------------------------------------------------------------------		
+	//méthode renvoyant le tableau des mots à utiliser pour analyser l'ambiance d'un texte
 	public String[] getNetTab(){
 		ArrayList<String> motsagarder = new ArrayList<String>();
 		ArrayList<String> motsasupprimer = new ArrayList<String>();
@@ -36,7 +37,8 @@ public class NetTab {
 		}
 		return netTab;
 	}
-	
+//-----------------------------------------------------------------------------------------------	
+	//méthode faisant la même chose que la précédente
 	public String[] getNetTabNewPage(){
 		ArrayList<String> motsagarder = new ArrayList<String>();
 		ArrayList<String> motsasupprimer = new ArrayList<String>();
@@ -56,7 +58,8 @@ public class NetTab {
 		}
 		return netTab;
 	}
-	
+//---------------------------------------------------------------------------------------	
+	//méthode renvoyant une ArrayList contenant les mêmes mots que le tablau ds mots à conserver
 	public ArrayList<String> getNetList(String[] netTab){
 		for (int i=0; i<netTab.length; i++){
 			netList.add(netTab[i]);

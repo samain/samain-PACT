@@ -15,7 +15,7 @@ import augmentedPage.AugmentedPage;
 
 // classe s'occuppant de créer les documents 
 public class DocumentCreator implements DocumentCreatorInterface {
-	private LinesGetter linesGetter;
+	private CutInLinesInterface linesGetter;
 	
 	//Police de caractère
 	private int font;
@@ -36,7 +36,7 @@ public class DocumentCreator implements DocumentCreatorInterface {
 	//Adresse complete des ressources
 	private String ressourcesAdress;
 	
-	private SaveAsPNG png;
+	private DocumentToFileInterface png;
 
 
 //------------------------------------------------------------------------------------------------------------------
@@ -58,51 +58,55 @@ public class DocumentCreator implements DocumentCreatorInterface {
 //-----------------------------------------------------------------------------------------------------------------------	
 	// crée le document associé au fichier SVG d'une page qui sera affiché
 	public void createDocument(AugmentedPage augmentedPage){
-		
-		 System.out.println("createDocument : texte : " + augmentedPage.getText());
-		
-		 long time1 = System.currentTimeMillis();
-		
+	     
 		 Document doc = impl.createDocument(svgNS, "svg", null);
+		 
+		 //obtention de la racine du document
 		 Element svgRoot = doc.getDocumentElement();
+		 
+		 //spécification de la largeur et de la hauteur du document
 	     svgRoot.setAttributeNS(null, "width", widthStr);
 	     svgRoot.setAttributeNS(null, "height", heightStr);
 	    
+	     
+	     //création et ajout de l'image corespondant à l'ambiance visuelle de la page
 	     Element image = doc.createElementNS(svgNS, "image");
-	     image.setAttributeNS(null, "x", "0");
-	     image.setAttributeNS(null, "y", "0");
-	     image.setAttributeNS(null, "width", widthStr);
-	     image.setAttributeNS(null, "height", heightStr);
-	     image.setAttributeNS(xlinkNS, "xlink:href", ressourcesAdress.concat(augmentedPage.getAmbiance()[0]));
-	     image.setAttributeNS(null, "visibility", "visible");
-	     image.setAttributeNS(null, "opacity", "1");
+	     	 image.setAttributeNS(null, "x", "0");
+		     image.setAttributeNS(null, "y", "0");
+		     image.setAttributeNS(null, "width", widthStr);
+		     image.setAttributeNS(null, "height", heightStr);
+		     image.setAttributeNS(xlinkNS, "xlink:href", ressourcesAdress.concat(augmentedPage.getAmbiance()[0]));
+		     image.setAttributeNS(null, "visibility", "visible");
+		     image.setAttributeNS(null, "opacity", "1");
 	     
 	     svgRoot.appendChild(image);
 	     
+	     
+	     //découpage du texte de la page en lignes
 	     ArrayList<String> listOfLines = linesGetter.getLines(augmentedPage.getText());
 	     
 	     int size = listOfLines.size();
 	     
 	     for(int i = 0; i<size; i++){
-	    	 Element text = doc.createElementNS(svgNS, "text");
-	    	 text.setAttributeNS(null, "x", "5");
+	    	 //ajout de la (i+1)-ème ligne
 	    	 Integer integerY = new Integer((height/(size+1))*(i+1));
-	    	 text.setAttributeNS(null, "y", integerY.toString());
-	    	 text.setAttributeNS(null, "font-family", fontType);
-	    	 text.setAttributeNS(null, "font-size", fontStr);
-	    	 text.setAttributeNS(null, "fill", "white");
-	    	 text.setAttributeNS(null, "stroke", "black");
-	    	 text.setAttributeNS(null, "stroke-width", "1px");
 	    	 
-	    	 Text textNode = doc.createTextNode(listOfLines.get(i));
-	    	 text.appendChild(textNode);
+	    	 Element text = doc.createElementNS(svgNS, "text");
+	    	 	 text.setAttributeNS(null, "x", "5");
+	    	 	 text.setAttributeNS(null, "y", integerY.toString());
+		    	 text.setAttributeNS(null, "font-family", fontType);
+		    	 text.setAttributeNS(null, "font-size", fontStr);
+		    	 text.setAttributeNS(null, "fill", "white");
+		    	 text.setAttributeNS(null, "stroke", "black");
+		    	 text.setAttributeNS(null, "stroke-width", "1px");
+	    	 
+		    	 Text textNode = doc.createTextNode(listOfLines.get(i));
+		    	 text.appendChild(textNode);
+		    	 
 	    	 svgRoot.appendChild(text);
 	     } 
 	     
-	     long time2 = System.currentTimeMillis();
-	     
-	     System.out.println("DocumentCreator : createDocument : création du document : " + (time2-time1));
-	  
+	     //enregistrement du Document nouvellement créé sous forme de fichier PNG
 	     png.save(doc, System.getProperty("user.dir")+ "\\Images\\img.png");
 
 	     	

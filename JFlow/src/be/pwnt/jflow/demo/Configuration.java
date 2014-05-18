@@ -26,40 +26,22 @@ import be.pwnt.jflow.shape.Picture;
 
 public class Configuration extends be.pwnt.jflow.Configuration {
 	public Configuration() {
-		shapes = new Shape[3];
-		/*
-		shapes = new Shape[9];
-		for (int i = 0; i < shapes.length; i++) {
-			try {
-				shapes[i] = new Picture(getClass().getResource(
-						"img/pic" + (i + 1) + ".jpg"));
-			} catch (IOException e) {
-			}
-		}
-		*/
+		shapes = new Shape[5];
+		
 		try {
-			/* shapes[0] = new Picture(getClass().getResource(
-					"img/kaiken.jpg"));
-			shapes[1] = new Picture(getClass().getResource(
-					"img/heidi.jpg"));
-			shapes[2] = new Picture(getClass().getResource(
-					"img/petit-prince.jpg"));
-			shapes[3] = new Picture(getClass().getResource(
-					"img/bfg.jpg"));
-			shapes[4] = new Picture(getClass().getResource(
-					"img/voyage.jpg")); */
-			
 			shapes[0] = new Picture("Voyages de Gulliver -Espace-.txt" ,getClass().getResource(
-					"img/gulliver.png"));
+					"img/gulliver.jpg"));
 			shapes[1] = new Picture("Histoires du Grand Nord -Plage-.txt" ,getClass().getResource(
 					"img/histoire-grand-nord.jpg"));
 			shapes[2] = new Picture("Les raisins de la colère -Nuit-.txt" ,getClass().getResource(
 					"img/raisins.png"));
+			shapes[3] = new Picture("Les raisins de la colère -Bal-.txt" ,getClass().getResource(
+					"img/Les raisins de la colere.jpg"));
+			shapes[4] = new Picture("Voyages de Gulliver -Ville-.txt" ,getClass().getResource(
+					"img/gulliver2.jpg"));
 				
 		} catch (Exception e) {
 			System.out.println("Exception a l'ouverture du cover Flow : " + e.getMessage());
 		}
-		
-		//backgroundColor = new Color(255, 255, 255, 0);
 	}
 }

@@ -11,10 +11,12 @@ import javax.swing.JPanel;
 public class Cellule extends JPanel {
 	private File image;
 	
+	//constructeur de la Cellule
 	public Cellule(File image){
 		this.image=image;
 	}
 	
+	//méthode chargée d'afficher la Cellule
 	protected void paintComponent(Graphics g) {
 
 		try {

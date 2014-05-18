@@ -34,5 +34,6 @@
 	<classpathentry kind="lib" path="batik-1.7/batik-squiggle.jar"/>
 	<classpathentry kind="lib" path="jogamp/jogamp-all-platforms/jar/gluegen-rt.jar"/>
 	<classpathentry kind="lib" path="jogamp/jogamp-all-platforms/jar/jogl-all.jar"/>
+	<classpathentry kind="lib" path="jfxrt.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

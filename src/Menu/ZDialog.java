@@ -103,7 +103,6 @@ public class ZDialog extends JDialog {
 	    });
 	    control.add(okBouton);
 	    control.add(cancelBouton);
-	   // this.getContentPane().add(panIcon, BorderLayout.WEST);
 	    this.getContentPane().add(content, BorderLayout.CENTER);
 	    this.getContentPane().add(control, BorderLayout.SOUTH);
 	  }  

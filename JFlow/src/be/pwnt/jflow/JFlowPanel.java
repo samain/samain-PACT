@@ -203,14 +203,16 @@ public class JFlowPanel extends JPanel implements MouseListener,
 	public synchronized void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
-			try {
-				Image img = ImageIO.read(config.file);
+		/*	try {
+				Image img =
+						
+						ImageIO.read(config.file);
 
 				g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
 
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
+			} */
 
 		// respect stacking order
 		for (int i = 0; i < config.shapes.length / 2; i++) {

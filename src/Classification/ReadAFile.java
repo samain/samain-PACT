@@ -11,6 +11,8 @@ public class ReadAFile {
 	
 	private BufferedReader monFichier;
 	
+//--------------------------------------------------------------------------------	
+	//constructeur de la classe ReadAFile
 	public ReadAFile(String adresseFichier){
 		try {
 			this.monFichier = new BufferedReader(new FileReader(adresseFichier));
@@ -19,7 +21,8 @@ public class ReadAFile {
 			e.printStackTrace();
 		}
 	}
-	
+//----------------------------------------------------------------------------------
+	//méthode renvoyant une chaîne de caractères contenant le texte du fichier .txt lu
 	public String contenuFichier(){
 		String temp="";
 		String contenuMonFichier="";
@@ -40,7 +43,5 @@ public class ReadAFile {
 		}
 		return contenuMonFichier;
 	}
-	
-
 }
 

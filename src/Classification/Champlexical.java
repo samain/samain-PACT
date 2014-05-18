@@ -2,15 +2,19 @@ package Classification;
 
 import java.util.ArrayList;
 
+/*classe permettant de stocker tous les mots utiles à analyser*/
 
 public class Champlexical {
 	
 	private ArrayList<String> champlexical;
 	
+//--------------------------------------------------------------------------------------------	
+	//constructeur de la classe ChampLexical
 	public Champlexical(NetTab netTab){
 		this.champlexical = netTab.getNetList(netTab.getNetTab());
 	}
-	
+//----------------------------------------------------------------------------------------------	
+	//méthode augmentant le champ lexical des mots utiles d'un fichier
 	public String[] addNewFile(FileText fileText){
 		NetTab netTabb = new NetTab(fileText);
 		String[] myNewFile = netTabb.getNetTab();

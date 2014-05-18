@@ -1,12 +1,10 @@
-import Menu.Menu;
+import javax.swing.JFrame;
 
-
-//la classe dont la méthode main est à exécuter 
+import Menu.Fenetre;
 
 public class Main {
-
 	public static void main(String[] args) {
-	
-		final Menu menu = new Menu();
+
+		JFrame fen = new Fenetre();
 	}
 }

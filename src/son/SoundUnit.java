@@ -11,18 +11,21 @@ public class SoundUnit implements SoundInterface {
 	private String filename;
     private Player player;
     private boolean looping;
-
+//-------------------------------------------------------------------------------------
+    //constructeur de la classe SounUnit
     public SoundUnit(String filename) {
     	this.looping = true;
     	this.filename = filename;
     	play();
     }
-
+//--------------------------------------------------------------------------------------    
+    //méthode arrêtant la diffusion de l'extrait sonore joué
     public void stop() { 
     	looping = false;
     	if (player != null) player.close(); 
     }
-
+//--------------------------------------------------------------------------------------
+    //méthode jouant un extrait sonore
     public void play() {
         try {
             FileInputStream fis     = new FileInputStream(filename);
@@ -43,8 +46,4 @@ public class SoundUnit implements SoundInterface {
             }
         }.start();
     }
-
-	public void playSound(String uri) {
-		
-	}
 }

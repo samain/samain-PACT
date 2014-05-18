@@ -29,52 +29,34 @@ import be.pwnt.jflow.event.ShapeListener;
 import be.pwnt.jflow.shape.Picture;
 
 public class Fenetre extends JFrame {
+	
 	private JButton bouton = new JButton("Réglages");
-	//private Panneau pan = new Panneau();
 
-	public static Synchronizer synchronizer = new Synchronizer();
+	public static SynchronizerInterface synchronizer = new Synchronizer();
 	
 	public static int font = 35;
 	
+	//constructeur de la fenêtre
 	public Fenetre() {
+		
+		//paramêtrage initial de la fenêtre
 		this.setTitle("ImmersiveReading");
 		this.setSize(1200, 900);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
-		// On crée nos différents conteneurs de couleur différente
-		 /*JPanel cell1 = new PanneauAmbiances();
-		// cell1.setBackground(Color.YELLOW);
-		cell1.setPreferredSize(new Dimension(300, 900));
-*/
-		JPanel cell2 = new PanneauThemes();
-		// cell2.setBackground(Color.red);
-		cell2.setPreferredSize(new Dimension(600, 900)); 
-
-		//JPanel cell4 = new PanneauLivres();
+		
+		//création d'un objet contenant les images du menu déroulant des livres.
 		be.pwnt.jflow.demo.Configuration conf = new be.pwnt.jflow.demo.Configuration();
+		
+		//création d'un objet contenant les images du menu déroulant des livres.
 		be.pwnt.jflow.demo.Configuration2 conf2 = new be.pwnt.jflow.demo.Configuration2();
-		/*conf.shapes = new Shape[5];
-		try {
-			conf.shapes[0] = new Picture(getClass().getResource(
-				"/Users/paulinerabis/Documents/Images-PACT/kaiken.jpg"));
-			conf.shapes[1] = new Picture(getClass().getResource(
-					"/Users/paulinerabis/Documents/Images-PACT/heidi.jpg"));
-			conf.shapes[2] = new Picture(getClass().getResource(
-					"/Users/paulinerabis/Documents/Images-PACT/petit-prince.jpg"));
-			conf.shapes[3] = new Picture(getClass().getResource(
-					"/Users/paulinerabis/Documents/Images-PACT/bfg.jpg"));
-			conf.shapes[4] = new Picture(getClass().getResource(
-					"/Users/paulinerabis/Documents/Images-PACT/voyage.jpg"));
-		} catch(Exception e) {
-			System.out.println("Exception a l'ouverture du cover Flow : " + e.getMessage());
-		}
-		*/
-		final JFlowPanel cell4 = new JFlowPanel(conf);
-		// cell4.setBackground(Color.black);
-		cell4.setPreferredSize(new Dimension(300, 900));
-		//pan.setLayout(new FlowLayout());
-		//cell4.add(pan);
-		cell4.addListener(new ShapeListener() {
+		
+		/*création du JFlowPanel contenant le menu déroulant des livres, 
+		auquel on ajoute un listener sur chaque livre*/
+		final JFlowPanel cell1 = new JFlowPanel(conf);
+		cell1.setPreferredSize(new Dimension(300, 900));
+		cell1.addListener(new ShapeListener() {
+			
 			@Override
 			public void shapeClicked(ShapeEvent e) {
 				MouseEvent me = e.getMouseEvent();
@@ -82,15 +64,15 @@ public class Fenetre extends JFrame {
 						&& me.getClickCount() == 1) {
 					
 					
-					 JOptionPane.showMessageDialog(cell4,
-								"Vous avez choisi : " + e.getShape() + ".",
-								"Immersive Reading", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(cell1,
+							"Vous avez choisi un livre. Bonne lecture !",
+							"Immersive Reading", JOptionPane.INFORMATION_MESSAGE);
 					
 					 
-					 		System.out.println("synchroniseur : setFont");
+					 		//transmission de la taille désirée de la police pour le livre lu
 							Fenetre.synchronizer.setFont(font);
-							System.out.println("synchroniseur : initialiseBook");
-							System.out.println(System.getProperty("user.dir") + "//Textes//" + e.getShape().getName());
+							
+							//création du livre et affichage de la première page
 							Fenetre.synchronizer.initialiseBook(System.getProperty("user.dir") + "//Textes//" + e.getShape().getName(), font);
 					
 							
@@ -107,13 +89,10 @@ public class Fenetre extends JFrame {
 			}
 		});
 		
-		
-		final JFlowPanel cell1 = new JFlowPanel(conf2);
-		// cell4.setBackground(Color.black);
-		cell1.setPreferredSize(new Dimension(300, 900));
-		//pan.setLayout(new FlowLayout());
-		//cell4.add(pan);
-		cell1.addListener(new ShapeListener() {
+		//création du menu déroulant contenant les ambiances
+		final JFlowPanel cell2 = new JFlowPanel(conf2);
+		cell2.setPreferredSize(new Dimension(300, 900));
+		cell2.addListener(new ShapeListener() {
 			@Override
 			public void shapeClicked(ShapeEvent e) {
 				MouseEvent me = e.getMouseEvent();
@@ -121,15 +100,15 @@ public class Fenetre extends JFrame {
 						&& me.getClickCount() == 1) {
 					
 					
-					 JOptionPane.showMessageDialog(cell1,
-								"Vous avez choisi : " + e.getShape() + ".",
+					 JOptionPane.showMessageDialog(cell2,
+								"Vous avez choisi une ambiance. Bonne lecture !",
 								"Immersive Reading", JOptionPane.INFORMATION_MESSAGE);
 					
 					 
-					 		System.out.println("synchroniseur : setFont");
+					 		//transmission de la taille désirée de la police pour le livre lu
 							Fenetre.synchronizer.setFont(font);
-							System.out.println("synchroniseur : initialiseAtmosphere");
-							System.out.println(System.getProperty("user.dir") + "//Ressources//" + e.getShape().getName());
+							
+							//choix du livre le mieux approprié à l'ambinance choisie, création du livre et affichage de la première page
 							Fenetre.synchronizer.initialiseAtmosphere(System.getProperty("user.dir") + "//Ressources//" + e.getShape().getName(), font);
 					
 							
@@ -147,10 +126,11 @@ public class Fenetre extends JFrame {
 		});
 		
 		
-		// Le conteneur principal
+		//création du conteneur principal
 		JPanel content = new JPanel();
 		content.setPreferredSize(new Dimension(1200, 900));
 		content.setBackground(Color.WHITE);
+		
 		// On définit le layout manager
 		content.setLayout(new GridBagLayout());
 
@@ -158,35 +138,30 @@ public class Fenetre extends JFrame {
 				GridBagConstraints.REMAINDER, GridBagConstraints.REMAINDER, 1,
 				1, GridBagConstraints.FIRST_LINE_START,
 				GridBagConstraints.BOTH, new Insets(1, 1, 0, 0), 0, 0); 
-		// GridBagConstraints gbc =  new GridBagConstraints();
+		
 
-	/*	gbc.gridx = 0;
-		gbc.gridy = 0;
-
-		gbc.gridheight = 2;
-		gbc.gridwidth = 1;
-
-		content.add(cell1, gbc);
-
-		gbc.gridx = 1;
-		gbc.gridheight = 2;
-
-		content.add(cell2, gbc); */ 
-
+		//positionnement du menu déroulant des livres
+		
 		gbc.gridx = 0;
 		gbc.gridy = 2;
 		gbc.gridwidth = 2;
 		gbc.gridheight = 1;
-		// Celle-ci indique que la cellule se réplique de façon verticale
+		
 
-		content.add(cell4, gbc);
+		content.add(cell1, gbc);
 
+		
+		//positionnement du menu déroulant des ambiances
+		
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
 		
-		content.add(cell1, gbc);
+		content.add(cell2, gbc);
+		
+		
+		//ajout du conteneur principal à la Fenêtre
 		
 		this.setContentPane(content);
 		content.add(bouton);
@@ -203,6 +178,11 @@ public class Fenetre extends JFrame {
 			}
 		});
 		
+		
+		/*création du NAtiveHookListener qui transmet les ordres de l'utilisateur 
+		 (flêche droite pour avancer d'une page, flêche gauche pour reculer d'une page, 
+		 touche entrée pour quitter l'application)*/
+		
 		try {
 			GlobalScreen.registerNativeHook();
 		}
@@ -216,24 +196,19 @@ public class Fenetre extends JFrame {
 			public void nativeKeyReleased(NativeKeyEvent e) {
 				int code = e.getKeyCode();
 				switch(code){
-				case NativeKeyEvent.VK_RIGHT : 
-					System.out.println("right");
+				case NativeKeyEvent.VK_RIGHT :;
 					transferMovement("right");
 					break;
-				case NativeKeyEvent.VK_LEFT : 
-					System.out.println("left");
+				case NativeKeyEvent.VK_LEFT :
 					transferMovement("left");
 					break;
 				case NativeKeyEvent.VK_UP :
-					System.out.println("up");
 					transferMovement("up");
 					break;
 				case NativeKeyEvent.VK_DOWN :
-					System.out.println("down");
 					transferMovement("down");
 					break;
 				case NativeKeyEvent.VK_ENTER :
-					System.out.println("select");
 					transferMovement("select");
 				break;
 				}
@@ -255,7 +230,7 @@ public class Fenetre extends JFrame {
 		
 	}
 	//-------------------------------------------------------------------
-			
+	//méthode chargée de transférer le changement de page désiré au synchroniseur
 	public void transferMovement(String movement){
 		switch(movement){
 		case "select" :

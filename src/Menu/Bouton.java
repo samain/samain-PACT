@@ -17,7 +17,7 @@ public class Bouton extends JRadioButton implements MouseListener{
 	private Image img;
 	private File image;
 	
-
+    //constructeur du de la classe Bouton
 	public Bouton(String str, File image) {
 		super(str);
 
@@ -32,6 +32,7 @@ public class Bouton extends JRadioButton implements MouseListener{
 		 this.addMouseListener(this);
 	}
 
+	// méthode chargée d'afficher le Bouton
 	public void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.drawImage(img, 0, 180, 90, 90, this);

@@ -4,8 +4,7 @@ import org.apache.batik.swing.JSVGCanvas;
 
 public interface TextAndBackgroundInterface {
 
-	public void display(JSVGCanvas canvas);
-	
-	public int[] getResolution();
+	//méthode permettant d'afficher la page demandée par l'utilisateur
+	public void display(String direction);
 	
 }

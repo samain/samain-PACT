@@ -3,8 +3,8 @@ package Classification;
 import java.util.ArrayList;
 
 public class TfIdf {
-    
-    /*Calculated the tf of term termToCheck
+//-----------------------------------------------------------------------------------------    
+    /*Calculates the tf of term termToCheck
      */
     public double tfCalculator(String[] totalterms, String termToCheck) {
         double count = 0;  //to count the overall occurrence of the term termToCheck
@@ -15,8 +15,8 @@ public class TfIdf {
         }
         return count / totalterms.length;
     }
-    
-    /* Calculated idf of term termToCheck
+//---------------------------------------------------------------------------------------------  
+    /* Calculates idf of term termToCheck
      */
     public double idfCalculator(ArrayList<String[]> allTerms, String termToCheck) {
         double count = 0;

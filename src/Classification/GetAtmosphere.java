@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 //classe servant à analyser l'ambiance d'un texte
 
-public class GetAtmosphere {
+public class GetAtmosphere implements GetAtmosphereInterface {
 	
 	private ArrayList<String> montagne;
 	private ArrayList<String> plage;
@@ -44,11 +44,13 @@ public class GetAtmosphere {
 	private String amourMusic = "Amour\\amour.mp3";
 	private String familleMusic = "Famille\\famille.mp3";
 	private String maisonMusic = "Maison\\maison.mp3";
-	
-private String resourcesAdress;
-	
+	private String resourcesAdress;
+//-------------------------------------------------------------------------------------------------
+	//constructeur de la classe GetAtmosphere
 	public GetAtmosphere(){
 		this.resourcesAdress = System.getProperty("user.dir")+"//Ressources";
+		
+		//récupération des mots associés à chaque ambiance
 		this.montagne = (new EnrichAtmosphere(this.resourcesAdress +"//Montagne.txt", 
 				this.resourcesAdress +"//StopWords.txt")).getAtmosphereWordsList();
 		this.plage = (new EnrichAtmosphere(this.resourcesAdress +"//Plage.txt", 
@@ -73,67 +75,83 @@ private String resourcesAdress;
 				this.resourcesAdress+"//StopWords.txt")).getAtmosphereWordsList();
 		this.maison = (new EnrichAtmosphere(this.resourcesAdress+"//Maison.txt", 
 				this.resourcesAdress+"//StopWords.txt")).getAtmosphereWordsList();
+		
+		//création de la liste d'adresses des images associées à chaque ambiance
 		this.montagneImages = new ArrayList<String>();
 		montagneImages.add("Montagne//montagne1.jpg");
 		montagneImages.add("Montagne//montagne2.jpg");
 		montagneImages.add("Montagne//montagne3.jpg");
 		montagneImages.add("Montagne//montagne4.jpg");
 		montagneImages.add("Montagne//montagne5.jpg");
+		
 		this.plageImages = new ArrayList<String>();
 		plageImages.add("Plage//plage1.jpg");
 		plageImages.add("Plage//plage2.jpg");
 		plageImages.add("Plage//plage3.jpg");
 		plageImages.add("Plage//plage4.jpg");
+		
 		this.foretImages = new ArrayList<String>();
 		foretImages.add("Foret//foret1.jpg");
 		foretImages.add("Foret//foret2.jpg");
 		foretImages.add("Foret//foret3.jpg");
 		foretImages.add("Foret//foret4.jpg");
+		
 		this.merImages = new ArrayList<String>();
 		merImages.add("Mer//mer1.jpg");
 		merImages.add("Mer//mer2.jpg");
 		merImages.add("Mer//mer3.jpg");
 		merImages.add("Mer//mer4.jpg");
+		
 		this.feteImages = new ArrayList<String>();
 		feteImages.add("Fete//fete1.jpg");
 		feteImages.add("Fete//fete2.jpg");
+		
 		this.villeImages = new ArrayList<String>();
 		villeImages.add("Ville//ville1.jpg");
 		villeImages.add("Ville//ville2.jpg");
 		villeImages.add("Ville//ville3.jpg");
+		
 		this.espaceImages = new ArrayList<String>();
 		espaceImages.add("Espace//espace1.jpg");
 		espaceImages.add("Espace//espace2.jpg");
 		espaceImages.add("Espace//espace3.jpg");
 		espaceImages.add("Espace//espace4.jpg");
 		espaceImages.add("Espace//espace5.jpg");
+		
 		this.nuitImages = new ArrayList<String>();
 		nuitImages.add("Nuit//nuit1.jpg");
 		nuitImages.add("Nuit//nuit2.jpg");
 		nuitImages.add("Nuit//nuit3.jpg");
 		nuitImages.add("Nuit//nuit4.jpg");
+		
 		this.neigeImages = new ArrayList<String>();
 		neigeImages.add("Neige//neige1.jpg");
 		neigeImages.add("Neige//neige2.jpg");
 		neigeImages.add("Neige//neige3.jpg");
 		neigeImages.add("Neige//neige4.jpg");
+		
 		this.amourImages = new ArrayList<String>();
 		amourImages.add("Amour//amour1.jpg");
 		amourImages.add("Amour//amour2.jpg");
 		amourImages.add("Amour//amour3.jpg");
+		
 		this.familleImages = new ArrayList<String>();
 		familleImages.add("Famille//famille1.jpg");
 		familleImages.add("Famille//famille2.jpg");
 		familleImages.add("Famille//famille3.jpg");
+		
 		this.maisonImages = new ArrayList<String>();
 		maisonImages.add("Maison//maison1.jpg");
 		maisonImages.add("Maison//maison2.jpg");
 		maisonImages.add("Maison//maison3.jpg");
 	}
-	
+//-----------------------------------------------------------------------------------------------------
+	//méthode rennvoyant les ambiance visuelles et sonores associée au texte lu
 	public String[] getTheAtmosphere(String newPage){
+		//récupération des mots utiles de la page à lire
 		TextProcessing newPage2 = new TextProcessing(newPage,this.resourcesAdress+"//StopWords.txt");
 		String[] newPageWords= newPage2.getAtmosphereWords();
+		
 		int mont = 0;
 		int pla = 0;
 		int fo = 0;
@@ -147,6 +165,8 @@ private String resourcesAdress;
 		int fami = 0;
 		int mais =0;
 		int nowherewords = 0;
+		
+		//on compte le nombre de mot de la page associé à chaque ambiance
 		for (int i=0; i<newPageWords.length; i++){
 			if (montagne.contains(newPageWords[i])) mont=mont+1;
 			if (plage.contains(newPageWords[i])) pla=pla+1;
@@ -162,6 +182,8 @@ private String resourcesAdress;
 			if (maison.contains(newPageWords[i])) mais=mais+1;
 			else nowherewords = nowherewords +1;
 		}
+		
+		//on place les résultats dans un tableau, et on les trie par ordre croissant
 		int[] resultat = new int[12];
 		resultat[0] = mont;
 		resultat[1] = pla;
@@ -177,6 +199,9 @@ private String resourcesAdress;
 		resultat[11] = mais;
 		Arrays.sort(resultat);
 		String[] reponse = new String[2];
+		
+		/*détermination de l'ambiance majoritaire de la page, 
+		 et choix aléatoire de l'image associée associée à l'ambiance parmi celles disponibles*/
 		if (mont==0 && pla==0 && fo==0 && sea==0 && fet==0 && vil==0 && espa==0 && nui==0 && neig==0 && amo==0 && fami==0 && mais==0){
 			reponse[0] = "//Défaut//image livre.jpg";
 			reponse[1] = null;

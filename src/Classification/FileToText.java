@@ -7,14 +7,18 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class FileToText {
+public class FileToText implements FileToTextInterface {
 	
 	private String ResourcesAdress;
-	
+//-------------------------------------------------------------------------------------------
+	//constructeur de la classe FileToText
 	public FileToText(){
 		ResourcesAdress = System.getProperty("user.dir");
 	}
-	
+//---------------------------------------------------------------------------------------------
+	/*méthode envoyant une ArrayList contenant un premier tableau avec les adresses du livre et 
+	  des atmosphères et un second tableau contenant le texte du livre et les mots associés aux 
+	  amosphères dont l'adresse est au même indice dans le premier tableau*/
 	public ArrayList<String[]> findAtmosphere(String bookName){
 		ArrayList<String> listOfNames = new ArrayList<String>();
 		ArrayList<String> listOfTexts = new ArrayList<String>();
@@ -24,6 +28,8 @@ public class FileToText {
 		File[] fileList = file.listFiles();
 		int length = fileList.length;
 		
+		/*énumère tout les fichiers contenu par le répertoire correspondant à l'adresse du File 
+		précédemment ouvert*/
 		for (int i = 0; i<length; i++){
 			if (fileList[i].isFile()){
 				listOfNames.add(fileList[i].getName());
@@ -32,6 +38,7 @@ public class FileToText {
 			
 		}
 		
+		//conversion des tableaux en ArrayList
 		int size = listOfNames.size();
 		
 		String[] arrayOfNames = new String[size];
@@ -43,6 +50,7 @@ public class FileToText {
 			arrayOfTexts[j] = listOfTexts.get(j);
 		}
 		
+		//ajout des tableaux dans l'ArrayList à renvoyer 
 		ArrayList<String[]> list = new ArrayList<String[]>();
 		
 		list.add(arrayOfNames);
@@ -50,9 +58,8 @@ public class FileToText {
 		
 		return list;
 	}
-	
-	
-	
+//--------------------------------------------------------------------------------------------------
+	//idem que la méthode précédente mais avec une atmosphère et des textes à lire
 	public ArrayList<String[]> findBook(String atmosphereName){
 		ArrayList<String> listOfNames = new ArrayList<String>();
 		ArrayList<String> listOfTexts = new ArrayList<String>();
@@ -64,7 +71,6 @@ public class FileToText {
 		
 		for (int i = 0; i<length; i++){
 			if (fileList[i].isFile()){
-				System.out.println(fileList[i].getName());
 				listOfNames.add(ResourcesAdress+ "/Textes/" + fileList[i].getName());
 				listOfTexts.add(readFile(ResourcesAdress+ "/Textes/" + fileList[i].getName()));
 			}
@@ -89,7 +95,8 @@ public class FileToText {
 		
 		return list;
 	}
-	
+//------------------------------------------------------------------------------------------------
+	//méthode renvoyant une chaîne de caractères String contenant le texte du fichier à lire
 	private String readFile(String fileName){
 		
 		String texte= "";
