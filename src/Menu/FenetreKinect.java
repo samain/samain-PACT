@@ -73,7 +73,7 @@ public class FenetreKinect extends JFrame {
 							FenetreKinect.synchronizer.initialiseBook(System.getProperty("user.dir") + "//Textes//" + e.getShape().getName(), font);
 					
 							//démarrage de la détection de mouvement
-							GravityCenter grav = new GravityCenter(synchronizer);
+							GravityCenter grav = new GravityCenter();
 							Thread thread = new Thread(grav);
 							thread.start();
 							
@@ -112,7 +112,7 @@ public class FenetreKinect extends JFrame {
 							FenetreKinect.synchronizer.initialiseAtmosphere(System.getProperty("user.dir") + "//Ressources//" + e.getShape().getName(), font);
 					
 							//démarrage de la détection de mouvement
-							GravityCenter grav = new GravityCenter(synchronizer);
+							GravityCenter grav = new GravityCenter();
 							Thread thread = new Thread(grav);
 							thread.start();
 							
